@@ -35,6 +35,7 @@
         <!--<module>dg-mall-cloud-turbine</module>-->
         <module>dg-mall-service</module>
         <module>dg-mall-cloud-docs</module>
+        <module>dg-mall-generator</module>
     </modules>
     <packaging>pom</packaging>
     <name>Dg Mall Parent POM ${project.version}</name>
