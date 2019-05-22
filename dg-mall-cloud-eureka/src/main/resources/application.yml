@@ -1,0 +1,23 @@
+#Security configuration（name:password）
+spring:
+  security:
+    user:
+      name: admin
+      password: 123123
+
+# eureka configuration
+eureka:
+  instance:
+    instanceId: ${spring.application.name}:${server.port}
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${spring.security.user.name}:${spring.security.user.password}@127.0.0.1:8761/eureka/
+
+# Header check
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"

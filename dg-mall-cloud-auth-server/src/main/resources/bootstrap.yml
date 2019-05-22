@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: dg-mall-cloud-auth-server
+server:
+  port: 9500

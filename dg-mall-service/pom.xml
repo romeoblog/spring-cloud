@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.dg.mall</groupId>
+        <artifactId>dg-mall-parent</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <artifactId>dg-mall-service</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+    <name>dg-mall-service ${project.version}</name>
+    <description>dg-mall-service ${project.version}</description>
+
+    <modules>
+        <module>dg-mall-business-service</module>
+        <module>dg-mall-order-service</module>
+        <module>dg-mall-storage-service</module>
+        <module>dg-mall-user-service</module>
+    </modules>
+
+</project>

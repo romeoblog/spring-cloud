@@ -1,0 +1,8 @@
+server:
+  port: 8062
+#  servlet:
+#    context-path: /storage
+spring:
+  application:
+    name: dg-mall-storage-service
+

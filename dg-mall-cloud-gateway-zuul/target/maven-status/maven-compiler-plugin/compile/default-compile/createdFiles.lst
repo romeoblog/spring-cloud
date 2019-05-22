@@ -1,0 +1,7 @@
+com/dg/mall/gateway/configuration/DocumentationConfig.class
+com/dg/mall/gateway/configuration/ZuulFallbackProviderConfig$1.class
+com/dg/mall/gateway/configuration/SwaggerDocumentationConfig.class
+com/dg/mall/gateway/configuration/ZuulFallbackProviderConfig.class
+com/dg/mall/gateway/configuration/ZuulFilterConfig.class
+com/dg/mall/gateway/configuration/HomeController.class
+com/dg/mall/gateway/ZuulApplication.class

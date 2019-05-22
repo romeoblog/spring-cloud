@@ -1,0 +1,123 @@
+# DataSource
+spring:
+  application:
+    name: dg-mall-user-server
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://192.168.0.250:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    password: 123456
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall,slf4j
+    logSlowSql: true
+  # Redis数据库索引（默认为0）
+  redis:
+    database: 0
+    host: 192.168.0.215
+    port: 6379
+    password: bigpass
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    serviceUrl:
+      defaultZone: http://admin:123123@localhost:8761/eureka/,http://admin:123123@localhost:8762/eureka/
+  instance:
+    preferIpAddress: true
+    instance-id: ${spring.application.name}:${server.port}
+
+#load balancing config
+feign:
+  hystrix:
+    enabled: true
+
+#Ribbon configuration using eureka
+ribbon:
+  eureka:
+    enabled: true
+
+#Authorization Token switch(True: Checking)
+checkToken: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: false
+        isolation:
+          strategy: SEMAPHORE
+---
+spring:
+  profiles: dev1
+server:
+  port: 8088
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+---
+spring:
+  profiles: dev2
+server:
+  port: 8089
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+---
+
+#MybatisPlus mapper file location
+mybatisPlus:
+  mapperLocations: classpath:mapper/*.xml
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*" # 暴露所有节点
+    health:
+      sensitive: false # 关闭过滤敏感信息
+  endpoint:
+    health:
+      show-details: ALWAYS  # 显示详细信息
+
+#security:
+#  oauth2:
+#    resource:
+#      id: dg-mall-user-service
+#      user-info-uri: http://localhost:9500/auth/getUser # 配置user-info-uri的url地址
+#      token-info-uri: http://localhost:9500/oauth/check_token # 配置check_token的url地址
+#      user-authorization-uri: http://localhost:9500/oauth/authorize
+#      access-token-uri: http://localhost:9500/oauth/token
+#      prefer-token-info: false
+
+security:
+  oauth2:
+    ignored: /user/index,/user/getInformation2
+    client:
+      client-id: android
+      client-secret: android
+      access-token-uri: http://localhost:9500/oauth/token
+    resource:
+      id: check_token
+      token-info-uri: http://localhost:9500/oauth/check_token # 配置check_token的url地址
+      user-info-uri: http://localhost:9500/auth/getUser # 配置user-info-uri的url地址
+      prefer-token-info: false

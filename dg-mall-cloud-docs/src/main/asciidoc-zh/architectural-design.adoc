@@ -1,0 +1,3 @@
+== 项目架构设计概要图
+ifndef::imagesdir[:imagesdir: images]
+image::architectural-design.png[scaledwidth=75%]

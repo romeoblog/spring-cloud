@@ -1,0 +1,65 @@
+# DataSource
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    platform: mysql
+    url: jdbc:mysql://localhost:3306/db_account?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: ENC(G9tRodL1NzE9my0IKoAw2Kl25fm6ua3RE8eqX2QyemIPdSKaH3GrFAPCOgQ7yA2oH4M8I0jmMVxOCldFJSUQwcqI70W4SYA1Zzlf2GFK/l3w5u01VfWHS1AV+MMQO1/igqMOrbCSsO/bwKmaEfaTGxYAXJN8TCG7HwlZ9jGpWIE=)
+    password: ENC(b4881O6P9kvvDkwVqR8M36PafIJY2a8DFDmS2DprVQAD8ySfDJcjQ+qkWl52kTzsoZUTcFQ/9jZZqKJDIg2KIAWk9nD1GPRS4m4TwwKuj+f9iAA9jmJYkHMpD8FTiaNXFQljXGiOY4jzZvFXsBA1zGUVzmiF5X4h5llksjFCVII=)
+    initialSize: 5
+    minIdle: 5
+    maxActive: 20
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT1FROMDUAL
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    filters: stat,wall,slf4j
+    logSlowSql: true
+  # Redis数据库索引（默认为0）
+  redis:
+    database: 0
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 8
+        max-idle: 8
+        min-idle: 0
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+    nacos:
+      discovery:
+        serverAddr: 127.0.0.1:8848
+
+#Jasypt
+jasypt:
+  encryptor:
+    privateKeyFormat: PEM
+    privateKeyLocation: classpath:key.pem
+
+#Health check
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+#Authorization Token switch(True: Checking)
+checkToken: false
+
+#MybatisPlus mapper file location
+mybatisPlus:
+  mapperLocations: classpath:mapper/*.xml
+
+#Logging Level
+logging:
+  level:
+    org.springframework.cloud.alibaba.seata.web: debug
+    com.alibaba.seata: debug

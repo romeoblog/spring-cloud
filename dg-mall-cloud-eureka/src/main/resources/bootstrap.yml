@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: dg-mall-eureka-eureka
+server:
+  port: 8761

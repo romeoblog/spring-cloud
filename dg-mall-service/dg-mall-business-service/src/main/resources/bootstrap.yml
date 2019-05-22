@@ -1,0 +1,26 @@
+server:
+  port: 8060
+#  servlet:
+#    context-path: /business
+spring:
+  application:
+    name: dg-mall-business-service
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        #命名空间：
+        #Develop[9d145ea5-7f3c-4f87-b122-6bbe7ea6cb7d]
+        #Internal[68e39505-464b-464c-a4e2-bb565f31e358]
+        #Product[f2ffa7fb-6b49-4dd0-b749-053d8ba27c43]
+        namespace: 9d145ea5-7f3c-4f87-b122-6bbe7ea6cb7d
+        #common配置公共属性：如数据库、redis、mq等信息
+        ext-config[0]:
+          data-id: common.yaml
+          group: COMMON_GROUP
+        #业务模块配置：独立的配置属性
+        ext-config[1]:
+          data-id: business.yaml
+          group: SERVICE_GROUP
+          #支持动态刷新
+          refresh: true
