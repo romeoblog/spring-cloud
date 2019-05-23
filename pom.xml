@@ -63,18 +63,14 @@
     </developers>
 
     <organization>
-        <name>Dg-Mall</name>
-        <url>http://dg-mall.com</url>
+        <name>Blog</name>
+        <url>https://github.com/romeoblog</url>
     </organization>
 
-    <!-- SCM信息 -->
     <scm>
-        <!-- 只读的scm连接 -->
-        <connection>scm:svn:svn://192.168.1.49/dg-mall/JAVA源码/JAVA-CLOUD/trunk</connection>
-        <!-- 可写的scm连接 -->
-        <developerConnection>scm:svn:svn://192.168.1.49/dg-mall/JAVA源码/JAVA-CLOUD/trunk</developerConnection>
-        <!-- 项目浏览器里的地址 -->
-        <url>svn://192.168.1.49/dg-mall/JAVA源码/JAVA-CLOUD/trunk</url>
+        <url>git@github.com:romeoblog/spring-cloud.git</url>
+        <connection>scm:git@github.com:romeoblog/spring-cloud.git</connection>
+        <developerConnection>scm:git@github.com:romeoblog/spring-cloud.git</developerConnection>
     </scm>
 
     <properties>
