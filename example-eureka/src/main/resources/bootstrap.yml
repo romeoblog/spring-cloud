@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: example-eureka-eureka
+server:
+  port: 8761

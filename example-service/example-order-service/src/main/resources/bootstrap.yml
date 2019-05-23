@@ -1,0 +1,7 @@
+server:
+  port: 8061
+#  servlet:
+#    context-path: /order
+spring:
+  application:
+    name: example-order-service

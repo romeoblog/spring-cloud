@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: dg-mall-cloud-gateway
-server:
-  port: 8888

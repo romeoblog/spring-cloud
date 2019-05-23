@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-  ~  Copyright 2015-2019 dg-mall.com Group.
+  ~  Copyright 2019 https://github.com/romeoblog/spring-cloud.git Group.
   ~
   ~  Licensed under the Apache License, Version 2.0 (the "License");
   ~  you may not use this file except in compliance with the License.
@@ -19,26 +19,28 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.dg.mall</groupId>
-    <artifactId>dg-mall-parent</artifactId>
+    <groupId>com.cloud.example</groupId>
+    <artifactId>example-parent</artifactId>
     <version>${revision}</version>
     <modules>
-        <module>dg-mall-common</module>
-        <module>dg-mall-platform</module>
-        <module>dg-mall-entity</module>
-        <module>dg-mall-enums</module>
-        <module>dg-mall-model</module>
-        <module>dg-mall-cloud-eureka</module>
-        <module>dg-mall-cloud-gateway</module>
-        <module>dg-mall-cloud-auth-server</module>
-        <module>dg-mall-cloud-boot-admin</module>
-        <!--<module>dg-mall-cloud-turbine</module>-->
-        <module>dg-mall-service</module>
-        <module>dg-mall-cloud-docs</module>
+        <module>example-common</module>
+        <module>example-platform</module>
+        <module>example-entity</module>
+        <module>example-enums</module>
+        <module>example-model</module>
+        <module>example-eureka</module>
+        <module>example-gateway</module>
+        <module>example-gateway-zuul</module>
+        <module>example-auth-server</module>
+        <module>example-boot-admin</module>
+        <module>example-turbine</module>
+        <module>example-service</module>
+        <module>example-docs</module>
+        <module>example-generator</module>
     </modules>
     <packaging>pom</packaging>
     <name>Dg Mall Parent POM ${project.version}</name>
-    <url>http://dg-mall.com</url>
+    <url>https://github.com/romeoblog/spring-cloud.git</url>
     <description>top dg mall project pom.xml file</description>
     <prerequisites>
         <maven>3.2.5</maven>
@@ -62,24 +64,20 @@
     </developers>
 
     <organization>
-        <name>Dg-Mall</name>
-        <url>http://dg-mall.com</url>
+        <name>Blog</name>
+        <url>https://github.com/romeoblog</url>
     </organization>
 
-    <!-- SCM信息 -->
     <scm>
-        <!-- 只读的scm连接 -->
-        <connection>scm:svn:svn://192.168.1.49/dg-mall/JAVA源码/JAVA-CLOUD/trunk</connection>
-        <!-- 可写的scm连接 -->
-        <developerConnection>scm:svn:svn://192.168.1.49/dg-mall/JAVA源码/JAVA-CLOUD/trunk</developerConnection>
-        <!-- 项目浏览器里的地址 -->
-        <url>svn://192.168.1.49/dg-mall/JAVA源码/JAVA-CLOUD/trunk</url>
+        <url>git@github.com:romeoblog/spring-cloud.git</url>
+        <connection>scm:git@github.com:romeoblog/spring-cloud.git</connection>
+        <developerConnection>scm:git@github.com:romeoblog/spring-cloud.git</developerConnection>
     </scm>
 
     <properties>
 
         <!-- parent version -->
-        <revision>4.0.0</revision>
+        <revision>2.0.0</revision>
 
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
@@ -297,27 +295,27 @@
             <!-- Model -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>dg-mall-platform</artifactId>
+                <artifactId>example-platform</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>dg-mall-entity</artifactId>
+                <artifactId>example-entity</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>dg-mall-enums</artifactId>
+                <artifactId>example-enums</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>dg-mall-model</artifactId>
+                <artifactId>example-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>dg-mall-common</artifactId>
+                <artifactId>example-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

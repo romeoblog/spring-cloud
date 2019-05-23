@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: example-auth-server
+server:
+  port: 9500
