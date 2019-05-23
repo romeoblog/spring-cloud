@@ -1,7 +1,0 @@
-server:
-  port: 8061
-#  servlet:
-#    context-path: /order
-spring:
-  application:
-    name: dg-mall-order-service

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.cloud.example</groupId>
+        <artifactId>example-parent</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <artifactId>example-service</artifactId>
+    <version>${revision}</version>
+    <packaging>pom</packaging>
+    <name>example-service ${project.version}</name>
+    <description>example-service ${project.version}</description>
+
+    <modules>
+        <module>example-business-service</module>
+        <module>example-order-service</module>
+        <module>example-storage-service</module>
+        <module>example-user-service</module>
+    </modules>
+
+</project>

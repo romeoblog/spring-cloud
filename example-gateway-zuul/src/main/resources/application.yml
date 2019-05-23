@@ -1,0 +1,75 @@
+server:
+  port: 8760
+spring:
+  application:
+    name: example-gateway-zuul
+  main:
+    allow-bean-definition-overriding: true
+  # 强制转换编码为UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://admin:123123@localhost:8761/eureka/,http://admin:123123@localhost:8762/eureka/
+    healthcheck:  # 健康检查
+      enabled: true
+    registryFetchIntervalSeconds: 5
+  instance:
+    preferIpAddress: true
+    # ipAddress: 127.0.0.1
+    instanceId: ${spring.application.name}:${server.port}
+
+#zuul:
+#  prefix: /api # 添加路由前缀
+#  # ignored-services: '*'   # 使用'*'可忽略所有微服务
+#  routes:
+#    order-service:
+#      path: /order/**
+#      serviceId: example-order-service
+#    user-service:
+#      path: /user/**
+#      serviceId: example-user-service
+#ribbon:
+#  eureka:
+#    enabled: false
+#example-order-service:
+#  ribbon:
+#    listOfServers: http://localhost:8098
+#example-user-service:
+#  ribbon:
+#    listOfServers: http://localhost:8088,http://localhost:8089
+
+zuul:
+  prefix: /api # 添加路由前缀
+  routes:
+    user-service:
+      path: /user/**
+      serviceId: example-user-server
+    order-service:
+      path: /order/**
+      serviceId: example-order-server
+    inventory-service:
+      path: /inventory/**
+      serviceId: example-inventory-server
+
+logging:
+  level:
+    com.netflix: DEBUG
+
+#ribbon:
+#  ConnectTimeout: 250 # 连接超时时间(ms)
+#  ReadTimeout: 2000 # 通信超时时间(ms)
+#  OkToRetryOnAllOperations: true # 是否对所有操作重试
+#  MaxAutoRetriesNextServer: 1 # 同一服务不同实例的重试次数
+#  MaxAutoRetries: 1 # 同一实例的重试次数
+#hystrix:
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          thread:
+#            timeoutInMillisecond: 10000 # 熔断超时时长：10000ms

@@ -1,0 +1,55 @@
+spring:
+  redis:
+    host: localhost
+    password:
+    port: 6379
+  cloud:
+    nacos:
+      discovery:
+        serverAddr: 127.0.0.1:8848
+    sentinel:
+      transport:
+        port: 8888
+        dashboard: localhost:8080
+    gateway:
+      enabled: true
+      discovery:
+        locator:
+          lowerCaseServiceId: true
+      routes:
+        - id: business-service
+          uri: lb://example-business-service
+          predicates:
+            - Path=/business/**
+          filters:
+            - name: Hystrix # 熔断降级配置
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
+        - id: auth-server
+          uri: lb://example-auth-server
+          predicates:
+            - Path=/oauth/**
+          filters:
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
+
+#开启端点 sentinel.dashboard.auth.username=sentinel
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+#Authorization Signature switch(True: Checking)
+checkSign: false
+
+#Logging Level
+logging:
+  level:
+    org.springframework.cloud.gateway: TRACE
+    org.springframework.http.server.reactive: DEBUG
+    org.springframework.web.reactive: DEBUG
+    reactor.ipc.netty: DEBUG
