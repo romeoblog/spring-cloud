@@ -39,9 +39,9 @@
         <module>example-generator</module>
     </modules>
     <packaging>pom</packaging>
-    <name>Dg Mall Parent POM ${project.version}</name>
+    <name>Example Parent POM ${project.version}</name>
     <url>https://github.com/romeoblog/spring-cloud.git</url>
-    <description>top dg mall project pom.xml file</description>
+    <description>top example project pom.xml file</description>
     <prerequisites>
         <maven>3.2.5</maven>
     </prerequisites>
