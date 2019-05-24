@@ -1,4 +1,4 @@
-# Spring Cloud DGMall
+# Spring Cloud Example
 此项目包含开发分布式应用微服务的必需组件，方便通过 Spring Cloud 架构模型使用支持Spring Cloud组件来开发分布式应用服务。
 
 ## 主要功能

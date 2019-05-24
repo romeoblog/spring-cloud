@@ -1,5 +1,5 @@
 [[spring-cloud-example-reference]]
-= Spring Cloud Dg Mall 文档参考
+= Spring Cloud Example 文档参考
 zhengweilu; 其他人;
 :doctype: book
 :toc:
