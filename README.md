@@ -13,25 +13,25 @@
 
 ## 组件
 
-**Oauth2 & Security**：基于OAUTH2.0统一认证授权的微服务基础架构，支持权限、角色等安全认证。
+* **Oauth2 & Security**：基于OAUTH2.0统一认证授权的微服务基础架构，支持权限、角色等安全认证。
 
-**Sentinel**：监控服务，把流量作为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。
+* **Sentinel**：监控服务，把流量作为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。
 
-**Nacos**：提供用于存储配置和其他元数据的 key/value 存储，一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
+* **Nacos**：提供用于存储配置和其他元数据的 key/value 存储，一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
 
-**Nacos Config**：Nacos Config是 Config Server 和 Client 的替代方案，项目很容易地使用 Nacos Config 来实现应用的外部化配置，实现统一配置与管理。
+* **Nacos Config**：Nacos Config是 Config Server 和 Client 的替代方案，项目很容易地使用 Nacos Config 来实现应用的外部化配置，实现统一配置与管理。
 
-**Eureka**：种基于REST的服务，主要用于定位服务，以实现中间层服务器的负载平衡和故障转移。目前还在跟随Spring Cloud版本升级维护，最终也会被替代。
+* **Eureka**：种基于REST的服务，主要用于定位服务，以实现中间层服务器的负载平衡和故障转移。目前还在跟随Spring Cloud版本升级维护，最终也会被替代。
 
-**Seata**：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。
+* **Seata**：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。
 
-**Gateway**：Spring Cloud Gateway是Spring Cloud官方推出的第二代网关框架，取代Zuul网关。网关作为流量的，在微服务系统中有着非常作用，网关常见的功能有路由转发、权限校验、限流控制等作用。
+* **Gateway**：Spring Cloud Gateway是Spring Cloud官方推出的第二代网关框架，取代Zuul网关。网关作为流量的，在微服务系统中有着非常作用，网关常见的功能有路由转发、权限校验、限流控制等作用。
 
-**Zuul**：来于Netflix Zuul，目前还在继续维护，而Spring Cloud Gateway组件，不久将来逐渐淘汰。（目前不采用）
+* **Zuul**：来于Netflix Zuul，目前还在继续维护，而Spring Cloud Gateway组件，不久将来逐渐淘汰。（目前不采用）
 
-**Jasypt**：提供对配置文件安全加密和管理
+* **Jasypt**：提供对配置文件安全加密和管理
 
-**Sleuth & Zikpin**：提供全链路监控，跟踪分布式服务间的应用数据链路。（计划以后实现）
+* **Sleuth & Zikpin**：提供全链路监控，跟踪分布式服务间的应用数据链路。（计划以后实现）
 
 ## 如何构建
 
