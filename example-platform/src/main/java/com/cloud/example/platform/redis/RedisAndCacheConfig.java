@@ -46,11 +46,6 @@ import java.time.Duration;
 @ConditionalOnClass({RedisTemplate.class, StringRedisTemplate.class, CacheManager.class})
 public class RedisAndCacheConfig extends CachingConfigurerSupport {
 
-    /**
-     * 默认缓存失效时间为1个小时
-     */
-    private final static long DEFAULT_EXPIRATION = 60 * 60 * 1L;
-
     @Bean
     @ConditionalOnMissingBean
     public <V> RedisTemplate<String, V> redisTemplate(RedisConnectionFactory jedisConnectionFactory) {
@@ -82,22 +77,10 @@ public class RedisAndCacheConfig extends CachingConfigurerSupport {
         return new RedisIdGenerator(redisTemplate);
     }
 
-    @SuppressWarnings("rawtypes")
-//    @Bean
-//    @ConditionalOnMissingBean
-//    public CacheManager cacheManager(RedisTemplate<String, Object> redisTemplate) {
-//        RedisCacheManager rcm = new RedisCacheManager(redisTemplate);
-//        /**
-//         * 设置缓存过期时间(单位：秒)
-//         */
-//        rcm.setDefaultExpiration(DEFAULT_EXPIRATION);
-//        return rcm;
-//    }
-
     @Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         /**
-         * 设置缓存过期时间(单位：秒)
+         * 设置缓存过期时间(单位：时)
          */
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig()
                 .entryTtl(Duration.ofHours(1));
