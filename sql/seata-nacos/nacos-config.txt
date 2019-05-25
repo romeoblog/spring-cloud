@@ -27,7 +27,7 @@ store.file.flush-disk-mode=async
 store.file.session.reload.read_size=100
 store.db.datasource=dbcp
 store.db.db-type=mysql
-.url=jdbc:mysql://127.0.0.1:3306/db_seata?useUnicode=true
+store.db.url=jdbc:mysql://127.0.0.1:3306/db_seata?useUnicode=true
 store.db.user=root
 store.db.password=123456
 store.db.min-conn=1
