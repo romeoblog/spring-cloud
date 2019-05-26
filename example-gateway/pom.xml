@@ -94,6 +94,12 @@
             <artifactId>swagger-bootstrap-ui</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>spring-cloud-gateway-starter-ahas-sentinel</artifactId>
+            <version>1.0.2</version>
+        </dependency>
+
     </dependencies>
 
 </project>
