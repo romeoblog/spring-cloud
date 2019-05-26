@@ -25,10 +25,16 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayParamFlowItem
 import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
+import com.alibaba.csp.sentinel.datasource.ReadableDataSource;
+import com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
+import com.cloud.example.common.utils.JsonUtils;
+import com.google.gson.reflect.TypeToken;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.filter.GlobalFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -47,7 +53,19 @@ import java.util.*;
  * @date 2019-05-25
  */
 @Configuration
+@Slf4j
 public class GatewayConfiguration {
+
+    @Value("${spring.cloud.nacos.remoteAddress}")
+    private String remoteAddress;
+
+    @Value("${spring.cloud.sentinel.nacos.flowRule.groupId}")
+    private String flowRuleGroupId;
+
+    @Value("${spring.cloud.sentinel.nacos.flowRule.dataId}")
+    private String flowRuleDataId;
+
+
 
     private final List<ViewResolver> viewResolvers;
     private final ServerCodecConfigurer serverCodecConfigurer;
@@ -73,11 +91,12 @@ public class GatewayConfiguration {
 
     @PostConstruct
     public void doInit() {
-        initCustomizedApis();
-        initGatewayRules();
-        initDegradeRule();
-    }
+//        initCustomizedApis();
+//        initGatewayRules();
+//        initDegradeRule();
 
+        initNacosGatewayFlowRules();
+    }
 
     private void initCustomizedApis() {
         Set<ApiDefinition> definitions = new HashSet<>();
@@ -101,8 +120,8 @@ public class GatewayConfiguration {
         Set<GatewayFlowRule> rules = new HashSet<>();
 
         rules.add(new GatewayFlowRule("business_service_route")
-                .setCount(10)
-                .setIntervalSec(1)
+                        .setCount(10)
+                        .setIntervalSec(1)
                 //.setControlBehavior(RuleConstant.CONTROL_BEHAVIOR_RATE_LIMITER)
                 //.setMaxQueueingTimeoutMs(3000)
         );
@@ -169,4 +188,13 @@ public class GatewayConfiguration {
 
         DegradeRuleManager.loadRules(rules);
     }
+
+    private void initNacosGatewayFlowRules() {
+        log.info("flow rule: nacos address: [{}], groupId: [{}], dataId: [{}]", remoteAddress, flowRuleGroupId, flowRuleDataId);
+        ReadableDataSource<String, Set<GatewayFlowRule>> flowRuleDataSource = new NacosDataSource<>(remoteAddress, flowRuleGroupId, flowRuleDataId,
+                source -> JsonUtils.fromJson(source, new TypeToken<Set<GatewayFlowRule>>() {
+                }));
+        GatewayRuleManager.register2Property(flowRuleDataSource.getProperty());
+    }
+
 }

@@ -63,6 +63,13 @@
             <version>${sentinel.version}</version>
         </dependency>
 
+        <!-- Alibaba Sentinel DataSouce for Nacos -->
+        <dependency>
+            <groupId>com.alibaba.csp</groupId>
+            <artifactId>sentinel-datasource-nacos</artifactId>
+            <version>${sentinel.version}</version>
+        </dependency>
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>

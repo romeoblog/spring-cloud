@@ -5,10 +5,15 @@ spring:
     port: 6379
   cloud:
     nacos:
+      remoteAddress: localhost
       discovery:
         enabled: true
-        serverAddr: 127.0.0.1:8848
+        serverAddr: ${spring.cloud.nacos.remoteAddress}:8848
     sentinel:
+      nacos:
+        flowRule:
+          groupId: SENTINEL_GROUP
+          dataId: sentinel.gateway.flow.rule
       transport:
         port: 8720
         dashboard: localhost:8081
@@ -43,7 +48,7 @@ spring:
 #            - AddRequestParameter=foo, bar
 #            - AddResponseHeader=X-Response-Foo, Bar
 
-#开启端点 sentinel.dashboard.auth.username=sentinel
+#开启端点
 management:
   endpoints:
     web:
