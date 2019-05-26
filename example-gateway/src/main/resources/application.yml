@@ -10,8 +10,8 @@ spring:
         serverAddr: 127.0.0.1:8848
     sentinel:
       transport:
-        port: 8888
-        dashboard: localhost:8080
+        port: 8720
+        dashboard: localhost:8081
     gateway:
       enabled: true
       discovery:
