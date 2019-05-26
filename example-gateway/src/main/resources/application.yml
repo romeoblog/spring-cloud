@@ -6,6 +6,7 @@ spring:
   cloud:
     nacos:
       discovery:
+        enabled: true
         serverAddr: 127.0.0.1:8848
     sentinel:
       transport:
@@ -17,24 +18,30 @@ spring:
         locator:
           lowerCaseServiceId: true
       routes:
-        - id: business-service
+        - id: baidu_route
+          uri: https://www.baidu.com
+          predicates:
+            - Path=/product/**
+        - id: qq_route
+          uri: https://www.qq.com/
+          predicates:
+            - Path=/httpbin/**
+          filters:
+            - RewritePath=/httpbin/(?<segment>.*), /$\{segment}
+        - id: business_service_route
           uri: lb://example-business-service
           predicates:
-            - Path=/business/**
+            - Path=/nacos/**,/bar/{segment}
+#            - Cookie=JSESSIONID, 89B45328A3FF57837046CAAAE490916F
+#            - Header=X-Request-Id, \d+
+#            - Method=GET
+#            - Query=baz
+#            - RemoteAddr=192.168.1.1/20
           filters:
-            - name: Hystrix # 熔断降级配置
-              args:
-                name: fallbackcmd
-                fallbackUri: forward:/fallback
-        - id: auth-server
-          uri: lb://example-auth-server
-          predicates:
-            - Path=/oauth/**
-          filters:
-            - name: Hystrix
-              args:
-                name: fallbackcmd
-                fallbackUri: forward:/fallback
+            - StripPrefix=1
+#            - AddRequestHeader=X-Request-Foo, Bar
+#            - AddRequestParameter=foo, bar
+#            - AddResponseHeader=X-Response-Foo, Bar
 
 #开启端点 sentinel.dashboard.auth.username=sentinel
 management:
@@ -45,11 +52,3 @@ management:
 
 #Authorization Signature switch(True: Checking)
 checkSign: false
-
-#Logging Level
-logging:
-  level:
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.http.server.reactive: DEBUG
-    org.springframework.web.reactive: DEBUG
-    reactor.ipc.netty: DEBUG

@@ -137,7 +137,7 @@
         <seata.version>0.6.0</seata.version>
 
         <!-- Sentinel -->
-        <sentinel.version>1.6.1</sentinel.version>
+        <sentinel.version>1.6.0</sentinel.version>
 
         <!-- Plugin -->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
@@ -545,8 +545,23 @@
 
             <!-- Alibaba Sentinel -->
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.alibaba.csp</groupId>
                 <artifactId>sentinel-core</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-transport-simple-http</artifactId>
                 <version>${sentinel.version}</version>
             </dependency>
 
