@@ -37,6 +37,7 @@
         <module>example-service</module>
         <module>example-docs</module>
         <module>example-generator</module>
+        <module>example-api</module>
     </modules>
     <packaging>pom</packaging>
     <name>Example Parent POM ${project.version}</name>
@@ -321,6 +322,11 @@
             <dependency>
                 <groupId>${project.groupId}</groupId>
                 <artifactId>example-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>example-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
