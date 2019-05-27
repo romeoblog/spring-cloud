@@ -139,6 +139,9 @@
         <!-- Sentinel -->
         <sentinel.version>1.6.0</sentinel.version>
 
+        <!-- Alibaba AHAH -->
+        <alibaba-ahas-sentinel.version>1.0.2</alibaba-ahas-sentinel.version>
+
         <!-- Plugin -->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.0.1</maven-jar-plugin.version>
@@ -395,7 +398,6 @@
                 <version>${mybatis-spring-boot-starter.version}</version>
             </dependency>
 
-
             <!-- Logger -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
@@ -561,8 +563,20 @@
             </dependency>
             <dependency>
                 <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-datasource-nacos</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
                 <artifactId>sentinel-transport-simple-http</artifactId>
                 <version>${sentinel.version}</version>
+            </dependency>
+
+            <!-- Alibaba AHAS -->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>spring-cloud-gateway-starter-ahas-sentinel</artifactId>
+                <version>${alibaba-ahas-sentinel.version}</version>
             </dependency>
 
             <dependency>
