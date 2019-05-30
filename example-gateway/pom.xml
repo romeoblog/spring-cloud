@@ -65,10 +65,10 @@
         </dependency>
 
         <!-- Alibaba AHAS -->
-        <dependency>
-            <groupId>com.alibaba.csp</groupId>
-            <artifactId>spring-cloud-gateway-starter-ahas-sentinel</artifactId>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.alibaba.csp</groupId>-->
+            <!--<artifactId>spring-cloud-gateway-starter-ahas-sentinel</artifactId>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>javax.servlet</groupId>

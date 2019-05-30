@@ -26,11 +26,18 @@ import com.alibaba.csp.sentinel.adapter.gateway.common.rule.GatewayRuleManager;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.SentinelGatewayFilter;
 import com.alibaba.csp.sentinel.adapter.gateway.sc.exception.SentinelGatewayBlockExceptionHandler;
 import com.alibaba.csp.sentinel.datasource.ReadableDataSource;
+import com.alibaba.csp.sentinel.datasource.WritableDataSource;
 import com.alibaba.csp.sentinel.datasource.nacos.NacosDataSource;
 import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
+import com.alibaba.csp.sentinel.slots.system.SystemRule;
+import com.alibaba.csp.sentinel.slots.system.SystemRuleManager;
+import com.alibaba.csp.sentinel.transport.util.WritableDataSourceRegistry;
 import com.cloud.example.common.utils.JsonUtils;
+import com.cloud.example.gateway.utils.NacosConfigUtil;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.ObjectProvider;
@@ -56,16 +63,8 @@ import java.util.*;
 @Slf4j
 public class GatewayConfiguration {
 
-    @Value("${spring.cloud.nacos.remoteAddress}")
-    private String remoteAddress;
-
-    @Value("${spring.cloud.sentinel.nacos.flowRule.groupId}")
-    private String flowRuleGroupId;
-
-    @Value("${spring.cloud.sentinel.nacos.flowRule.dataId}")
-    private String flowRuleDataId;
-
-
+    @Value("${spring.application.name}")
+    private String appName;
 
     private final List<ViewResolver> viewResolvers;
     private final ServerCodecConfigurer serverCodecConfigurer;
@@ -95,7 +94,8 @@ public class GatewayConfiguration {
 //        initGatewayRules();
 //        initDegradeRule();
 
-        initNacosGatewayFlowRules();
+        registerSentinelProperty();
+        registerNacosDataSource();
     }
 
     private void initCustomizedApis() {
@@ -189,12 +189,67 @@ public class GatewayConfiguration {
         DegradeRuleManager.loadRules(rules);
     }
 
-    private void initNacosGatewayFlowRules() {
-        log.info("flow rule: nacos address: [{}], groupId: [{}], dataId: [{}]", remoteAddress, flowRuleGroupId, flowRuleDataId);
-        ReadableDataSource<String, Set<GatewayFlowRule>> flowRuleDataSource = new NacosDataSource<>(remoteAddress, flowRuleGroupId, flowRuleDataId,
+    private void registerSentinelProperty() {
+        log.info("Loading flow data source rules: remoteAddress: [{}], groupId: [{}], dataId: [{}]",
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX);
+        ReadableDataSource<String, Set<GatewayFlowRule>> flowRuleDataSource = new NacosDataSource<>(
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX,
                 source -> JsonUtils.fromJson(source, new TypeToken<Set<GatewayFlowRule>>() {
                 }));
         GatewayRuleManager.register2Property(flowRuleDataSource.getProperty());
+
+        log.info("Loading degrade data source rules: remoteAddress: [{}], groupId: [{}], dataId: [{}]",
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.DEGRADE_DATA_ID_POSTFIX);
+        ReadableDataSource<String, List<DegradeRule>> degradeRuleDataSource = new NacosDataSource<>(
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.DEGRADE_DATA_ID_POSTFIX,
+                source -> JsonUtils.fromJson(source, new TypeToken<List<DegradeRule>>() {
+                }));
+        DegradeRuleManager.register2Property(degradeRuleDataSource.getProperty());
+
+        log.info("Loading system data source rules: remoteAddress: [{}], groupId: [{}], dataId: [{}]",
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.SYSTEM_DATA_ID_POSTFIX);
+        ReadableDataSource<String, List<SystemRule>> systemRuleDataSource = new NacosDataSource<>(
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.SYSTEM_DATA_ID_POSTFIX,
+                source -> JsonUtils.fromJson(source, new TypeToken<List<SystemRule>>() {
+                }));
+        SystemRuleManager.register2Property(systemRuleDataSource.getProperty());
     }
+
+    private void registerNacosDataSource() {
+        WritableDataSource<List<FlowRule>> flowWritableDataSource = new NacosWritableDataSource<>(
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX,
+                source -> JsonUtils.toJson(source));
+        WritableDataSourceRegistry.registerFlowDataSource(flowWritableDataSource);
+
+        WritableDataSource<List<DegradeRule>> degradeWritableDataSource = new NacosWritableDataSource<>(
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.DEGRADE_DATA_ID_POSTFIX,
+                source -> JsonUtils.toJson(source));
+        WritableDataSourceRegistry.registerDegradeDataSource(degradeWritableDataSource);
+
+        WritableDataSource<List<SystemRule>> systemWritableDataSource = new NacosWritableDataSource<>(
+                NacosConfigUtil.REMOTE_ADDRESS,
+                NacosConfigUtil.GROUP_ID,
+                appName + NacosConfigUtil.SYSTEM_DATA_ID_POSTFIX,
+                source -> JsonUtils.toJson(source));
+        WritableDataSourceRegistry.registerSystemDataSource(systemWritableDataSource);
+
+    }
+
 
 }
