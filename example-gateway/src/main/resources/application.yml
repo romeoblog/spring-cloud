@@ -5,51 +5,58 @@ spring:
     port: 6379
   cloud:
     nacos:
+      remoteAddress: localhost
       discovery:
-        serverAddr: 127.0.0.1:8848
+        enabled: true
+        serverAddr: ${spring.cloud.nacos.remoteAddress}:8848
     sentinel:
+      nacos:
+        flowRule:
+          groupId: SENTINEL_GROUP
+          dataId: sentinel.gateway.flow.rule
       transport:
-        port: 8888
-        dashboard: localhost:8080
+        port: 8720
+        dashboard: localhost:8081
     gateway:
       enabled: true
       discovery:
         locator:
           lowerCaseServiceId: true
       routes:
-        - id: business-service
+        - id: baidu_route
+          uri: https://www.baidu.com
+          predicates:
+            - Path=/product/**
+        - id: qq_route
+          uri: https://www.qq.com/
+          predicates:
+            - Path=/httpbin/**
+          filters:
+            - RewritePath=/httpbin/(?<segment>.*), /$\{segment}
+        - id: business_service_route
           uri: lb://example-business-service
           predicates:
-            - Path=/business/**
+            - Path=/nacos/**,/bar/{segment}
+#            - Cookie=JSESSIONID, 89B45328A3FF57837046CAAAE490916F
+#            - Header=X-Request-Id, \d+
+#            - Method=GET
+#            - Query=baz
+#            - RemoteAddr=192.168.1.1/20
           filters:
-            - name: Hystrix # 熔断降级配置
-              args:
-                name: fallbackcmd
-                fallbackUri: forward:/fallback
-        - id: auth-server
-          uri: lb://example-auth-server
-          predicates:
-            - Path=/oauth/**
-          filters:
-            - name: Hystrix
-              args:
-                name: fallbackcmd
-                fallbackUri: forward:/fallback
+            - StripPrefix=1
+#            - AddRequestHeader=X-Request-Foo, Bar
+#            - AddRequestParameter=foo, bar
+#            - AddResponseHeader=X-Response-Foo, Bar
 
-#开启端点 sentinel.dashboard.auth.username=sentinel
-management:
-  endpoints:
-    web:
-      exposure:
-        include: '*'
+spring.main.allow-bean-definition-overriding: true
+management.endpoints.web.exposure.include: '*'
 
 #Authorization Signature switch(True: Checking)
 checkSign: false
 
-#Logging Level
-logging:
-  level:
-    org.springframework.cloud.gateway: TRACE
-    org.springframework.http.server.reactive: DEBUG
-    org.springframework.web.reactive: DEBUG
-    reactor.ipc.netty: DEBUG
+# https://ahas.console.aliyun.com/?spm=a2cb8.12805554.0.0.6bf71e63lvtCGv#/SystemGuardGw?ns=default&regionId=public&isi=&_k=li7w04
+#ahas:
+#  namespace: default
+#  license: c997cffd0c7148efa3e64042dfa6cca5
+#project:
+#  name: example-gateway

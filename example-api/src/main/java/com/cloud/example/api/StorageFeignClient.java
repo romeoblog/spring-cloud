@@ -13,30 +13,30 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.service.business.feign;
+package com.cloud.example.api;
 
 import com.cloud.example.common.model.ResultMsg;
-import com.cloud.example.model.order.OrderVO;
+import com.cloud.example.model.storage.StorageVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * 订单服务 Demo
+ * 库存服务
  *
  * @author Benji
  * @date 2019-04-28
  */
-@FeignClient(name = "example-order-service", path = "/order")
-public interface OrderFeignClient {
+@FeignClient(name = "example-storage-service", path = "/storage")
+public interface StorageFeignClient {
 
     /**
-     * 创建订单 Demo
+     * 扣库存
      *
-     * @param orderVO
+     * @param storageVO
      * @return
      */
-    @PostMapping("/create")
-    ResultMsg<Boolean> create(@RequestBody OrderVO orderVO);
+    @PostMapping("/deduct")
+    ResultMsg<Boolean> deduct(@RequestBody StorageVO storageVO);
 
 }

@@ -13,7 +13,7 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.service.order.feign;
+package com.cloud.example.api;
 
 import com.cloud.example.common.model.ResultMsg;
 import com.cloud.example.model.user.AccountVO;

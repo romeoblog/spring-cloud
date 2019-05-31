@@ -38,7 +38,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackages = {"com.cloud.example"})
 @MapperScan(basePackages = {"com.cloud.example.service.order.mapper", "com.cloud.example.mapper"})
 @EnableDiscoveryClient
-@EnableFeignClients
+@EnableFeignClients(basePackages= {"com.cloud.example.api"})
 @Slf4j
 public class OrderApplication {
 
