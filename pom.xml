@@ -37,6 +37,7 @@
         <module>example-service</module>
         <module>example-docs</module>
         <module>example-generator</module>
+        <module>example-api</module>
     </modules>
     <packaging>pom</packaging>
     <name>Example Parent POM ${project.version}</name>
@@ -133,11 +134,15 @@
         <!-- Seata -->
         <!--<seata.version>0.5.0</seata.version>-->
         <!--<seata.version>0.5.1</seata.version>-->
-        <!--<seata.version>0.5.2</seata.version>-->
-        <seata.version>0.6.0</seata.version>
+        <seata.version>0.5.2</seata.version>
+        <!--<seata.version>0.6.0</seata.version>-->
 
         <!-- Sentinel -->
+        <!--<sentinel.version>1.6.0</sentinel.version>-->
         <sentinel.version>1.6.0</sentinel.version>
+
+        <!-- Alibaba AHAH -->
+        <alibaba-ahas-sentinel.version>1.0.2</alibaba-ahas-sentinel.version>
 
         <!-- Plugin -->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
@@ -320,6 +325,11 @@
                 <artifactId>example-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
+            <dependency>
+                <groupId>${project.groupId}</groupId>
+                <artifactId>example-api</artifactId>
+                <version>${project.version}</version>
+            </dependency>
 
             <!-- Data Source -->
             <dependency>
@@ -394,7 +404,6 @@
                 <artifactId>mybatis-spring-boot-starter</artifactId>
                 <version>${mybatis-spring-boot-starter.version}</version>
             </dependency>
-
 
             <!-- Logger -->
             <dependency>
@@ -545,9 +554,36 @@
 
             <!-- Alibaba Sentinel -->
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>com.alibaba.csp</groupId>
                 <artifactId>sentinel-core</artifactId>
                 <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-spring-cloud-gateway-adapter</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-datasource-nacos</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>sentinel-transport-simple-http</artifactId>
+                <version>${sentinel.version}</version>
+            </dependency>
+
+            <!-- Alibaba AHAS -->
+            <dependency>
+                <groupId>com.alibaba.csp</groupId>
+                <artifactId>spring-cloud-gateway-starter-ahas-sentinel</artifactId>
+                <version>${alibaba-ahas-sentinel.version}</version>
             </dependency>
 
             <dependency>

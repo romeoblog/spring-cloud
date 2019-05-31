@@ -13,30 +13,33 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.service.business.feign;
+package com.cloud.example.api;
 
 import com.cloud.example.common.model.ResultMsg;
-import com.cloud.example.model.storage.StorageVO;
+import com.cloud.example.model.user.AccountVO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 /**
- * 库存服务
+ * 账号接口
  *
  * @author Benji
- * @date 2019-04-28
+ * @date 2019-04-29
  */
-@FeignClient(name = "example-storage-service", path = "/storage")
-public interface StorageFeignClient {
+@FeignClient(name = "example-user-service", path = "/account")
+public interface UserFeignClient {
 
     /**
-     * 扣库存
+     * 余额扣除
      *
-     * @param storageVO
+     * @param accountVO
      * @return
      */
-    @PostMapping("/deduct")
-    ResultMsg<Boolean> deduct(@RequestBody StorageVO storageVO);
+    @PostMapping("/debit")
+    ResultMsg<Boolean> debit(@RequestBody AccountVO accountVO);
+
+    @PostMapping("/test")
+    ResultMsg<Boolean> test(@RequestBody AccountVO accountVO);
 
 }

@@ -16,19 +16,18 @@
 package com.cloud.example.common.utils;
 
 import com.cloud.example.common.utils.adapter.NullStringToEmptyAdapterFactory;
-import com.cloud.example.common.utils.serializer.DefaultSerializer;
 import com.cloud.example.common.utils.serializer.ClassDeserializer;
+import com.cloud.example.common.utils.serializer.DefaultSerializer;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonDeserializer;
 import com.google.gson.reflect.TypeToken;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 
 import java.lang.reflect.Type;
-import java.util.Collection;
-import java.util.Date;
-import java.util.Enumeration;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * 包含操作 {@code JSON} 数据的常用方法的工具类。
@@ -39,6 +38,12 @@ import java.util.Iterator;
  */
 @Slf4j
 public class JsonUtils {
+
+    private static Gson gson;
+
+    static {
+        gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+    }
 
     /**
      * 空的 {@code JSON} 数据 - <code>"{}"</code>。
@@ -205,7 +210,6 @@ public class JsonUtils {
         }
         builder.setDateFormat(datePattern);
         builder.registerTypeAdapter(Class.class, new ClassDeserializer());
-        Gson gson = builder.create();
         try {
             return gson.fromJson(json, token.getType());
         } catch (Exception ex) {
@@ -247,7 +251,6 @@ public class JsonUtils {
         }
         builder.setDateFormat(datePattern);
         builder.registerTypeAdapter(Class.class, new ClassDeserializer());
-        Gson gson = builder.create();
         try {
             return gson.fromJson(json, clazz);
         } catch (Exception ex) {
@@ -284,12 +287,6 @@ public class JsonUtils {
     public static String toJson(Object target, Type targetType, GsonBuilder builder) {
         if (target == null) {
             return EMPTY_JSON;
-        }
-        Gson gson = null;
-        if (builder == null) {
-            gson = new Gson();
-        } else {
-            gson = builder.create();
         }
         String result = EMPTY_JSON;
         try {

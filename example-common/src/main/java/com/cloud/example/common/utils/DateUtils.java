@@ -123,15 +123,15 @@ public class DateUtils extends org.apache.commons.lang3.time.DateUtils {
      * 设置日期的时、分、秒和毫秒信息，返回{@code java.sql.Timestamp }类型时间
      *
      * @param date
-     * @param hour_of_day
+     * @param hourOfDay
      * @param minute
      * @param second
      * @param millisecond
      */
-    public static Timestamp getTimestampByDate(Date date, int hour_of_day, int minute, int second, int millisecond) {
+    public static Timestamp getTimestampByDate(Date date, int hourOfDay, int minute, int second, int millisecond) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
-        calendar.set(Calendar.HOUR_OF_DAY, hour_of_day);
+        calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
         calendar.set(Calendar.MINUTE, minute);
         calendar.set(Calendar.SECOND, second);
         calendar.set(Calendar.MILLISECOND, millisecond);

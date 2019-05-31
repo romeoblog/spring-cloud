@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.cloud.example</groupId>
+        <artifactId>example-parent</artifactId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+    <artifactId>example-api</artifactId>
+    <packaging>jar</packaging>
+    <name>example-api ${project.version}</name>
+
+    <dependencies>
+
+        <!-- module -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>example-entity</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>example-model</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>example-common</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-feign</artifactId>
+            <optional>true</optional>
+        </dependency>
+    </dependencies>
+
+</project>

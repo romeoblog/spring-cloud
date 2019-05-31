@@ -15,14 +15,14 @@
  */
 package com.cloud.example.service.business.service.impl;
 
+import com.cloud.example.api.OrderFeignClient;
+import com.cloud.example.api.StorageFeignClient;
 import com.cloud.example.common.enums.ResultCode;
 import com.cloud.example.common.model.ResultMsg;
-import com.cloud.example.service.business.service.IBusinessService;
 import com.cloud.example.model.order.OrderVO;
 import com.cloud.example.model.storage.StorageVO;
 import com.cloud.example.platform.exception.RequestException;
-import com.cloud.example.service.business.feign.OrderFeignClient;
-import com.cloud.example.service.business.feign.StorageFeignClient;
+import com.cloud.example.service.business.service.IBusinessService;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
 import lombok.extern.slf4j.Slf4j;

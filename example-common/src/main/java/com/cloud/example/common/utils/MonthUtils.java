@@ -73,10 +73,10 @@ public class MonthUtils {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date(DateUtils.getEndTimeOfMonth(month).getTime()));
 
-        int c_year = calendar.get(Calendar.YEAR);
-        int c_month = calendar.get(Calendar.MONTH) + 1;
-        int c_day = calendar.get(Calendar.DATE);
-        return String.valueOf(c_year) + (c_month < 10 ? ("0" + c_month) : (String.valueOf(c_month))) + (c_day < 10 ? ("0" + c_day) : (String.valueOf(c_day)));
+        int cYear = calendar.get(Calendar.YEAR);
+        int cMonth = calendar.get(Calendar.MONTH) + 1;
+        int cDay = calendar.get(Calendar.DATE);
+        return String.valueOf(cYear) + (cMonth < 10 ? ("0" + cMonth) : (String.valueOf(cMonth))) + (cDay < 10 ? ("0" + cDay) : (String.valueOf(cDay)));
     }
 
     /**
