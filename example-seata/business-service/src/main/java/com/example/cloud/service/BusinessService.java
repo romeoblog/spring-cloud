@@ -2,6 +2,7 @@ package com.example.cloud.service;
 
 import com.example.cloud.feign.OrderFeignClient;
 import com.example.cloud.feign.StorageFeignClient;
+import io.seata.spring.annotation.GlobalTransactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,7 +14,7 @@ public class BusinessService {
     @Autowired
     private OrderFeignClient orderFeignClient;
 
-    //@GlobalTransactional
+    @GlobalTransactional
     public void purchase(String userId, String commodityCode, int orderCount) {
         storageFeignClient.deduct(commodityCode, orderCount);
 
