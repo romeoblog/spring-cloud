@@ -38,6 +38,7 @@
         <module>example-docs</module>
         <module>example-generator</module>
         <module>example-api</module>
+        <module>example-test</module>
         <!--<module>example-seata</module>-->
     </modules>
     <packaging>pom</packaging>

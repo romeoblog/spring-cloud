@@ -22,8 +22,11 @@ import org.jasypt.encryption.StringEncryptor;
 import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-public class testTest {
-
+/**
+ * @author Benji
+ * @date 2019-06-03
+ */
+public class KeyTest {
     @Test
     public void getPass() {
         SimpleAsymmetricConfig config = new SimpleAsymmetricConfig();
