@@ -113,15 +113,6 @@
             <artifactId>nacos-client</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-discovery-nacos</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-config-nacos</artifactId>
-        </dependency>
-
         <!-- Alibaba Seata -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -129,7 +120,7 @@
         </dependency>
         <dependency>
             <groupId>io.seata</groupId>
-            <artifactId>seata-spring</artifactId>
+            <artifactId>seata-all</artifactId>
         </dependency>
 
         <!-- Swagger UI -->

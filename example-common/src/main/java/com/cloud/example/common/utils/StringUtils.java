@@ -16,7 +16,7 @@
 package com.cloud.example.common.utils;
 
 import com.cloud.example.common.constant.Constants;
-import com.cloud.example.platform.exception.ShouldNeverHappenException;
+import com.cloud.example.common.exception.ShouldNeverHappenException;
 
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
