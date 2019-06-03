@@ -46,6 +46,14 @@ eureka:
       defaultZone: http://admin:123123@127.0.0.1:8761/eureka/
       preferIpAddress: true
 
+#Feigin Default connectTimeout(Unit: ms)
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 60000
+        read-timeout: 60000
+
 #Jasypt
 jasypt:
   encryptor:
