@@ -73,9 +73,3 @@ checkToken: false
 #MybatisPlus mapper file location
 mybatisPlus:
   mapperLocations: classpath:mapper/*.xml
-
-#Logging Level
-logging:
-  level:
-    org.springframework.cloud.alibaba.seata.web: debug
-    com.alibaba.seata: debug

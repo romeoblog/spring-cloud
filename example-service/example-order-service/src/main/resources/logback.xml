@@ -44,7 +44,8 @@
     <logger name="com.cloud.example" level="INFO" additivity="true">
         <appender-ref ref="FILELOG"/>
     </logger>
-    <logger name="io.seata" level="INFO"/>
+    <!--<logger name="io.seata" level="INFO"/>-->
+    <logger name="com.cloud.example.api" level="INFO"/>
 
     <root level="WARN">
         <appender-ref ref="SYSOUT"/>

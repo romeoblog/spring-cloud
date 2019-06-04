@@ -87,7 +87,7 @@ public class ServiceAspect {
         sb.append(RUNTIME).append(diff).append(TIME_UNIT_NAME).append(SEPARATOR);
 
         if (ctx.getArgs().length > 0) {
-            sb.append(ARGS).append(LOG_ARG).append(SEPARATOR);
+            sb.append(ARGS).append(LOG_ARG);
             args.add(ctx.getArgs());
         }
         if (returnValue != null) {

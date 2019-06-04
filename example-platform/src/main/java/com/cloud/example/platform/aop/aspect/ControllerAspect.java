@@ -59,16 +59,18 @@ public class ControllerAspect {
     private static final String ERROR_MSG = "ErrorMsg" + TEXT_DELIMITER;
     private static final String SEPARATOR = ", ";
     private static final String TIME_UNIT_NAME = "ms";
+    private static final String SEPARATOR_N = "\n";
     private static final String CONNECTOR_BETWEEN_URI_AND_QUERYSTRING = "?";
 
     private String serverPort, requestMethod;
 
-    @Pointcut("@annotation(org.springframework.web.bind.annotation.RequestMapping)" +
+    @Pointcut("!execution(* com.cloud.example.api.*.*(..))" +
+            "&& (@annotation(org.springframework.web.bind.annotation.RequestMapping)" +
             " || @annotation(org.springframework.web.bind.annotation.GetMapping )" +
             " || @annotation(org.springframework.web.bind.annotation.PostMapping )" +
             " || @annotation(org.springframework.web.bind.annotation.PutMapping )" +
             " || @annotation(org.springframework.web.bind.annotation.PatchMapping )" +
-            " || @annotation(org.springframework.web.bind.annotation.DeleteMapping )")
+            " || @annotation(org.springframework.web.bind.annotation.DeleteMapping ))")
     public void controller() {
     }
 
@@ -105,7 +107,7 @@ public class ControllerAspect {
             args.add(ctx.getArgs());
         }
         if (returnValue != null) {
-            sb.append(RETURN).append(LOG_ARG).append(SEPARATOR);
+            sb.append(RETURN).append(LOG_ARG).append(SEPARATOR_N);
             args.add(returnValue);
         }
         log.info(sb.toString(), args.toArray());
