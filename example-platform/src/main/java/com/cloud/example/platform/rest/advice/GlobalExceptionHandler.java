@@ -58,9 +58,16 @@ public class GlobalExceptionHandler {
     }
 
     @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(InternalApiException.class)
+    public ResultMsg internalApiException(HttpServletRequest request, InternalApiException ex) {
+        logger.error(ExceptionUtils.getMessage(ex));
+        return ResultMsg.error(ex.getMessage());
+    }
+
+    @ResponseStatus(HttpStatus.OK)
     @ExceptionHandler(CommonException.class)
     public ResultMsg commonException(HttpServletRequest request, CommonException ex) {
-        logger.error(ExceptionUtils.getMessage(ex), ex);
+        logger.error(ExceptionUtils.getMessage(ex));
         return ResultMsg.error(ex.getMessage());
     }
 
