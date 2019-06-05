@@ -21,7 +21,7 @@ import com.cloud.example.common.model.ResultMsg;
 import com.cloud.example.entity.OrderTbl;
 import com.cloud.example.model.order.OrderVO;
 import com.cloud.example.model.user.AccountVO;
-import com.cloud.example.platform.exception.RequestException;
+import com.cloud.example.platform.exception.InternalApiException;
 import com.cloud.example.service.OrderTblService;
 import com.cloud.example.service.order.mapper.OrderMapperExt;
 import com.cloud.example.service.order.service.IOrderService;
@@ -95,7 +95,7 @@ public class OrderServiceImpl implements IOrderService {
         ResultMsg<Boolean> userFeignResult = userFeignClient.debit(accountVO);
 
         if (userFeignResult.getCode() != ResultCode.OK.getCode()) {
-            throw new RequestException("The feign user request is error exception. The Code:" + userFeignResult.getCode());
+            throw new InternalApiException("The feign user request is error exception. The Code:" + userFeignResult.getCode());
         }
 
     }

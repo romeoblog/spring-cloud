@@ -109,23 +109,16 @@
             <artifactId>nacos-client</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-discovery-nacos</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>io.seata</groupId>
-            <artifactId>seata-config-nacos</artifactId>
-        </dependency>
-
         <!-- Alibaba Seata -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+            <version>${spring-cloud-alibaba.version}</version>
         </dependency>
         <dependency>
             <groupId>io.seata</groupId>
-            <artifactId>seata-spring</artifactId>
+            <artifactId>seata-all</artifactId>
+            <version>${seata.version}</version>
         </dependency>
 
         <!-- Swagger UI -->
