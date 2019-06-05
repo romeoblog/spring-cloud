@@ -191,16 +191,12 @@
 
     <!--<repositories>
         <repository>
-            <id>spring-milestone</id>
-            <url>https://repo.spring.io/milestone</url>
-        </repository>
-        <repository>
-            <id>maven-aliyun</id>
-            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
-        </repository>
-        <repository>
-            <id>jitpack</id>
-            <url>https://jitpack.io</url>
+            <id>spring-snapshot</id>
+            <name>Spring Snapshot Repository</name>
+            <url>https://repo.spring.io/snapshot</url>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
         </repository>
     </repositories>-->
 
