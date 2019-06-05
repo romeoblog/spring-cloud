@@ -15,44 +15,63 @@
  */
 package com.cloud.example.gateway.route;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.nacos.api.NacosFactory;
 import com.alibaba.nacos.api.config.ConfigService;
 import com.alibaba.nacos.api.config.listener.Listener;
 import com.alibaba.nacos.api.exception.NacosException;
+import com.cloud.example.common.utils.JacksonUtils;
+import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
 import java.util.concurrent.Executor;
 
+/**
+ * Nacos动态路由配置
+ *
+ * @author Benji
+ * @date 2019-06-05
+ */
 @Component
 public class DynamicRouteServiceImplByNacos {
+
+    private String serverAddr = "localhost:8848";
+
+    private String dataId = "example-gateway";
+
+    private String groupId = "GATEWAY_ROUTER_GROUP";
+
+    private Long timeout = 5000L;
 
     @Autowired
     private DynamicRouteServiceImpl dynamicRouteService;
 
     public DynamicRouteServiceImplByNacos() {
-
-        dynamicRouteByNacosListener("example-gateway", "GATEWAY_ROUTER_GROUP");
+        dynamicRouteByNacosListener(dataId, groupId);
     }
 
     /**
      * 监听Nacos Server下发的动态路由配置
      *
-     * @param dataId
-     * @param group
+     * @param dataId  the dataId
+     * @param groupId the groupId
      */
-    public void dynamicRouteByNacosListener(String dataId, String group) {
+    public void dynamicRouteByNacosListener(String dataId, String groupId) {
         try {
-            ConfigService configService = NacosFactory.createConfigService("127.0.0.1:8848");
-            String content = configService.getConfig(dataId, group, 5000);
+            ConfigService configService = NacosFactory.createConfigService(serverAddr);
+            String content = configService.getConfig(dataId, groupId, timeout);
             System.out.println(content);
-            configService.addListener(dataId, group, new Listener() {
+            configService.addListener(dataId, groupId, new Listener() {
                 @Override
                 public void receiveConfigInfo(String configInfo) {
-                    RouteDefinition definition = JSON.parseObject(configInfo, RouteDefinition.class);
-                    dynamicRouteService.update(definition);
+                    List<RouteDefinition> list = JacksonUtils.toCollection(configInfo, new TypeReference<List<RouteDefinition>>() {
+                    });
+                    list.forEach(definition -> {
+                        dynamicRouteService.update(definition);
+                    });
                 }
 
                 @Override
