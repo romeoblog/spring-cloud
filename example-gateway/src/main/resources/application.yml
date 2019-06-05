@@ -5,15 +5,10 @@ spring:
     port: 6379
   cloud:
     nacos:
-      remoteAddress: localhost
       discovery:
         enabled: true
-        serverAddr: ${spring.cloud.nacos.remoteAddress}:8848
+        serverAddr: localhost:8848
     sentinel:
-      nacos:
-        flowRule:
-          groupId: SENTINEL_GROUP
-          dataId: sentinel.gateway.flow.rule
       transport:
         port: 8720
         dashboard: localhost:8081
@@ -48,7 +43,14 @@ spring:
 #            - AddRequestParameter=foo, bar
 #            - AddResponseHeader=X-Response-Foo, Bar
 
-spring.main.allow-bean-definition-overriding: true
+eureka:
+  client:
+    enabled: false
+    serviceUrl:
+      defaultZone: http://admin:123123@127.0.0.1:8761/eureka/
+    preferIpAddress: true
+
+#spring.main.allowBeanDefinitionOverriding: true
 management.endpoints.web.exposure.include: '*'
 
 #Authorization Signature switch(True: Checking)

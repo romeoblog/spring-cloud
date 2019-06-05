@@ -21,7 +21,7 @@ import com.cloud.example.common.enums.ResultCode;
 import com.cloud.example.common.model.ResultMsg;
 import com.cloud.example.model.order.OrderVO;
 import com.cloud.example.model.storage.StorageVO;
-import com.cloud.example.platform.exception.RequestException;
+import com.cloud.example.platform.exception.InternalApiException;
 import com.cloud.example.service.business.service.IBusinessService;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
@@ -61,7 +61,7 @@ public class BusinessServiceImpl implements IBusinessService {
         ResultMsg<Boolean> orderFeignResult = orderFeignClient.create(orderVO);
 
         if (orderFeignResult.getCode() != ResultCode.OK.getCode()) {
-            throw new RequestException("The feign order request is error exception. The Code:" + orderFeignResult.getCode());
+            throw new InternalApiException("The feign order request is error exception. The Code:" + orderFeignResult.getCode());
         }
 
         StorageVO storageVO = new StorageVO();
@@ -72,7 +72,7 @@ public class BusinessServiceImpl implements IBusinessService {
         ResultMsg<Boolean> storageFeignResult = storageFeignClient.deduct(storageVO);
 
         if (storageFeignResult.getCode() != ResultCode.OK.getCode()) {
-            throw new RequestException("The feign storage request is error exception. The Code:" + storageFeignResult.getCode());
+            throw new InternalApiException("The feign storage request is error exception. The Code:" + storageFeignResult.getCode());
         }
 
     }

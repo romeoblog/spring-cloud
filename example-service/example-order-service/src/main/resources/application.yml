@@ -36,7 +36,23 @@ spring:
         tx-service-group: my_test_tx_group
     nacos:
       discovery:
+        enabled: true
         serverAddr: 127.0.0.1:8848
+
+eureka:
+  client:
+    enabled: false
+    serviceUrl:
+      defaultZone: http://admin:123123@127.0.0.1:8761/eureka/
+      preferIpAddress: true
+
+#Feigin Default connectTimeout(Unit: ms)
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 60000
+        read-timeout: 60000
 
 #Jasypt
 jasypt:
@@ -57,9 +73,3 @@ checkToken: false
 #MybatisPlus mapper file location
 mybatisPlus:
   mapperLocations: classpath:mapper/*.xml
-
-#Logging Level
-logging:
-  level:
-    org.springframework.cloud.alibaba.seata.web: debug
-    com.alibaba.seata: debug
