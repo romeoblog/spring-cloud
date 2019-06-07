@@ -20,6 +20,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
@@ -52,6 +53,10 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     @Autowired
     private DataSource dataSource;
 
+    @Autowired
+    private RedisConnectionFactory redisConnectionFactory;
+
+
     private static final String PREFIX_JWT_JKS_NAME = "auth-jwt";
 
     private static final String SUFFIX_JWT_JKS_NAME = ".jks";
@@ -60,7 +65,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     @Bean
     public TokenStore tokenStore() {
-        // return new JdbcTokenStore(dataSource);
+//         return new JdbcTokenStore(dataSource);
+//        return new RedisTokenStore(redisConnectionFactory);
         return new JwtTokenStore(accessTokenConverter());
     }
 
@@ -139,5 +145,6 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         endpoints.tokenStore(tokenStore())
                 .accessTokenConverter(accessTokenConverter())
                 .authenticationManager(authenticationManager);
+//        endpoints.tokenServices(tokenServices());
     }
 }
