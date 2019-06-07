@@ -13,36 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.auth.mapper;
+package com.cloud.example.auth.service;
 
-import com.cloud.example.auth.entity.Permission;
-import com.cloud.example.entity.TbPermission;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
- * 〈权限Dao〉
+ * 自定义认证逻辑
  *
- * @author Joe-Benji
- * @date 2019-04-08
- * @since 1.0.0
+ * @author Benji
+ * @date 2019-06-07
  */
-public interface PermissionMapperExt {
+public interface IUserDetailService2 extends UserDetailsService {
 
-    /**
-     * 根据角色id查找权限列表
-     *
-     * @param roleId 角色id
-     * @return 权限列表
-     */
-    List<Permission> findByRoleId(Integer roleId);
 
-    /**
-     * 根据用户id查找用户权限
-     *
-     * @param userId
-     * @return
-     */
-    List<TbPermission> listPermission(@Param("userId") Long userId);
 }
+

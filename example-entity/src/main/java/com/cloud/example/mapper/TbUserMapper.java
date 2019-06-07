@@ -13,36 +13,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.auth.mapper;
+package com.cloud.example.mapper;
 
-import com.cloud.example.auth.entity.Permission;
-import com.cloud.example.entity.TbPermission;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.cloud.example.entity.TbUser;
+import com.cloud.example.platform.base.SuperMapper;
 
 /**
- * 〈权限Dao〉
+ * <p>
+  * 用户表 Mapper 接口
+ * </p>
  *
- * @author Joe-Benji
- * @date 2019-04-08
- * @since 1.0.0
+ * @author Generator
+ * @since 2019-06-07
  */
-public interface PermissionMapperExt {
+public interface TbUserMapper extends SuperMapper<TbUser> {
 
-    /**
-     * 根据角色id查找权限列表
-     *
-     * @param roleId 角色id
-     * @return 权限列表
-     */
-    List<Permission> findByRoleId(Integer roleId);
-
-    /**
-     * 根据用户id查找用户权限
-     *
-     * @param userId
-     * @return
-     */
-    List<TbPermission> listPermission(@Param("userId") Long userId);
 }

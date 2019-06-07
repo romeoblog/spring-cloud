@@ -37,8 +37,8 @@ import java.security.Principal;
 @RequestMapping("/auth")
 public class AccountController {
 
-    @Autowired
-    private ConsumerTokenServices consumerTokenServices;
+//    @Autowired
+//    private ConsumerTokenServices consumerTokenServices;
 
     @GetMapping("/getUser")
     public Principal user(Principal member) {
@@ -47,12 +47,12 @@ public class AccountController {
     }
 
 
-    @DeleteMapping(value = "/logout")
-    public ResultMsg revokeToken(String accessToken) {
-        if (consumerTokenServices.revokeToken(accessToken)) {
-            return ResultMsg.create().status(ResultCode.OK);
-        } else {
-            return ResultMsg.error(ResultCode.EXCEPTION);
-        }
-    }
+//    @DeleteMapping(value = "/logout")
+//    public ResultMsg revokeToken(String accessToken) {
+//        if (consumerTokenServices.revokeToken(accessToken)) {
+//            return ResultMsg.create().status(ResultCode.OK);
+//        } else {
+//            return ResultMsg.error(ResultCode.EXCEPTION);
+//        }
+//    }
 }
