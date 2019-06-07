@@ -15,6 +15,7 @@
  */
 package com.cloud.example.auth.config;
 
+import com.cloud.example.auth.config.custom.CustomTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,12 +31,15 @@ import org.springframework.security.oauth2.config.annotation.web.configurers.Aut
 import org.springframework.security.oauth2.provider.ClientDetailsService;
 import org.springframework.security.oauth2.provider.client.JdbcClientDetailsService;
 import org.springframework.security.oauth2.provider.token.DefaultTokenServices;
+import org.springframework.security.oauth2.provider.token.TokenEnhancer;
+import org.springframework.security.oauth2.provider.token.TokenEnhancerChain;
 import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 import org.springframework.security.oauth2.provider.token.store.KeyStoreKeyFactory;
 
 import javax.sql.DataSource;
+import java.util.Arrays;
 
 /**
  * 认证授权服务配置
@@ -63,6 +67,11 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
 
     private static final String JWT_PASSWORD = "authServer";
 
+    /**
+     * token 存储方式
+     *
+     * @return TokenStore
+     */
     @Bean
     public TokenStore tokenStore() {
 //         return new JdbcTokenStore(dataSource);
@@ -73,7 +82,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     /**
      * 存储客户端信息
      *
-     * @return
+     * @return ClientDetailsService
      */
     @Bean
     public ClientDetailsService jdbcClientDetails() {
@@ -83,7 +92,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     /**
      * jwt令牌
      *
-     * @return
+     * @return JwtAccessTokenConverter
      */
     @Bean
     public JwtAccessTokenConverter accessTokenConverter() {
@@ -97,7 +106,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
     /**
      * 默认Token服务
      *
-     * @return
+     * @return DefaultTokenServices
      */
     @Bean
     @Primary
@@ -106,6 +115,16 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
         defaultTokenServices.setTokenStore(tokenStore());
         defaultTokenServices.setSupportRefreshToken(true);
         return defaultTokenServices;
+    }
+
+    /**
+     * 自定义生成token携带的信息
+     *
+     * @return TokenEnhancer
+     */
+    @Bean
+    public TokenEnhancer tokenEnhancer() {
+        return new CustomTokenEnhancer();
     }
 
     /**
@@ -142,9 +161,17 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      */
     @Override
     public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
-        endpoints.tokenStore(tokenStore())
-                .accessTokenConverter(accessTokenConverter())
-                .authenticationManager(authenticationManager);
-//        endpoints.tokenServices(tokenServices());
+        //指定认证管理器
+        endpoints.authenticationManager(authenticationManager);
+        // 指定token存储位置
+        endpoints.tokenStore(tokenStore());
+        // token生成方式
+        endpoints.accessTokenConverter(accessTokenConverter());
+
+        //自定义token生成方式
+        TokenEnhancerChain tokenEnhancerChain = new TokenEnhancerChain();
+        tokenEnhancerChain.setTokenEnhancers(Arrays.asList(tokenEnhancer(), accessTokenConverter()));
+        endpoints.tokenEnhancer(tokenEnhancerChain);
+
     }
 }
