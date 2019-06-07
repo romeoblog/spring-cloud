@@ -56,14 +56,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     @Override
     public UserDetailsService userDetailsService() {
-
         return new UserDetailService2Impl();
     }
 
+    /**
+     * 支持密码模式
+     *
+     * @return
+     * @throws Exception
+     */
     @Bean
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
-        // 支持密码模式
         return super.authenticationManagerBean();
     }
 
@@ -82,7 +86,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        // 使用自定义认证与授权
         auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
