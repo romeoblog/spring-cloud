@@ -13,36 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.auth.mapper;
+package com.cloud.example.service.impl;
 
-import com.cloud.example.auth.entity.Permission;
-import com.cloud.example.entity.TbPermission;
-import org.apache.ibatis.annotations.Param;
-
-import java.util.List;
+import com.cloud.example.entity.TbUser;
+import com.cloud.example.mapper.TbUserMapper;
+import com.cloud.example.service.TbUserService;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 
 /**
- * 〈权限Dao〉
+ * <p>
+ * 用户表 服务实现类
+ * </p>
  *
- * @author Joe-Benji
- * @date 2019-04-08
- * @since 1.0.0
+ * @author Generator
+ * @since 2019-06-07
  */
-public interface PermissionMapperExt {
-
-    /**
-     * 根据角色id查找权限列表
-     *
-     * @param roleId 角色id
-     * @return 权限列表
-     */
-    List<Permission> findByRoleId(Integer roleId);
-
-    /**
-     * 根据用户id查找用户权限
-     *
-     * @param userId
-     * @return
-     */
-    List<TbPermission> listPermission(@Param("userId") Long userId);
+@Service
+public class TbUserServiceImpl extends ServiceImpl<TbUserMapper, TbUser> implements TbUserService {
+	
 }

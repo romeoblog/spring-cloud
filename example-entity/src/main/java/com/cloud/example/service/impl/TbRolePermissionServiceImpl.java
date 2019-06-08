@@ -13,12 +13,23 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.gateway.route;
+package com.cloud.example.service.impl;
 
-import com.alibaba.nacos.api.PropertyKeyConst;
+import com.cloud.example.entity.TbRolePermission;
+import com.cloud.example.mapper.TbRolePermissionMapper;
+import com.cloud.example.service.TbRolePermissionService;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 
-public class NacosConstant extends PropertyKeyConst {
-    public static final String NACOS_SERVER_ADDR = "nacos.server-addr";
-
-    public static final long DEFAULT_TIMEOUT = 30000;
+/**
+ * <p>
+ * 角色权限表 服务实现类
+ * </p>
+ *
+ * @author Generator
+ * @since 2019-06-07
+ */
+@Service
+public class TbRolePermissionServiceImpl extends ServiceImpl<TbRolePermissionMapper, TbRolePermission> implements TbRolePermissionService {
+	
 }

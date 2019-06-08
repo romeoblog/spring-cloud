@@ -40,7 +40,7 @@ public class MybatisPlusGenerator {
         dsc.setUsername("root");
         dsc.setPassword("123456");
         //dsc.setUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8");
-        dsc.setUrl("jdbc:mysql://localhost:3306/db_account?useUnicode=true&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/dg_auth?useUnicode=true&characterEncoding=utf8");
         return dsc;
     }
 
@@ -76,8 +76,8 @@ public class MybatisPlusGenerator {
         StrategyConfig strategy = new StrategyConfig();
         //strategy.setTablePrefix(new String[]{"co_"});
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-//        strategy.setInclude(new String[] { "storage_tbl", "undo_log"});
-        strategy.setInclude(new String[] { "account_tbl" }); // 需要生成的表
+        strategy.setInclude(new String[] { "tb_permission", "tb_role", "tb_role_permission", "tb_user", "tb_user_role"});
+//        strategy.setInclude(new String[] { "account_tbl" }); // 需要生成的表
         strategy.setSuperMapperClass("com.cloud.example.platform.base.SuperMapper");
         strategy.setSuperEntityClass("com.cloud.example.platform.base.SuperEntity");
         //strategy.setSuperServiceImplClass("com.cc.platform.base.SuperServiceImpl");
@@ -147,7 +147,7 @@ public class MybatisPlusGenerator {
      */
     public static void main(String[] args) {
         DataSourceConfig dataSourceConfig  = MybatisPlusGenerator.getDataSourceConfig();
-        MybatisPlusGenerator.generate(dataSourceConfig, "/Users/zhengweilu/Documents/projects/dg/example/example-entity", "order");
+        MybatisPlusGenerator.generate(dataSourceConfig, "/Users/zhengweilu/Documents/projects/private/spring-cloud/example-entity", "");
 //        MybatisPlusGenerator.generate(dataSourceConfig, "D:\\logs", "order");
     }
 }

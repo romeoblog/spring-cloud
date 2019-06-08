@@ -63,8 +63,4 @@ checkToken: false
 mybatisPlus:
   mapperLocations: classpath:mapper/*.xml
 
-#Logging Level
-logging:
-  level:
-    org.springframework: info #DEBUG
-    org.springframework.security: info #DEBUG
+spring.main.allow-bean-definition-overriding: true

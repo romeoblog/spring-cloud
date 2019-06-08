@@ -18,16 +18,6 @@ spring:
         locator:
           lowerCaseServiceId: true
       routes:
-        - id: baidu_route
-          uri: https://www.baidu.com
-          predicates:
-            - Path=/product/**
-        - id: qq_route
-          uri: https://www.qq.com/
-          predicates:
-            - Path=/httpbin/**
-          filters:
-            - RewritePath=/httpbin/(?<segment>.*), /$\{segment}
         - id: business_service_route
           uri: lb://example-business-service
           predicates:
@@ -50,9 +40,6 @@ eureka:
       defaultZone: http://admin:123123@127.0.0.1:8761/eureka/
     preferIpAddress: true
 
-#spring.main.allowBeanDefinitionOverriding: true
-management.endpoints.web.exposure.include: '*'
-
 #Authorization Signature switch(True: Checking)
 checkSign: false
 
@@ -62,3 +49,5 @@ checkSign: false
 #  license: c997cffd0c7148efa3e64042dfa6cca5
 #project:
 #  name: example-gateway
+
+management.endpoints.web.exposure.include: '*'

@@ -13,70 +13,80 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.auth.config.security;
+package com.cloud.example.auth.config;
 
-import com.cloud.example.auth.service.IUserDetailService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cloud.example.auth.service.impl.UserDetailService2Impl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * 〈security配置〉
- * 配置Spring Security
- * ResourceServerConfig 是比SecurityConfig 的优先级低的
+ * 服务器安全配置
  *
- * @author Joe-Benji
- * @date 2019-04-08
- * @since 1.0.0
+ * @author Benji
+ * @date 2019-06-07
  */
 @Configuration
 @EnableWebSecurity
-@Order(2)
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private IUserDetailService userDetailService;
+@EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    /**
+     * 设置默认的加密方式
+     *
+     * @return
+     */
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        // return new BCryptPasswordEncoder();
-        return new NoEncryptPasswordEncoder();
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.requestMatchers().antMatchers("/oauth/**")
-                .and()
-                .authorizeRequests()
-                .antMatchers("/oauth/**").authenticated()
-                .and()
-                .csrf().disable();
-    }
-
-    @Override
-    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailService).passwordEncoder(passwordEncoder());
+    public BCryptPasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 
     /**
-     * 不定义没有password grant_type,密码模式需要AuthenticationManager支持
+     * 使用自定义认证与授权
+     *
+     * @return
+     */
+    @Bean
+    @Override
+    public UserDetailsService userDetailsService() {
+        return new UserDetailService2Impl();
+    }
+
+    /**
+     * 支持密码模式
      *
      * @return
      * @throws Exception
      */
-    @Override
     @Bean
+    @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
+    }
+
+    @Override
+    public void configure(HttpSecurity http) throws Exception {
+        // 关闭跨站请求防护
+        http.csrf().disable();
+        http
+                .requestMatchers().antMatchers("/oauth/**", "/login/**", "/logout/**")
+                .and()
+                .authorizeRequests()
+                .antMatchers("/oauth/**").authenticated()
+                .and()
+                .formLogin().permitAll(); //新增login form支持用户登录及授权
+    }
+
+    @Override
+    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService()).passwordEncoder(passwordEncoder());
     }
 
 }

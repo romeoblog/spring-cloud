@@ -13,30 +13,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.platform.feign.logger;
+package com.cloud.example.service;
 
-import feign.Logger;
-import org.springframework.cloud.openfeign.FeignLoggerFactory;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
+import com.cloud.example.entity.TbRolePermission;
+import com.baomidou.mybatisplus.service.IService;
 
 /**
- * The type Feign Configuration
+ * <p>
+ * 角色权限表 服务类
+ * </p>
  *
- * @author Benji
- * @date 2019-06-04
+ * @author Generator
+ * @since 2019-06-07
  */
-@Configuration
-public class FeignConfig {
-
-    @Bean
-    Logger.Level feignLevel() {
-        return Logger.Level.BASIC;
-    }
-
-    @Bean
-    FeignLoggerFactory infoFeignLoggerFactory() {
-        return new InfoFeignLoggerFactory();
-    }
-
+public interface TbRolePermissionService extends IService<TbRolePermission> {
+	
 }

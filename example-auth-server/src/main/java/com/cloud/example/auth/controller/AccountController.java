@@ -17,7 +17,9 @@ package com.cloud.example.auth.controller;
 
 import com.cloud.example.common.enums.ResultCode;
 import com.cloud.example.common.model.ResultMsg;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,10 +37,11 @@ import java.security.Principal;
  */
 @RestController
 @RequestMapping("/auth")
+@Slf4j
 public class AccountController {
 
-    @Autowired
-    private ConsumerTokenServices consumerTokenServices;
+//    @Autowired
+//    private ConsumerTokenServices consumerTokenServices;
 
     @GetMapping("/getUser")
     public Principal user(Principal member) {
@@ -46,13 +49,19 @@ public class AccountController {
         return member;
     }
 
-
-    @DeleteMapping(value = "/logout")
-    public ResultMsg revokeToken(String accessToken) {
-        if (consumerTokenServices.revokeToken(accessToken)) {
-            return ResultMsg.create().status(ResultCode.OK);
-        } else {
-            return ResultMsg.error(ResultCode.EXCEPTION);
-        }
+    @GetMapping("/user")
+    public Authentication getUser(Authentication authentication) {
+        log.info("resource: user {}", authentication);
+        return authentication;
     }
+
+
+//    @DeleteMapping(value = "/logout")
+//    public ResultMsg revokeToken(String accessToken) {
+//        if (consumerTokenServices.revokeToken(accessToken)) {
+//            return ResultMsg.create().status(ResultCode.OK);
+//        } else {
+//            return ResultMsg.error(ResultCode.EXCEPTION);
+//        }
+//    }
 }

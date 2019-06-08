@@ -15,6 +15,7 @@
  */
 package com.cloud.example.auth.service;
 
+import com.cloud.example.entity.TbUser;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 /**
