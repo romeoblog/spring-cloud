@@ -17,7 +17,9 @@ package com.cloud.example.auth.controller;
 
 import com.cloud.example.common.enums.ResultCode;
 import com.cloud.example.common.model.ResultMsg;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,6 +37,7 @@ import java.security.Principal;
  */
 @RestController
 @RequestMapping("/auth")
+@Slf4j
 public class AccountController {
 
 //    @Autowired
@@ -44,6 +47,12 @@ public class AccountController {
     public Principal user(Principal member) {
         //获取当前用户信息
         return member;
+    }
+
+    @GetMapping("/user")
+    public Authentication getUser(Authentication authentication) {
+        log.info("resource: user {}", authentication);
+        return authentication;
     }
 
 
