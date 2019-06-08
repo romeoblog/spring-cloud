@@ -53,7 +53,7 @@ public class ReflectionUtil {
      * @param fieldName the field name
      * @return field value
      * @throws NoSuchFieldException     the no such field exception
-     * @throws SecurityException        the security exception
+     * @throws SecurityException        the token exception
      * @throws IllegalArgumentException the illegal argument exception
      * @throws IllegalAccessException   the illegal access exception
      */
@@ -79,7 +79,7 @@ public class ReflectionUtil {
      * @param methodName the method name
      * @return object
      * @throws NoSuchMethodException     the no such method exception
-     * @throws SecurityException         the security exception
+     * @throws SecurityException         the token exception
      * @throws IllegalAccessException    the illegal access exception
      * @throws IllegalArgumentException  the illegal argument exception
      * @throws InvocationTargetException the invocation target exception
@@ -108,7 +108,7 @@ public class ReflectionUtil {
      * @param args           the args
      * @return object
      * @throws NoSuchMethodException     the no such method exception
-     * @throws SecurityException         the security exception
+     * @throws SecurityException         the token exception
      * @throws IllegalAccessException    the illegal access exception
      * @throws IllegalArgumentException  the illegal argument exception
      * @throws InvocationTargetException the invocation target exception
@@ -137,7 +137,7 @@ public class ReflectionUtil {
      * @param parameterValues the parameter values
      * @return object
      * @throws NoSuchMethodException     the no such method exception
-     * @throws SecurityException         the security exception
+     * @throws SecurityException         the token exception
      * @throws IllegalAccessException    the illegal access exception
      * @throws IllegalArgumentException  the illegal argument exception
      * @throws InvocationTargetException the invocation target exception
@@ -163,7 +163,7 @@ public class ReflectionUtil {
      * @param parameterTypes the parameter types
      * @return method
      * @throws NoSuchMethodException the no such method exception
-     * @throws SecurityException     the security exception
+     * @throws SecurityException     the token exception
      */
     public static Method getMethod(Class<?> classType, String methodName, Class<?>[] parameterTypes) throws NoSuchMethodException, SecurityException {
         return classType.getMethod(methodName, parameterTypes);

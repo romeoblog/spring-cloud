@@ -107,6 +107,7 @@
         <spring-cloud-starter-oauth2.version>2.0.1.RELEASE</spring-cloud-starter-oauth2.version>
         <spring-cloud-starter-security.version>1.2.3.RELEASE</spring-cloud-starter-security.version>
         <spring-security-jwt.version>1.0.10.RELEASE</spring-security-jwt.version>
+        <java-jwt.version>3.8.1</java-jwt.version>
         <spring-boot-admin-server.version>2.1.2</spring-boot-admin-server.version>
 
         <platform-bom.version>Cairo-SR8</platform-bom.version>
@@ -302,6 +303,12 @@
                 <groupId>org.springframework.security</groupId>
                 <artifactId>spring-security-jwt</artifactId>
                 <version>${spring-security-jwt.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.auth0</groupId>
+                <artifactId>java-jwt</artifactId>
+                <version>${java-jwt.version}</version>
             </dependency>
 
             <!-- Model -->

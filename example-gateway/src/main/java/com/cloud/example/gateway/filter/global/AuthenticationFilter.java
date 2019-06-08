@@ -56,7 +56,6 @@ import java.util.concurrent.atomic.AtomicReference;
 @Slf4j
 public class AuthenticationFilter implements GlobalFilter {
 
-    // url匹配器
     private AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Value("${checkSign}")
@@ -66,7 +65,9 @@ public class AuthenticationFilter implements GlobalFilter {
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
 
         if (!checkSign) {
-            log.info("====Check Sign is Disable====");
+            if (log.isDebugEnabled()) {
+                log.debug("Current application check sign is Disable.");
+            }
             return chain.filter(exchange);
         }
 

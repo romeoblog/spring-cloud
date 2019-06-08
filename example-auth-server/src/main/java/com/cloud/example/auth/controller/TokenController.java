@@ -31,8 +31,8 @@ import org.springframework.web.bind.annotation.*;
 public class TokenController {
 
     /**
-     * 覆盖了 spring-security-oauth2 内部的 endpoint oauth2/check_token
-     * spring-security-oauth2 内部原有的该控制器 CheckTokenEndpoint，返回值，不符合自身业务要求，故覆盖之。
+     * 覆盖了 spring-token-oauth2 内部的 endpoint oauth2/check_token
+     * spring-token-oauth2 内部原有的该控制器 CheckTokenEndpoint，返回值，不符合自身业务要求，故覆盖之。
      */
 //    @PostMapping("/check_token")
 //    public ResultMsg<OAuth2AccessToken> getToken(@RequestParam(value = "token") String token) {

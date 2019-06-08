@@ -110,4 +110,9 @@ public class Constants {
      * default charset is utf-8
      */
     public static final Charset DEFAULT_CHARSET = Charset.forName(DEFAULT_CHARSET_NAME);
+
+    /**
+     * default charset name
+     */
+    public static final String JWT_ID_USERNAME = "jwt_id_username_";
 }

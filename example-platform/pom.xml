@@ -100,14 +100,19 @@
         <!--</dependency>-->
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework.security.oauth.boot</groupId>-->
-            <!--<artifactId>spring-security-oauth2-autoconfigure</artifactId>-->
+            <!--<groupId>org.springframework.token.oauth.boot</groupId>-->
+            <!--<artifactId>spring-token-oauth2-autoconfigure</artifactId>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
             <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-security</artifactId>-->
+            <!--<artifactId>spring-cloud-starter-token</artifactId>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+        </dependency>
 
         <!-- Seata -->
         <dependency>

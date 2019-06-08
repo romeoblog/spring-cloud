@@ -99,6 +99,12 @@
             <artifactId>spring-cloud-starter-security</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>

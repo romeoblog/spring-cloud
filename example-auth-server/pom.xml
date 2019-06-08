@@ -104,6 +104,16 @@
             <artifactId>nacos-client</artifactId>
         </dependency>
 
+        <!-- Alibaba Seata -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.seata</groupId>
+            <artifactId>seata-all</artifactId>
+        </dependency>
+
         <!-- oauth -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
