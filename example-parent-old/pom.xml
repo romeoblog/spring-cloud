@@ -188,15 +188,15 @@
                 <version>${spring-cloud-eureka.version}</version>
             </dependency>
 
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-hystrix</artifactId>
-                <version>${spring-cloud-hystrix.version}</version>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.springframework.cloud</groupId>-->
+                <!--<artifactId>spring-cloud-starter-hystrix</artifactId>-->
+                <!--<version>${spring-cloud-hystrix.version}</version>-->
+            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-feign</artifactId>
+                <artifactId>spring-cloud-starter-openfeign</artifactId>
                 <version>${spring-cloud-feign.version}</version>
             </dependency>
 
