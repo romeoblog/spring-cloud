@@ -86,7 +86,7 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
 
             if (StringUtils.isNotEmpty(authToken)) {
                 String cacheJwtId = redisTemplate.opsForValue().get(Constants.JWT_ID_USERNAME + "admin");
-                log.info("Check JWT Id return Result[{}]====", cacheJwtId);
+                log.info("Check JWT Id return Result[{}]", cacheJwtId);
 
                 DecodedJWT jwt = JWT.decode(authToken);
 
