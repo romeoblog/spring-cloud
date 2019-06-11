@@ -94,6 +94,14 @@ JWT | JWT登录支持 | [https://github.com/auth0/java-jwt](https://github.com/a
 logback | 日志收集 | [https://github.com/logstash/logstash-logback-encoder](https://github.com/logstash/logstash-logback-encoder)
 Lombok | 简化对象封装工具 | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)
 
+## 架构图
+
+##### 系统架构图
+
+![系统架构图](example-docs/src/main/asciidoc-zh/images/architectural-design.png)
+
+##### 业务架构图
+TDB
 
 ## 如何构建
 
