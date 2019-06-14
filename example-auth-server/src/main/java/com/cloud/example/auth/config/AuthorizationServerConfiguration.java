@@ -17,6 +17,7 @@ package com.cloud.example.auth.config;
 
 import com.cloud.example.auth.config.custom.CustomTokenEnhancer;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -52,6 +53,7 @@ import java.util.Arrays;
 public class AuthorizationServerConfiguration extends AuthorizationServerConfigurerAdapter {
 
     @Autowired
+    @Qualifier("authenticationManagerBean")
     private AuthenticationManager authenticationManager;
 
     @Autowired
@@ -85,7 +87,8 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      * @return ClientDetailsService
      */
     @Bean
-    public ClientDetailsService jdbcClientDetails() {
+    @Primary
+    public ClientDetailsService clientDetailsService() {
         return new JdbcClientDetailsService(dataSource);
     }
 
@@ -150,7 +153,7 @@ public class AuthorizationServerConfiguration extends AuthorizationServerConfigu
      */
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
-        clients.withClientDetails(jdbcClientDetails());
+        clients.withClientDetails(clientDetailsService());
     }
 
     /**

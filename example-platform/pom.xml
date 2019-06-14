@@ -59,7 +59,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
             <exclusions>
-                <!-- 去掉默认配置 -->
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
@@ -91,7 +90,7 @@
         <!-- Feign -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-feign</artifactId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
         <!--<dependency>-->
@@ -100,14 +99,19 @@
         <!--</dependency>-->
 
         <!--<dependency>-->
-            <!--<groupId>org.springframework.security.oauth.boot</groupId>-->
-            <!--<artifactId>spring-security-oauth2-autoconfigure</artifactId>-->
+            <!--<groupId>org.springframework.token.oauth.boot</groupId>-->
+            <!--<artifactId>spring-token-oauth2-autoconfigure</artifactId>-->
         <!--</dependency>-->
 
         <!--<dependency>-->
             <!--<groupId>org.springframework.cloud</groupId>-->
-            <!--<artifactId>spring-cloud-starter-security</artifactId>-->
+            <!--<artifactId>spring-cloud-starter-token</artifactId>-->
         <!--</dependency>-->
+
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+        </dependency>
 
         <!-- Seata -->
         <dependency>

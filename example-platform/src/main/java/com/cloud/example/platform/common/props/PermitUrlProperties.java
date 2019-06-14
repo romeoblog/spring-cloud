@@ -29,17 +29,22 @@ import java.util.List;
  * @since 1.0.0
  */
 @Component
-@ConfigurationProperties(prefix = "security.oauth2")
+@ConfigurationProperties(prefix = "token.oauth2")
 public class PermitUrlProperties {
 
     /**
      * 监控中心和swagger需要访问的url
      */
     private static final String[] ENDPOINTS = {
-        "/**/actuator/**", "/**/actuator/**/**",  //断点监控
-        "/**/v2/api-docs/**", "/**/swagger-ui.html", "/**/swagger-resources/**", "/**/webjars/**", //swagger
-        "/**/turbine.stream", "/**/turbine.stream**/**", "/**/hystrix", "/**/hystrix.stream", "/**/hystrix/**", "/**/hystrix/**/**", "/**/proxy.stream/**", //熔断监控
-        "/**/druid/**", "/**/favicon.ico", "/**/prometheus"
+            //断点监控
+            "/**/actuator/**", "/**/actuator/**/**",
+            //swagger
+            "/**/v2/api-docs/**", "/**/swagger-ui.html", "/**/swagger-resources/**", "/**/webjars/**",
+            //熔断监控
+            "/**/turbine.stream", "/**/turbine.stream**/**", "/**/hystrix", "/**/hystrix.stream", "/**/hystrix/**", "/**/hystrix/**/**", "/**/proxy.stream/**",
+            "/**/druid/**", "/**/favicon.ico", "/**/prometheus",
+            // 认证
+            "/**/oauth/**"
     };
 
     private String[] ignored;

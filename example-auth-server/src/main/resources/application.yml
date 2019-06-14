@@ -31,6 +31,9 @@ spring:
         max-idle: 8
         min-idle: 0
   cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
     nacos:
       discovery:
         enabled: true
@@ -57,7 +60,7 @@ management:
         include: "*"
 
 #Authorization Token switch(True: Checking)
-checkToken: false
+checkToken: true
 
 #MybatisPlus mapper file location
 mybatisPlus:

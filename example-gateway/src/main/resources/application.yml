@@ -18,6 +18,10 @@ spring:
         locator:
           lowerCaseServiceId: true
       routes:
+        - id: example-auth-server
+          uri: lb://example-auth-server
+          predicates:
+            - Path=/oauth/**,/auth/**
         - id: business_service_route
           uri: lb://example-business-service
           predicates:
