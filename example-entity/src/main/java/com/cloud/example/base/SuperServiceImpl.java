@@ -13,24 +13,18 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.api;
+package com.cloud.example.base;
 
-import com.cloud.example.common.model.ResultMsg;
-import com.cloud.example.model.user.AccountVO;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 
 /**
- * 账号接口
+ * SuperServiceImpl
  *
  * @author Benji
- * @date 2019-04-29
+ * @date 2019-04-03
  */
-@FeignClient(name = "example-account-service", path = "/account")
-public interface AccountFeignClient {
-
-    @PostMapping("/test")
-    ResultMsg<Boolean> test(@RequestBody AccountVO accountVO);
+public class SuperServiceImpl<T> extends ServiceImpl<BaseMapper<T>, T> implements SuperService<T> {
 
 }
+

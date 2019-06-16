@@ -18,6 +18,7 @@ package com.cloud.example.api;
 import com.cloud.example.common.model.ResultMsg;
 import com.cloud.example.model.user.AccountVO;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -39,7 +40,7 @@ public interface UserFeignClient {
     @PostMapping("/debit")
     ResultMsg<Boolean> debit(@RequestBody AccountVO accountVO);
 
-    @PostMapping("/test")
-    ResultMsg<Boolean> test(@RequestBody AccountVO accountVO);
+    @GetMapping("/test")
+    ResultMsg<Boolean> test();
 
 }

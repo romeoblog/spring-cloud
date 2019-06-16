@@ -15,14 +15,17 @@
  */
 package com.cloud.example.service;
 
-import com.baomidou.mybatisplus.service.IService;
 import com.cloud.example.entity.Demo;
+import com.baomidou.mybatisplus.service.IService;
+
 /**
- * Created with default template
- * Author: Joe Benji
- * Date: 2019-04-03
- * Time: 15:41
- * Description:
+ * <p>
+ *  服务类
+ * </p>
+ *
+ * @author Generator
+ * @since 2019-06-16
  */
-public interface DemoService  extends IService<Demo> {
+public interface DemoService extends IService<Demo> {
+	
 }

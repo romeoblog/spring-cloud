@@ -15,12 +15,12 @@
  */
 package com.cloud.example.mapper;
 
+import com.cloud.example.base.SuperMapper;
 import com.cloud.example.entity.DgAccount;
-import com.cloud.example.platform.base.SuperMapper;
 
 /**
  * <p>
-  *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author Generator

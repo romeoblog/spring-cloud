@@ -19,7 +19,7 @@ import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
 import com.baomidou.mybatisplus.enums.IdType;
-import com.cloud.example.platform.base.SuperEntity;
+import com.cloud.example.base.SuperEntity;
 
 import java.io.Serializable;
 

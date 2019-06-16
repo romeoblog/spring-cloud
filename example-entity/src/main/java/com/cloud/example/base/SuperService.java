@@ -13,19 +13,15 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.mapper;
+package com.cloud.example.base;
 
-import com.cloud.example.entity.Demo;
-import com.cloud.example.base.SuperMapper;
+import com.baomidou.mybatisplus.service.IService;
 
 /**
- * <p>
-  *  Mapper 接口
- * </p>
+ * SuperService
  *
- * @author Generator
- * @since 2019-06-16
+ * @author Benji
+ * @date 2019-04-03
  */
-public interface DemoMapper extends SuperMapper<Demo> {
-
+public interface SuperService<T> extends IService<T> {
 }

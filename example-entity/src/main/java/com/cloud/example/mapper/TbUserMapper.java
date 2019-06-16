@@ -15,8 +15,8 @@
  */
 package com.cloud.example.mapper;
 
+import com.cloud.example.base.SuperMapper;
 import com.cloud.example.entity.TbUser;
-import com.cloud.example.platform.base.SuperMapper;
 
 /**
  * <p>

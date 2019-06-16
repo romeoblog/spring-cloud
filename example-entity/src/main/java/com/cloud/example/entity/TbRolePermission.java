@@ -15,14 +15,13 @@
  */
 package com.cloud.example.entity;
 
-import java.io.Serializable;
-
-import com.baomidou.mybatisplus.enums.IdType;
-import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.cloud.example.platform.base.SuperEntity;
+import com.baomidou.mybatisplus.enums.IdType;
+import com.cloud.example.base.SuperEntity;
+
+import java.io.Serializable;
 
 /**
  * <p>

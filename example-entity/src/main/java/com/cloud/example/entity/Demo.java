@@ -15,86 +15,89 @@
  */
 package com.cloud.example.entity;
 
-import com.cloud.example.platform.base.SuperEntity;
-import com.baomidou.mybatisplus.annotations.TableField;
-import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.annotations.TableName;
-
 import java.io.Serializable;
 
+import com.baomidou.mybatisplus.enums.IdType;
+import com.baomidou.mybatisplus.annotations.TableId;
+import com.baomidou.mybatisplus.activerecord.Model;
+import com.cloud.example.base.SuperEntity;
+
 /**
- * Created with default template
- * Author: Joe Benji
- * Date: 2019-04-03
- * Time: 15:40
- * Description: 测试
+ * <p>
+ * 
+ * </p>
+ *
+ * @author Generator
+ * @since 2019-06-16
  */
-@TableName("demo")
 public class Demo extends SuperEntity<Demo> {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId("id")
-    private Long id;
+	@TableId(value = "id", type = IdType.AUTO)
+	private Integer id;
+	private String name;
+	private Integer age;
+	private String address;
 
-    @TableField("name")
-    private String name;
 
-    @TableField("age")
-    private Integer age;
+	public Integer getId() {
+		return id;
+	}
 
-    @TableField("address")
-    private String address;
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Integer getAge() {
+		return age;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setAge(Integer age) {
+		this.age = age;
+	}
 
-    public Integer getAge() {
-        return age;
-    }
+	public String getAddress() {
+		return address;
+	}
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
+	public void setAddress(String address) {
+		this.address = address;
+	}
 
-    public String getAddress() {
-        return address;
-    }
+	@Override
+	protected Serializable pkVal() {
+		return this.id;
+	}
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    @Override
-    protected Serializable pkVal() {
-        return this.id;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("{");
-        sb.append("\"id\":")
-                .append(id);
-        sb.append(",\"name\":\"")
-                .append(name).append('\"');
-        sb.append(",\"age\":")
-                .append(age);
-        sb.append(",\"address\":\"")
-                .append(address).append('\"');
-        sb.append('}');
-        return sb.toString();
-    }
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("{");
+		sb.append("\"id\":\"")
+				.append(id);
+		sb.append(",\"name\":\"")
+				.append(name);
+		sb.append(",\"age\":\"")
+				.append(age);
+		sb.append(",\"address\":\"")
+				.append(address);
+		sb.append('}');
+		return sb.toString();
+	}
 }
+
+
+
+
+
+
+
+
