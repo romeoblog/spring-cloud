@@ -35,34 +35,32 @@
 
 ### 组织结构
 
-``` lua
-spring-cloud
-├── example-api -- openFeign相关接口api
-├── example-auth-server -- 认证系统
-├── example-boot-admin -- 服务健康与监控系统
-├── example-common -- 工具类及通用代
-├── example-docs-- 项目文档信息
-├── example-demo-- 相关框架实例
-├── example-entity-- 数据层公共实体类
-├── example-enums-- 枚举公共类
-├── example-eureka-- Eureka服务注册与发现组件
-├── example-gateway-- SpringCloud Gateway网关组件
-├── example-gateway-zuul-- SpringCloud Zuul网关组件
-├── example-generator-- Mybatis构建自动化
-├── example-model-- 与前端交互视图实体相关，VO、DTO、BTO
-├── example-parent-old-- 父POM
-├── example-platform-- 服务层公共配置信息和组件初始化代码
-├── example-service-- 独立服务父POM
-├────── example-business-service-- 独立业务服务1
-├────── example-order-service-- 独立业务服务2
-├────── example-storage-service-- 独立业务服务3
-├────── example-user-service-- 独立业务服务4
-├── example-skywalking-agent-- 提供全链路监控agent
-├── example-test-- 框架搭建时的相关测试代码
-├── example-turbine-- 聚合监控(Hystrix Turbine)
-├── sql-- sql执行语句
-└── style-- 框架代码规范约定
-```
+    spring-cloud
+    ├── example-api -- openFeign相关接口api
+    ├── example-auth-server -- 认证系统
+    ├── example-boot-admin -- 服务健康与监控系统
+    ├── example-common -- 工具类及通用代
+    ├── example-docs -- 项目文档信息
+    ├── example-demo -- 相关框架实例
+    ├── example-entity -- 数据层公共实体类
+    ├── example-enums -- 枚举公共类
+    ├── example-eureka -- Eureka服务注册与发现组件
+    ├── example-gateway -- SpringCloud Gateway网关组件
+    ├── example-gateway-zuul -- SpringCloud Zuul网关组件
+    ├── example-generator -- Mybatis构建自动化
+    ├── example-model -- 与前端交互视图实体相关，VO、DTO、BTO
+    ├── example-parent-old -- 父POM
+    ├── example-platform -- 服务层公共配置信息和组件初始化代码
+    ├── example-service -- 独立服务父POM
+    ├────── example-business-service -- 独立业务服务1
+    ├────── example-order-service -- 独立业务服务2
+    ├────── example-storage-service -- 独立业务服务3
+    ├────── example-user-service -- 独立业务服务4
+    ├── example-skywalking-agent -- 提供全链路监控agent
+    ├── example-test -- 框架搭建时的相关测试代码
+    ├── example-turbine -- 聚合监控(Hystrix Turbine)
+    ├── sql -- sql执行语句
+    └── style -- 框架代码规范约定
 
 ## 版本说明
 #### 版本依赖关系
