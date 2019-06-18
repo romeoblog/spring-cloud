@@ -15,13 +15,9 @@
  */
 package com.cloud.example.auth.controller;
 
-import com.cloud.example.common.enums.ResultCode;
-import com.cloud.example.common.model.ResultMsg;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.oauth2.provider.token.ConsumerTokenServices;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +41,8 @@ public class AccountController {
 
     @GetMapping("/getUser")
     public Principal user(Principal member) {
+        String name = SecurityContextHolder.getContext().getAuthentication().getName();
+        System.out.println(name);
         //获取当前用户信息
         return member;
     }
