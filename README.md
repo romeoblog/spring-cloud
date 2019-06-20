@@ -124,10 +124,8 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
 
 ## 个人微信
 
-![个人微信](example-docs/src/main/benji.jpeg)
+![个人微信](example-docs/src/main/name.jpeg)
 
 ## 许可证
 
 [Apache License 2.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
-
-Copyright (c) 2019 Benji
