@@ -15,17 +15,21 @@
  */
 package com.cloud.example.service.impl;
 
-import com.baomidou.mybatisplus.service.impl.ServiceImpl;
-import com.cloud.example.service.DemoService;
 import com.cloud.example.entity.Demo;
 import com.cloud.example.mapper.DemoMapper;
+import com.cloud.example.service.DemoService;
+import com.baomidou.mybatisplus.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 
 /**
- * Created with default template
- * Author: Joe Benji
- * Date: 2019-04-03
- * Time: 15:41
- * Description:
+ * <p>
+ *  服务实现类
+ * </p>
+ *
+ * @author Generator
+ * @since 2019-06-16
  */
+@Service
 public class DemoServiceImpl extends ServiceImpl<DemoMapper, Demo> implements DemoService {
+	
 }

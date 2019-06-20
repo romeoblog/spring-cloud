@@ -18,11 +18,11 @@ package com.cloud.example.platform.token;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import com.cloud.example.common.constant.Constants;
+import com.cloud.example.common.constant.HeadConstant;
 import com.cloud.example.common.enums.ResultCode;
 import com.cloud.example.common.model.ResultMsg;
 import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.platform.common.props.PermitUrlProperties;
-import com.cloud.example.common.constant.HeadConstant;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,18 +58,25 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
     private PermitUrlProperties permitUrlProperties;
 
     @Autowired
-    private RedisTemplate<String,String> redisTemplate;
+    private RedisTemplate<String, String> redisTemplate;
 
     private AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Value("${checkToken:true}")
     private Boolean checkToken;
 
+//    @Autowired
+//    private UserFeignClient userFeignClient;
+
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain chain) throws ServletException, IOException {
+
+//        ResultMsg<Boolean> resultMsg = userFeignClient.test();
+
+//        System.out.println(resultMsg.toString());
 
         if (!checkToken) {
             if (log.isDebugEnabled()) {
@@ -100,7 +107,7 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
                     }
                 } else {
                     String jwtId = jwt.getId();
-                    if (!Objects.equals(jwtId,cacheJwtId)) {
+                    if (!Objects.equals(jwtId, cacheJwtId)) {
                         ResultMsg result = ResultMsg.create().status(ResultCode.DUPLICATE_MACHINE);
                         try {
                             log.error("Check Token is failed，token has duplicate machine. message={}", JacksonUtils.toJson(result));

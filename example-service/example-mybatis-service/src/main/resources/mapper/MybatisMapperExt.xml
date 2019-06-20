@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//com.cloud.example.platform.mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.example.service.mybatis.mapper.MybatisMapperExt">
+
+    <resultMap id="TestVOResultMap" type="com.cloud.example.model.mybatis.TestVO">
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+        <result column="age" property="age"/>
+        <result column="sex" property="sex"/>
+        <result column="status" property="status"/>
+        <result column="type" property="type"/>
+    </resultMap>
+
+    <select id="listPageTest" resultMap="TestVOResultMap">
+        select `name`,type,age,address,sex,`status` from mybatis_demo order by id desc
+    </select>
+
+
+</mapper>

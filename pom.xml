@@ -115,6 +115,7 @@
         <mybatis-plus.version>2.1.2</mybatis-plus.version>
         <!--<springfox.version>2.6.1</springfox.version>-->
         <springfox.version>2.9.2</springfox.version>
+        <swagger-models.version>1.5.22</swagger-models.version>
         <redis.clients.version>2.8.2</redis.clients.version>
         <druid.version>1.1.6</druid.version>
         <!--<druid.version>1.1.5</druid.version>-->
@@ -595,7 +596,18 @@
             <dependency>
                 <groupId>io.springfox</groupId>
                 <artifactId>springfox-swagger2</artifactId>
+                <exclusions>
+                    <exclusion>
+                        <groupId>io.swagger</groupId>
+                        <artifactId>swagger-models</artifactId>
+                    </exclusion>
+                </exclusions>
                 <version>${springfox.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-models</artifactId>
+                <version>${swagger-models.version}</version>
             </dependency>
 
             <dependency>

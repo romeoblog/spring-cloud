@@ -15,11 +15,11 @@
  */
 package com.cloud.example.entity;
 
-import java.io.Serializable;
-
 import com.baomidou.mybatisplus.annotations.TableField;
 import com.baomidou.mybatisplus.annotations.TableName;
-import com.cloud.example.platform.base.SuperEntity;
+import com.cloud.example.base.SuperEntity;
+
+import java.io.Serializable;
 
 /**
  * <p>

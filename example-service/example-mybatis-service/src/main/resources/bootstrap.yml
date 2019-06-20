@@ -1,0 +1,7 @@
+server:
+  port: 8064
+#  servlet:
+#    context-path: /order
+spring:
+  application:
+    name: example-mybatis-service

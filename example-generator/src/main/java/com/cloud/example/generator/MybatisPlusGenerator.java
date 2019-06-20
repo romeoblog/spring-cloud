@@ -40,7 +40,7 @@ public class MybatisPlusGenerator {
         dsc.setUsername("root");
         dsc.setPassword("123456");
         //dsc.setUrl("jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf8");
-        dsc.setUrl("jdbc:mysql://localhost:3306/dg_auth?useUnicode=true&characterEncoding=utf8");
+        dsc.setUrl("jdbc:mysql://localhost:3306/db_test?useUnicode=true&characterEncoding=utf8");
         return dsc;
     }
 
@@ -76,10 +76,10 @@ public class MybatisPlusGenerator {
         StrategyConfig strategy = new StrategyConfig();
         //strategy.setTablePrefix(new String[]{"co_"});
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
-        strategy.setInclude(new String[] { "tb_permission", "tb_role", "tb_role_permission", "tb_user", "tb_user_role"});
-//        strategy.setInclude(new String[] { "account_tbl" }); // 需要生成的表
-        strategy.setSuperMapperClass("com.cloud.example.platform.base.SuperMapper");
-        strategy.setSuperEntityClass("com.cloud.example.platform.base.SuperEntity");
+//        strategy.setInclude(new String[] { "tb_permission", "tb_role", "tb_role_permission", "tb_user", "tb_user_role"});
+        strategy.setInclude(new String[] { "mybatis_demo" }); // 需要生成的表
+        strategy.setSuperMapperClass("com.cloud.example.base.SuperMapper");
+        strategy.setSuperEntityClass("com.cloud.example.base.SuperEntity");
         //strategy.setSuperServiceImplClass("com.cc.platform.base.SuperServiceImpl");
         mpg.setStrategy(strategy);
 

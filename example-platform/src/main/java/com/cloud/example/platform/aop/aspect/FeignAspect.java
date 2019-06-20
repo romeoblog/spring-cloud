@@ -16,6 +16,7 @@
 package com.cloud.example.platform.aop.aspect;
 
 
+import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.platform.aop.JoinPointContext;
 import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
@@ -107,7 +108,7 @@ public class FeignAspect {
         }
         if (returnValue != null) {
             sb.append(RETURN).append(LOG_ARG);
-            args.add(returnValue);
+            args.add(JacksonUtils.toJson(returnValue));
         }
         log.info(sb.toString(), args.toArray());
     }

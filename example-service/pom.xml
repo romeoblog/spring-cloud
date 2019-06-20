@@ -19,6 +19,7 @@
         <module>example-order-service</module>
         <module>example-storage-service</module>
         <module>example-user-service</module>
+        <module>example-mybatis-service</module>
     </modules>
 
 </project>

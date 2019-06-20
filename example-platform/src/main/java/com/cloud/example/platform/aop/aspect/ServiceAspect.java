@@ -16,6 +16,7 @@
 package com.cloud.example.platform.aop.aspect;
 
 
+import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.platform.aop.JoinPointContext;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -92,7 +93,7 @@ public class ServiceAspect {
         }
         if (returnValue != null) {
             sb.append(RETURN).append(LOG_ARG).append(SEPARATOR);
-            args.add(returnValue);
+            args.add(JacksonUtils.toJson(returnValue));
         }
         LOGGER.info(sb.toString(), args.toArray());
     }

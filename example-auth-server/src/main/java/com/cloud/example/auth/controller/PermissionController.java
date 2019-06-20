@@ -13,24 +13,29 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.example.api;
+package com.cloud.example.auth.controller;
 
-import com.cloud.example.common.model.ResultMsg;
-import com.cloud.example.model.user.AccountVO;
-import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import com.cloud.example.auth.entity.PermissionDTO;
+import com.cloud.example.auth.service.IPermissionService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 /**
- * 账号接口
+ * 权限控制层
  *
  * @author Benji
- * @date 2019-04-29
+ * @date 2019-06-17
  */
-@FeignClient(name = "example-account-service", path = "/account")
-public interface AccountFeignClient {
+@RestController
+@RequestMapping("/permission")
+public class PermissionController {
 
-    @PostMapping("/test")
-    ResultMsg<Boolean> test(@RequestBody AccountVO accountVO);
+    @Autowired
+    private IPermissionService permissionService;
+
+    @PostMapping("/checkPermission")
+    public Boolean checkPermission(@RequestBody PermissionDTO permissionDTO) {
+        return permissionService.checkPermission(permissionDTO);
+    }
 
 }

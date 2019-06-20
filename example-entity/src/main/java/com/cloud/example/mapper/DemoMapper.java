@@ -15,14 +15,17 @@
  */
 package com.cloud.example.mapper;
 
-import com.cloud.example.platform.base.SuperMapper;
 import com.cloud.example.entity.Demo;
+import com.cloud.example.base.SuperMapper;
+
 /**
- * Created with default template
- * Author: Joe Benji
- * Date: 2019-04-03
- * Time: 15:40
- * Description:
+ * <p>
+  *  Mapper 接口
+ * </p>
+ *
+ * @author Generator
+ * @since 2019-06-16
  */
 public interface DemoMapper extends SuperMapper<Demo> {
+
 }
