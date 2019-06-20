@@ -19,6 +19,11 @@
             <artifactId>springfox-swagger2</artifactId>
             <optional>true</optional>
         </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <optional>true</optional>
+        </dependency>
 
         <dependency>
             <groupId>org.projectlombok</groupId>
