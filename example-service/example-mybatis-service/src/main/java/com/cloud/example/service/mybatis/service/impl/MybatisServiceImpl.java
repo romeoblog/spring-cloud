@@ -15,8 +15,17 @@
  */
 package com.cloud.example.service.mybatis.service.impl;
 
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
+import com.baomidou.mybatisplus.mapper.Wrapper;
+import com.baomidou.mybatisplus.plugins.Page;
+import com.cloud.example.entity.MybatisDemo;
+import com.cloud.example.model.mybatis.TestVO;
 import com.cloud.example.service.mybatis.service.IMybatisService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * MYBATIS栗子 实现层
@@ -26,4 +35,47 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class MybatisServiceImpl implements IMybatisService {
+
+    @Override
+    public TestVO getTest(Integer id) {
+        MybatisDemo mybatisDemo = new MybatisDemo().selectById(id);
+        if (mybatisDemo == null) {
+            return null;
+        }
+
+        TestVO testVO = new TestVO();
+        BeanUtils.copyProperties(mybatisDemo, testVO);
+
+        return testVO;
+    }
+
+    @Override
+    public List<TestVO> listTest() {
+        List<MybatisDemo> list = new MybatisDemo().selectList("type = {0}",1);
+        if (list == null || list.size() == 0) {
+            return null;
+        }
+        List<TestVO> listTest = list.stream().map(t -> {
+            TestVO test = new TestVO();
+            BeanUtils.copyProperties(t, test);
+            return test;
+        }).collect(Collectors.toList());
+
+        return listTest;
+    }
+
+    @Override
+    public Page<TestVO> listRecord(Integer pageNum, Integer pageSize) {
+        Page<MybatisDemo> page = new Page<>(pageNum, pageSize);
+
+        Wrapper wrapper = new EntityWrapper<MybatisDemo>();
+        wrapper.where("type = {0}",1);
+        Page<MybatisDemo> list = new MybatisDemo().selectPage(page, wrapper);
+
+        Page<TestVO> listTest = new MybatisDemo().selectPage(page, wrapper);
+
+        BeanUtils.copyProperties(list, listTest);
+
+        return listTest;
+    }
 }

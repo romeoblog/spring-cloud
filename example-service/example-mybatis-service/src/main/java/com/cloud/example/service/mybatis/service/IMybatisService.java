@@ -15,6 +15,11 @@
  */
 package com.cloud.example.service.mybatis.service;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import com.cloud.example.model.mybatis.TestVO;
+
+import java.util.List;
+
 /**
  * MYBATIS栗子 接口层
  *
@@ -22,4 +27,30 @@ package com.cloud.example.service.mybatis.service;
  * @date 2019-06-20
  */
 public interface IMybatisService {
+
+
+    /**
+     * Mybatis plus 获取单条数据
+     *
+     * @param id 主健
+     * @return T
+     */
+    TestVO getTest(Integer id);
+
+    /**
+     * Mybatis plus 获取多条数据
+     *
+     * @return List
+     */
+    List<TestVO> listTest();
+
+    /**
+     * Mybatis plus 获取多条数据(分页)
+     *
+     * @param pageNum  当前页码
+     * @param pageSize 当前分页大小
+     * @return Page
+     */
+    Page<TestVO> listRecord(Integer pageNum, Integer pageSize);
+
 }

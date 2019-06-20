@@ -1,5 +1,5 @@
 server:
-  port: 8061
+  port: 8064
 #  servlet:
 #    context-path: /order
 spring:

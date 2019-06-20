@@ -15,10 +15,18 @@
  */
 package com.cloud.example.service.mybatis.controller;
 
+import com.baomidou.mybatisplus.plugins.Page;
+import com.cloud.example.common.model.ResultMsg;
+import com.cloud.example.model.mybatis.TestVO;
+import com.cloud.example.service.mybatis.service.IMybatisService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * MYBATIS栗子 控制层
@@ -31,4 +39,28 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 @Api(value = "MybatisController", description = "MYBATIS栗子")
 public class MybatisController {
+
+    @Autowired
+    private IMybatisService mybatisService;
+
+    @ApiOperation(value = "MybatisPlus栗子 - 获取单条信息")
+    @GetMapping(value = "/getTest/{id}", produces = {"application/json"})
+    public ResultMsg<TestVO> getTest(@ApiParam(value = "Id", required = true) @PathVariable Integer id) {
+        return ResultMsg.ok(mybatisService.getTest(id));
+    }
+
+    @ApiOperation(value = "MybatisPlus栗子 - 获取多条信息")
+    @GetMapping(value = "/listTest", produces = {"application/json"})
+    public ResultMsg<List<TestVO>> listTest() {
+        return ResultMsg.ok(mybatisService.listTest());
+    }
+
+    @ApiOperation(value = "MybatisPlus栗子 - 获取多条信息（分页）")
+    @GetMapping(value = "/listRecord", produces = {"application/json"})
+    public ResultMsg<Page<TestVO>> listRecord(
+            @ApiParam(value = "页码", required = true) @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+            @ApiParam(value = "条数", required = true) @RequestParam(value = "pageSize", defaultValue = "2") Integer pageSize) {
+        return ResultMsg.ok(mybatisService.listRecord(pageNum, pageSize));
+    }
+
 }
