@@ -121,3 +121,13 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
     spring.application.name:spring.port
 
 参考文档 查看 [WIKI](https://github.com/romeoblog/spring-cloud/blob/master/example-docs/src/main/asciidoc-zh/document.adoc) 
+
+## 个人微信
+
+![个人微信](example-docs/src/main/benji.jpeg)
+
+## 许可证
+
+[Apache License 2.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
+
+Copyright (c) 2019 Benji
