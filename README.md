@@ -129,3 +129,5 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
 ## 许可证
 
 [Apache License 2.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
+
+Copyright 2019 https://github.com/romeoblog/spring-cloud.git Group.
