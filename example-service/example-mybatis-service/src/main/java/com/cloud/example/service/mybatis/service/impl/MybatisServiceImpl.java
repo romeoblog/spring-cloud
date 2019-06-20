@@ -47,6 +47,9 @@ public class MybatisServiceImpl implements IMybatisService {
     @Autowired
     private MybatisDemoMapper mybatisDemoMapper;
 
+    @Autowired
+    private MybatisDemoService mybatisDemoService;
+
     @Override
     public TestVO getTest(Integer id) {
         MybatisDemo mybatisDemo = new MybatisDemo().selectById(id);
@@ -101,15 +104,35 @@ public class MybatisServiceImpl implements IMybatisService {
     public Boolean updateTest(TestVO testVO) {
 
         Integer id = testVO.getId();
-
         MybatisDemo mybatisDemo = new MybatisDemo().selectById(id);
         if (mybatisDemo == null) {
-            throw  new InternalApiException("找不到信息: id[" + id + "]");
+            throw  new InternalApiException("找不到数据信息: id[" + id + "]");
         }
 
         BeanUtils.copyProperties(testVO, mybatisDemo);
 
         mybatisDemoMapper.updateById(mybatisDemo);
+        return true;
+    }
+
+    @Override
+    public Boolean deleteTest(Integer id) {
+        MybatisDemo mybatisDemo = new MybatisDemo().selectById(id);
+        if (mybatisDemo == null) {
+            throw  new InternalApiException("找不到数据信息: id[" + id + "]");
+        }
+        mybatisDemoMapper.deleteById(mybatisDemo);
+        return true;
+    }
+
+    @Override
+    public Boolean insertTest(TestVO testVO) {
+        testVO.setId(null);
+        MybatisDemo mybatisDemo = new MybatisDemo();
+
+        BeanUtils.copyProperties(testVO, mybatisDemo);
+
+        mybatisDemoService.insert(mybatisDemo);
 
         return true;
     }

@@ -70,4 +70,20 @@ public interface IMybatisService {
      */
     Boolean updateTest(TestVO testVO);
 
+    /**
+     * Mybatis plus 删除信息
+     *
+     * @param id
+     * @return b
+     */
+    Boolean deleteTest(Integer id);
+
+    /**
+     * Mybatis plus 新增信息
+     *
+     * @param testVO
+     * @return b
+     */
+    Boolean insertTest(TestVO testVO);
+
 }

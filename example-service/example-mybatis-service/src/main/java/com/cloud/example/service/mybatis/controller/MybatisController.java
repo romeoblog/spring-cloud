@@ -79,4 +79,19 @@ public class MybatisController {
         return ResultMsg.ok(mybatisService.updateTest(testVO));
     }
 
+    @ApiOperation(value = "MybatisPlus栗子 - 删除单条信息")
+    @DeleteMapping(value = "/deleteTest/{id}", produces = {"application/json"})
+    public ResultMsg<Boolean> deleteTest(@ApiParam(value = "Id", required = true) @PathVariable Integer id) {
+        return ResultMsg.ok(mybatisService.deleteTest(id));
+    }
+
+    @ApiOperation(value = "MybatisPlus栗子 - 新增信息")
+    @PutMapping(value = "/insertTest", produces = {"application/json"})
+    public ResultMsg<Boolean> insertTest(
+            @ApiParam(value = "实体信息提交参数", required = true) @RequestBody TestVO testVO) {
+        return ResultMsg.ok(mybatisService.insertTest(testVO));
+    }
+
+
+
 }
