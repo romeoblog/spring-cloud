@@ -19,6 +19,11 @@ spring:
     testOnReturn: false
     filters: stat,wall,slf4j
     logSlowSql: true
+    #Druid Console
+    druid:
+      StatViewServlet:
+        loginUsername: root
+        loginPassword: root
   # Redis数据库索引（默认为0）
   redis:
     database: 0
@@ -60,7 +65,7 @@ management:
         include: "*"
 
 #Authorization Token switch(True: Checking)
-checkToken: true
+checkToken: false
 
 #MybatisPlus mapper file location
 mybatisPlus:
