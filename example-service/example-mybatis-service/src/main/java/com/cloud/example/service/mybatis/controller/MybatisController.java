@@ -63,4 +63,12 @@ public class MybatisController {
         return ResultMsg.ok(mybatisService.listRecord(pageNum, pageSize));
     }
 
+    @ApiOperation(value = "XML栗子 - 获取多条信息（分页）")
+    @GetMapping(value = "/listRecord2", produces = {"application/json"})
+    public ResultMsg<Page<TestVO>> listRecord2(
+            @ApiParam(value = "页码", required = true) @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
+            @ApiParam(value = "条数", required = true) @RequestParam(value = "pageSize", defaultValue = "2") Integer pageSize) {
+        return ResultMsg.ok(mybatisService.listRecord2(pageNum, pageSize));
+    }
+
 }

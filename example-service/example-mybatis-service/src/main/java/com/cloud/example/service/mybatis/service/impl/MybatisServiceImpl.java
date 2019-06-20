@@ -20,8 +20,10 @@ import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.cloud.example.entity.MybatisDemo;
 import com.cloud.example.model.mybatis.TestVO;
+import com.cloud.example.service.mybatis.mapper.MybatisMapperExt;
 import com.cloud.example.service.mybatis.service.IMybatisService;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -35,6 +37,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class MybatisServiceImpl implements IMybatisService {
+
+    @Autowired
+    private MybatisMapperExt mybatisMapperExt;
 
     @Override
     public TestVO getTest(Integer id) {
@@ -51,7 +56,7 @@ public class MybatisServiceImpl implements IMybatisService {
 
     @Override
     public List<TestVO> listTest() {
-        List<MybatisDemo> list = new MybatisDemo().selectList("type = {0}",1);
+        List<MybatisDemo> list = new MybatisDemo().selectList("type = {0}", 1);
         if (list == null || list.size() == 0) {
             return null;
         }
@@ -69,7 +74,7 @@ public class MybatisServiceImpl implements IMybatisService {
         Page<MybatisDemo> page = new Page<>(pageNum, pageSize);
 
         Wrapper wrapper = new EntityWrapper<MybatisDemo>();
-        wrapper.where("type = {0}",1);
+        wrapper.where("type = {0}", 1);
         Page<MybatisDemo> list = new MybatisDemo().selectPage(page, wrapper);
 
         Page<TestVO> listTest = new MybatisDemo().selectPage(page, wrapper);
@@ -77,5 +82,12 @@ public class MybatisServiceImpl implements IMybatisService {
         BeanUtils.copyProperties(list, listTest);
 
         return listTest;
+    }
+
+    @Override
+    public Page<TestVO> listRecord2(Integer pageNum, Integer pageSize) {
+        Page<TestVO> page = new Page<>(pageNum, pageSize);
+        List<TestVO> listTest = mybatisMapperExt.listPageTest(page);
+        return page.setRecords(listTest);
     }
 }

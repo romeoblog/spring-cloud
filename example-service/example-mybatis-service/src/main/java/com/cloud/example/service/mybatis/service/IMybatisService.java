@@ -53,4 +53,13 @@ public interface IMybatisService {
      */
     Page<TestVO> listRecord(Integer pageNum, Integer pageSize);
 
+    /**
+     * XML栗子- 获取多条数据（分页）
+     *
+     * @param pageNum  当前页码
+     * @param pageSize 当前分页大小
+     * @return Page
+     */
+    Page<TestVO> listRecord2(Integer pageNum, Integer pageSize);
+
 }
