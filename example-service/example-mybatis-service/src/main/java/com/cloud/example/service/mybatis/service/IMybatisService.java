@@ -62,4 +62,12 @@ public interface IMybatisService {
      */
     Page<TestVO> listRecord2(Integer pageNum, Integer pageSize);
 
+    /**
+     * Mybatis plus 更新信息
+     *
+     * @param testVO
+     * @return b
+     */
+    Boolean updateTest(TestVO testVO);
+
 }

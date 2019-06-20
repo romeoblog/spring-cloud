@@ -26,6 +26,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -69,6 +70,13 @@ public class MybatisController {
             @ApiParam(value = "页码", required = true) @RequestParam(value = "pageNum", defaultValue = "1") Integer pageNum,
             @ApiParam(value = "条数", required = true) @RequestParam(value = "pageSize", defaultValue = "2") Integer pageSize) {
         return ResultMsg.ok(mybatisService.listRecord2(pageNum, pageSize));
+    }
+
+    @ApiOperation(value = "MybatisPlus栗子 - 更新信息")
+    @PostMapping(value = "/updateTest", produces = {"application/json"})
+    public ResultMsg<Boolean> updateTest(
+            @ApiParam(value = "实体信息提交参数", required = true) @RequestBody TestVO testVO) {
+        return ResultMsg.ok(mybatisService.updateTest(testVO));
     }
 
 }

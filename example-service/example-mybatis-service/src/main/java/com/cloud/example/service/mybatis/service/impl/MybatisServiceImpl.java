@@ -19,7 +19,10 @@ import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.baomidou.mybatisplus.mapper.Wrapper;
 import com.baomidou.mybatisplus.plugins.Page;
 import com.cloud.example.entity.MybatisDemo;
+import com.cloud.example.mapper.MybatisDemoMapper;
 import com.cloud.example.model.mybatis.TestVO;
+import com.cloud.example.platform.exception.InternalApiException;
+import com.cloud.example.service.MybatisDemoService;
 import com.cloud.example.service.mybatis.mapper.MybatisMapperExt;
 import com.cloud.example.service.mybatis.service.IMybatisService;
 import org.springframework.beans.BeanUtils;
@@ -40,6 +43,9 @@ public class MybatisServiceImpl implements IMybatisService {
 
     @Autowired
     private MybatisMapperExt mybatisMapperExt;
+
+    @Autowired
+    private MybatisDemoMapper mybatisDemoMapper;
 
     @Override
     public TestVO getTest(Integer id) {
@@ -89,5 +95,22 @@ public class MybatisServiceImpl implements IMybatisService {
         Page<TestVO> page = new Page<>(pageNum, pageSize);
         List<TestVO> listTest = mybatisMapperExt.listPageTest(page);
         return page.setRecords(listTest);
+    }
+
+    @Override
+    public Boolean updateTest(TestVO testVO) {
+
+        Integer id = testVO.getId();
+
+        MybatisDemo mybatisDemo = new MybatisDemo().selectById(id);
+        if (mybatisDemo == null) {
+            throw  new InternalApiException("找不到信息: id[" + id + "]");
+        }
+
+        BeanUtils.copyProperties(testVO, mybatisDemo);
+
+        mybatisDemoMapper.updateById(mybatisDemo);
+
+        return true;
     }
 }

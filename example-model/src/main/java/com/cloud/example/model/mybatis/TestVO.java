@@ -16,12 +16,13 @@
 package com.cloud.example.model.mybatis;
 
 import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.io.Serializable;
 
 /**
- * mybati test
+ * mybatis test
  * @author Benji
  * @date 2019-06-20
  */
@@ -29,16 +30,25 @@ import java.io.Serializable;
 @ApiModel
 public class TestVO implements Serializable {
 
+    @ApiModelProperty("主键Id")
+    private Integer id;
+
+    @ApiModelProperty("名称")
     private String name;
 
+    @ApiModelProperty("地址")
     private String address;
 
+    @ApiModelProperty("年龄")
     private Integer age;
 
+    @ApiModelProperty("性别")
     private Integer sex;
 
+    @ApiModelProperty("状态")
     private Integer status;
 
+    @ApiModelProperty("类型")
     private Integer type;
 
 }
