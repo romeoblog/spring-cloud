@@ -50,12 +50,13 @@
     ├── example-generator -- Mybatis构建自动化
     ├── example-model -- 与前端交互视图实体相关，VO、DTO、BTO
     ├── example-parent-old -- 父POM
-    ├── example-platform -- 服务层公共配置信息和组件初始化代码
+    ├── example-core -- 服务层公共配置信息和组件初始化代码
     ├── example-service -- 独立服务父POM
     ├────── example-business-service -- 独立业务服务1
     ├────── example-order-service -- 独立业务服务2
     ├────── example-storage-service -- 独立业务服务3
     ├────── example-user-service -- 独立业务服务4
+    ├────── example-mybatis-service -- 独立业务服务5
     ├── example-skywalking-agent -- 提供全链路监控agent
     ├── example-test -- 框架搭建时的相关测试代码
     ├── example-turbine -- 聚合监控(Hystrix Turbine)

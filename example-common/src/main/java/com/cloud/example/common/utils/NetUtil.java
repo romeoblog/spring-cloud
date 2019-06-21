@@ -48,7 +48,7 @@ public class NetUtil {
      * @return the string
      */
     public static String toStringAddress(SocketAddress address) {
-        return toStringAddress((InetSocketAddress)address);
+        return toStringAddress((InetSocketAddress) address);
     }
 
     /**
@@ -58,7 +58,7 @@ public class NetUtil {
      * @return the string
      */
     public static String toIpAddress(SocketAddress address) {
-        InetSocketAddress inetSocketAddress = (InetSocketAddress)address;
+        InetSocketAddress inetSocketAddress = (InetSocketAddress) address;
         return inetSocketAddress.getAddress().getHostAddress();
     }
 
@@ -202,6 +202,6 @@ public class NetUtil {
         }
         String name = address.getHostAddress();
         return (name != null && !ANY_HOST.equals(name) && !LOCALHOST.equals(name) && IP_PATTERN.matcher(name)
-            .matches());
+                .matches());
     }
 }

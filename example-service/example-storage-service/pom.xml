@@ -27,7 +27,7 @@
 
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>example-platform</artifactId>
+            <artifactId>example-core</artifactId>
         </dependency>
 
         <dependency>
@@ -118,6 +118,10 @@
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
         </dependency>
         <dependency>
             <groupId>io.springfox</groupId>

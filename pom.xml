@@ -24,7 +24,7 @@
     <version>${revision}</version>
     <modules>
         <module>example-common</module>
-        <module>example-platform</module>
+        <module>example-core</module>
         <module>example-entity</module>
         <module>example-enums</module>
         <module>example-model</module>
@@ -227,9 +227,9 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>io.spring.platform</groupId>
-                <artifactId>platform-bom</artifactId>
-                <version>${platform-bom.version}</version>
+                <groupId>io.spring.core</groupId>
+                <artifactId>core-bom</artifactId>
+                <version>${core-bom.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>-->
@@ -315,7 +315,7 @@
             <!-- Model -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-platform</artifactId>
+                <artifactId>example-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
