@@ -125,8 +125,12 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
 
 参考文档 查看 [WIKI](https://github.com/romeoblog/spring-cloud/blob/master/example-docs/src/main/asciidoc-zh/document.adoc) 
 
-## 个人微信
+## 联系方式
 
+#### 邮箱：
+zheng_weilu@163.com
+
+#### 微信：
 ![个人微信](example-docs/src/main/name.jpeg)
 
 ## 许可证
