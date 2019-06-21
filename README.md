@@ -123,7 +123,7 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
 
     spring.application.name:spring.port
 
-参考文档 查看 [WIKI](https://github.com/romeoblog/spring-cloud/blob/master/example-docs/src/main/asciidoc-zh/document.adoc) 
+参考文档 查看 [WIKI](https://github.com/romeoblog/spring-cloud/wiki) 
 
 ## 联系方式
 
