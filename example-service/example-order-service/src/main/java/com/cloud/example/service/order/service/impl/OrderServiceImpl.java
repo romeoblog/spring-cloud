@@ -21,7 +21,7 @@ import com.cloud.example.common.model.ResultMsg;
 import com.cloud.example.entity.OrderTbl;
 import com.cloud.example.model.order.OrderVO;
 import com.cloud.example.model.user.AccountVO;
-import com.cloud.example.platform.exception.InternalApiException;
+import com.cloud.example.core.exception.InternalApiException;
 import com.cloud.example.service.OrderTblService;
 import com.cloud.example.service.order.mapper.OrderMapperExt;
 import com.cloud.example.service.order.service.IOrderService;

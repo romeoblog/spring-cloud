@@ -21,7 +21,7 @@ import com.baomidou.mybatisplus.plugins.Page;
 import com.cloud.example.entity.MybatisDemo;
 import com.cloud.example.mapper.MybatisDemoMapper;
 import com.cloud.example.model.mybatis.TestVO;
-import com.cloud.example.platform.exception.InternalApiException;
+import com.cloud.example.core.exception.InternalApiException;
 import com.cloud.example.service.MybatisDemoService;
 import com.cloud.example.service.mybatis.mapper.MybatisMapperExt;
 import com.cloud.example.service.mybatis.service.IMybatisService;

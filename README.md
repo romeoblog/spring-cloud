@@ -29,9 +29,11 @@
 
 * **Zuul**：来于Netflix Zuul，目前还在继续维护，而Spring Cloud Gateway组件，不久将来逐渐淘汰。（目前不采用）
 
-* **Jasypt**：提供对配置文件安全加密和管理
+* **Jasypt**：提供对配置文件安全加密和管理。
 
-* **Sleuth & Zikpin**：提供全链路监控，跟踪分布式服务间的应用数据链路。（计划以后实现）
+* **Sleuth & Zikpin**：提供全链路监控，跟踪分布式服务间的应用数据链路。（未支持）
+
+* **Apache Skywalking**：提供全链路监控，跟踪分布式服务间的应用数据链路。（已支持）
 
 ### 组织结构
 
@@ -50,12 +52,13 @@
     ├── example-generator -- Mybatis构建自动化
     ├── example-model -- 与前端交互视图实体相关，VO、DTO、BTO
     ├── example-parent-old -- 父POM
-    ├── example-platform -- 服务层公共配置信息和组件初始化代码
+    ├── example-core -- 服务层公共配置信息和组件初始化代码
     ├── example-service -- 独立服务父POM
     ├────── example-business-service -- 独立业务服务1
     ├────── example-order-service -- 独立业务服务2
     ├────── example-storage-service -- 独立业务服务3
     ├────── example-user-service -- 独立业务服务4
+    ├────── example-mybatis-service -- 独立业务服务5
     ├── example-skywalking-agent -- 提供全链路监控agent
     ├── example-test -- 框架搭建时的相关测试代码
     ├── example-turbine -- 聚合监控(Hystrix Turbine)
@@ -120,10 +123,14 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
 
     spring.application.name:spring.port
 
-参考文档 查看 [WIKI](https://github.com/romeoblog/spring-cloud/blob/master/example-docs/src/main/asciidoc-zh/document.adoc) 
+参考文档 查看 [WIKI](https://github.com/romeoblog/spring-cloud/wiki) 
 
-## 个人微信
+## 联系方式
 
+#### 邮箱：
+zheng_weilu@163.com
+
+#### 微信：
 ![个人微信](example-docs/src/main/name.jpeg)
 
 ## 许可证
