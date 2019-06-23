@@ -26,7 +26,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -91,7 +90,6 @@ public class MybatisController {
             @ApiParam(value = "实体信息提交参数", required = true) @RequestBody TestVO testVO) {
         return ResultMsg.ok(mybatisService.insertTest(testVO));
     }
-
 
 
 }
