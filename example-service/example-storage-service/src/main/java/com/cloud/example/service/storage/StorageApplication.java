@@ -37,8 +37,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @ComponentScan(basePackages = {"com.cloud.example"})
 @MapperScan(basePackages = {"com.cloud.example.service.storage.mapper", "com.cloud.example.mapper"})
-@EnableDiscoveryClient
 @EnableFeignClients(basePackages= {"com.cloud.example.api"})
+@EnableDiscoveryClient
 @Slf4j
 public class StorageApplication {
 

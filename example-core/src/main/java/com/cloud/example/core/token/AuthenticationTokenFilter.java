@@ -108,6 +108,8 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
                 } else {
                     String jwtId = jwt.getId();
                     if (!Objects.equals(jwtId, cacheJwtId)) {
+                        log.error("Cache jwtId non-equals Current jwtId: CacheJwtId=[{}], JwtId=[{}]", cacheJwtId, jwtId);
+
                         ResultMsg result = ResultMsg.create().status(ResultCode.DUPLICATE_MACHINE);
                         try {
                             log.error("Check Token is failed，token has duplicate machine. message={}", JacksonUtils.toJson(result));

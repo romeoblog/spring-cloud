@@ -1,5 +1,17 @@
+server:
+  port: 9500
+#  servlet:
+#    context-path: /auth
 spring:
   application:
     name: example-auth-server
-server:
-  port: 9500
+  cloud:
+    nacos:
+      config:
+        server-addr: 127.0.0.1:8848
+        namespace: 9d145ea5-7f3c-4f87-b122-6bbe7ea6cb7d
+        #业务模块配置：独立的配置属性
+        ext-config[0]:
+          data-id: auth.yaml
+          group: SERVICE_GROUP
+          refresh: true
