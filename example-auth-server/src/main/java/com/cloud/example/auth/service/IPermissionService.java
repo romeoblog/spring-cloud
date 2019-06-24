@@ -16,6 +16,7 @@
 package com.cloud.example.auth.service;
 
 import com.cloud.example.auth.entity.PermissionDTO;
+import com.cloud.example.model.auth.ResultMessageVO;
 
 /**
  * 权限检查
@@ -33,7 +34,7 @@ public interface IPermissionService {
      * @param token the token
      * @return b
      */
-    Boolean checkToken(String token);
+    ResultMessageVO checkToken(String token);
 
     /**
      * 权限检查

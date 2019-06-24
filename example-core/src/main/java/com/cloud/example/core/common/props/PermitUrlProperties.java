@@ -44,7 +44,7 @@ public class PermitUrlProperties {
             "/**/turbine.stream", "/**/turbine.stream**/**", "/**/hystrix", "/**/hystrix.stream", "/**/hystrix/**", "/**/hystrix/**/**", "/**/proxy.stream/**",
             "/**/druid/**", "/**/favicon.ico", "/**/prometheus",
             // 认证
-            "/**/oauth/**"
+            "/**/oauth/**", "/**/permission/**"
     };
 
     private String[] ignored;
