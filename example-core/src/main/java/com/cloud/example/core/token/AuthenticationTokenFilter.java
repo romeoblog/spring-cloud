@@ -15,9 +15,7 @@
  */
 package com.cloud.example.core.token;
 
-import com.auth0.jwt.JWT;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import com.cloud.example.common.constant.Constants;
+import com.cloud.example.api.AuthFeignClient;
 import com.cloud.example.common.constant.HeadConstant;
 import com.cloud.example.common.enums.ResultCode;
 import com.cloud.example.common.model.ResultMsg;
@@ -28,7 +26,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -54,29 +51,23 @@ import java.util.Objects;
 @Slf4j
 @EnableConfigurationProperties(PermitUrlProperties.class)
 public class AuthenticationTokenFilter extends OncePerRequestFilter {
+
     @Autowired(required = false)
     private PermitUrlProperties permitUrlProperties;
 
     @Autowired
-    private RedisTemplate<String, String> redisTemplate;
+    private AuthFeignClient authFeignClient;
 
     private AntPathMatcher pathMatcher = new AntPathMatcher();
 
     @Value("${checkToken:true}")
     private Boolean checkToken;
 
-//    @Autowired
-//    private UserFeignClient userFeignClient;
-
     @Override
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
             FilterChain chain) throws ServletException, IOException {
-
-//        ResultMsg<Boolean> resultMsg = userFeignClient.test();
-
-//        System.out.println(resultMsg.toString());
 
         if (!checkToken) {
             if (log.isDebugEnabled()) {
@@ -92,44 +83,18 @@ public class AuthenticationTokenFilter extends OncePerRequestFilter {
             log.info("Get Token=[{}]", authToken);
 
             if (StringUtils.isNotEmpty(authToken)) {
-                String cacheJwtId = redisTemplate.opsForValue().get(Constants.JWT_ID_USERNAME + "admin");
-                log.info("Check JWT Id return Result[{}]", cacheJwtId);
-
-                DecodedJWT jwt = JWT.decode(authToken);
-
-                if (StringUtils.isEmpty(cacheJwtId) || jwt == null) {
-                    ResultMsg result = ResultMsg.create().status(ResultCode.ERROR_TOKEN);
-                    try {
-                        log.error("Check Token is failed，Token is Invalid. message={}", JacksonUtils.toJson(result));
-                        handlerResponse(response, result);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
+                ResultMsg resultMsg = authFeignClient.checkToken2(authToken);
+                if (!Objects.equals(resultMsg.getCode(), ResultCode.OK.getCode())) {
+                    ResultMsg result = ResultMsg.create().status(ResultCode.NO_PREMISSION);
+                    handlerResponse(response, result);
                 } else {
-                    String jwtId = jwt.getId();
-                    if (!Objects.equals(jwtId, cacheJwtId)) {
-                        log.error("Cache jwtId non-equals Current jwtId: CacheJwtId=[{}], JwtId=[{}]", cacheJwtId, jwtId);
-
-                        ResultMsg result = ResultMsg.create().status(ResultCode.DUPLICATE_MACHINE);
-                        try {
-                            log.error("Check Token is failed，token has duplicate machine. message={}", JacksonUtils.toJson(result));
-                            handlerResponse(response, result);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
-                        chain.doFilter(request, response);
-                    }
+                    chain.doFilter(request, response);
                 }
             } else {
                 ResultMsg result = ResultMsg.create().status(ResultCode.NO_PREMISSION);
-                try {
-                    log.error("Check Token is failed，Token is Not Exist. message={}", JacksonUtils.toJson(result));
-                    handlerResponse(response, result);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                handlerResponse(response, result);
             }
+
         } else {
             chain.doFilter(request, response);
         }
