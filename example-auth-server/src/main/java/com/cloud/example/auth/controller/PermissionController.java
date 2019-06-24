@@ -19,7 +19,6 @@ import com.cloud.example.auth.entity.PermissionDTO;
 import com.cloud.example.auth.service.IPermissionService;
 import com.cloud.example.common.model.ResultMsg;
 import com.cloud.example.model.auth.ResultMessageVO;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
