@@ -4,7 +4,7 @@ server:
 #    context-path: /auth
 spring:
   application:
-    name: example-auth-server
+    name: example-auth-service
   cloud:
     nacos:
       config:

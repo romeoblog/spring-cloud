@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class MybatisPlusGenerator {
 
-    public static DataSourceConfig getDataSourceConfig(){
+    public static DataSourceConfig getDataSourceConfig() {
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setDbType(DbType.MYSQL);
         dsc.setDriverName("com.mysql.jdbc.Driver");
@@ -45,7 +45,7 @@ public class MybatisPlusGenerator {
     }
 
 
-    public static void generate(DataSourceConfig dataSourceConfig, String projectDir, String moduleName){
+    public static void generate(DataSourceConfig dataSourceConfig, String projectDir, String moduleName) {
         AutoGenerator mpg = new AutoGenerator();
         String codeDir = "/src/main/java";
         String xmlDir = "/src/main/resources/mapper";
@@ -77,7 +77,7 @@ public class MybatisPlusGenerator {
         //strategy.setTablePrefix(new String[]{"co_"});
         strategy.setNaming(NamingStrategy.underline_to_camel);// 表名生成策略
 //        strategy.setInclude(new String[] { "tb_permission", "tb_role", "tb_role_permission", "tb_user", "tb_user_role"});
-        strategy.setInclude(new String[] { "mybatis_demo" }); // 需要生成的表
+        strategy.setInclude(new String[]{"mybatis_demo"}); // 需要生成的表
         strategy.setSuperMapperClass("com.cloud.example.base.SuperMapper");
         strategy.setSuperEntityClass("com.cloud.example.base.SuperEntity");
         //strategy.setSuperServiceImplClass("com.cc.platform.base.SuperServiceImpl");
@@ -92,7 +92,8 @@ public class MybatisPlusGenerator {
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 【可无】
         InjectionConfig cfg = new InjectionConfig() {
             @Override
-            public void initMap() {}
+            public void initMap() {
+            }
         };
 
 
@@ -146,7 +147,7 @@ public class MybatisPlusGenerator {
      * </p>
      */
     public static void main(String[] args) {
-        DataSourceConfig dataSourceConfig  = MybatisPlusGenerator.getDataSourceConfig();
+        DataSourceConfig dataSourceConfig = MybatisPlusGenerator.getDataSourceConfig();
         MybatisPlusGenerator.generate(dataSourceConfig, "/Users/zhengweilu/Documents/projects/private/spring-cloud/example-entity", "");
 //        MybatisPlusGenerator.generate(dataSourceConfig, "D:\\logs", "order");
     }

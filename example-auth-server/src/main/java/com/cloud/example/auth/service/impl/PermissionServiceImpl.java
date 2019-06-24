@@ -17,17 +17,18 @@ package com.cloud.example.auth.service.impl;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.interfaces.DecodedJWT;
+import com.cloud.example.api.AuthFeignClient;
 import com.cloud.example.auth.entity.PermissionDTO;
 import com.cloud.example.auth.service.IPermissionService;
 import com.cloud.example.common.constant.Constants;
+import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.core.exception.DuplicateMachineException;
 import com.cloud.example.core.exception.PermissionException;
+import com.cloud.example.model.auth.ResultMessageVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -45,40 +46,56 @@ public class PermissionServiceImpl implements IPermissionService {
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
 
+    @Autowired
+    private AuthFeignClient authFeignClient;
+
     @Override
     public Boolean checkSign() {
         return null;
     }
 
     @Override
-    public Boolean checkToken(String token) {
+    public ResultMessageVO checkToken(String token) {
+
         if (StringUtils.isEmpty(token)) {
-            new PermissionException("当前Token值：Token[" + token + "]");
+            throw new PermissionException("当前Token值：Token[" + token + "]");
+        }
+        ResultMessageVO authentication;
+        try {
+            authentication = authFeignClient.checkToken(token);
+        } catch (Exception ex) {
+            authentication = new ResultMessageVO();
+            authentication.setError("invalid_token");
+            authentication.setErrorDescription(ex.getMessage());
         }
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        log.info("调用check_token接口返回结果信息：{}", JacksonUtils.toJson(authentication));
 
-        if (authentication == null) {
-            new PermissionException("认证信息不存在：Token[" + token + "]");
+        if (StringUtils.isNotEmpty(authentication.getError())) {
+            throw new PermissionException(authentication.getError() + "：Token[" + token + "]");
         }
 
-        String name = authentication.getName();
+        String name = authentication.getUserName();
         String cacheJwtId = redisTemplate.opsForValue().get(Constants.JWT_ID_USERNAME + name);
 
         log.info("UserName=[{}], JWT Id=[{}],", name, cacheJwtId);
 
         DecodedJWT jwt = JWT.decode(token);
 
-        if (StringUtils.isEmpty(cacheJwtId) || jwt == null) {
-            new DuplicateMachineException("Token过期或在其他设备上登陆：UserName[" + name + "], Token[" + token + "], CacheJwtId[" + cacheJwtId + "]");
+        if (jwt == null) {
+            throw new DuplicateMachineException("Decoded JWT is Empty：UserName[" + name + "], Token[" + token + "], CacheJwtId[" + cacheJwtId + "]");
+        }
+
+        if (StringUtils.isEmpty(cacheJwtId)) {
+            throw new DuplicateMachineException("Token过期或在其他设备上登陆：UserName[" + name + "], Token[" + token + "], CacheJwtId[" + cacheJwtId + "]");
         }
 
         String jwtId = jwt.getId();
         if (!Objects.equals(jwtId, cacheJwtId)) {
-            new DuplicateMachineException("Token在其他设备上登陆：UserName[" + name + "], Token[" + token + "], CacheJwtId[" + cacheJwtId + "], JwtId[" + jwtId + "]");
+            throw new DuplicateMachineException("Token在其他设备上登陆：UserName[" + name + "], Token[" + token + "], CacheJwtId[" + cacheJwtId + "], JwtId[" + jwtId + "]");
         }
 
-        return true;
+        return authentication;
     }
 
     @Override

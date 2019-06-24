@@ -15,16 +15,15 @@
  */
 package com.cloud.example.entity;
 
-import java.io.Serializable;
-
-import com.baomidou.mybatisplus.enums.IdType;
 import com.baomidou.mybatisplus.annotations.TableId;
-import com.baomidou.mybatisplus.activerecord.Model;
+import com.baomidou.mybatisplus.enums.IdType;
 import com.cloud.example.base.SuperEntity;
+
+import java.io.Serializable;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author Generator
@@ -34,64 +33,64 @@ public class Demo extends SuperEntity<Demo> {
 
     private static final long serialVersionUID = 1L;
 
-	@TableId(value = "id", type = IdType.AUTO)
-	private Integer id;
-	private String name;
-	private Integer age;
-	private String address;
+    @TableId(value = "id", type = IdType.AUTO)
+    private Integer id;
+    private String name;
+    private Integer age;
+    private String address;
 
 
-	public Integer getId() {
-		return id;
-	}
+    public Integer getId() {
+        return id;
+    }
 
-	public void setId(Integer id) {
-		this.id = id;
-	}
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public Integer getAge() {
-		return age;
-	}
+    public Integer getAge() {
+        return age;
+    }
 
-	public void setAge(Integer age) {
-		this.age = age;
-	}
+    public void setAge(Integer age) {
+        this.age = age;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	@Override
-	protected Serializable pkVal() {
-		return this.id;
-	}
+    @Override
+    protected Serializable pkVal() {
+        return this.id;
+    }
 
-	@Override
-	public String toString() {
-		final StringBuilder sb = new StringBuilder("{");
-		sb.append("\"id\":\"")
-				.append(id);
-		sb.append(",\"name\":\"")
-				.append(name);
-		sb.append(",\"age\":\"")
-				.append(age);
-		sb.append(",\"address\":\"")
-				.append(address);
-		sb.append('}');
-		return sb.toString();
-	}
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"id\":\"")
+                .append(id);
+        sb.append(",\"name\":\"")
+                .append(name);
+        sb.append(",\"age\":\"")
+                .append(age);
+        sb.append(",\"address\":\"")
+                .append(address);
+        sb.append('}');
+        return sb.toString();
+    }
 }
 
 

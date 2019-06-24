@@ -22,7 +22,6 @@ import com.alibaba.nacos.api.exception.NacosException;
 import com.cloud.example.common.utils.JacksonUtils;
 import com.fasterxml.jackson.core.type.TypeReference;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.gateway.route.RouteDefinition;
 import org.springframework.stereotype.Component;
 

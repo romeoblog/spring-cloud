@@ -21,7 +21,7 @@ package com.cloud.example.core.exception;
  * @author Benji
  * @date 2019-06-03
  */
-public class ApiException extends RuntimeException{
+public class ApiException extends RuntimeException {
     private static final long serialVersionUID = 8247610319171014183L;
 
     public ApiException(Throwable e) {
