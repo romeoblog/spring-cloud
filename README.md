@@ -44,6 +44,13 @@
     ├── example-common -- 工具类及通用代
     ├── example-docs -- 项目文档信息
     ├── example-demo -- 相关框架实例
+    ├────── nacos-sample -- 栗子1
+    ├────── seata-eureka-sample -- 栗子2
+    ├────── seata-ha-sample -- 栗子3
+    ├────── seata-nacos-sample -- 栗子4
+    ├────── seata-sample -- 栗子5
+    ├────── seata-tcc-sample -- 栗子6
+    ├────── springboot-sample -- 栗子7
     ├── example-entity -- 数据层公共实体类
     ├── example-enums -- 枚举公共类
     ├── example-eureka -- Eureka服务注册与发现组件
