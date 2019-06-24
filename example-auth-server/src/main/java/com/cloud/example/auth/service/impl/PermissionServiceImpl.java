@@ -21,7 +21,6 @@ import com.cloud.example.api.AuthFeignClient;
 import com.cloud.example.auth.entity.PermissionDTO;
 import com.cloud.example.auth.service.IPermissionService;
 import com.cloud.example.common.constant.Constants;
-import com.cloud.example.common.model.ResultMsg;
 import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.core.exception.DuplicateMachineException;
 import com.cloud.example.core.exception.PermissionException;
@@ -30,8 +29,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
@@ -61,15 +58,15 @@ public class PermissionServiceImpl implements IPermissionService {
     public ResultMessageVO checkToken(String token) {
 
         if (StringUtils.isEmpty(token)) {
-            new PermissionException("当前Token值：Token[" + token + "]");
+            throw new PermissionException("当前Token值：Token[" + token + "]");
         }
         ResultMessageVO authentication;
         try {
-             authentication = authFeignClient.checkToken(token);
+            authentication = authFeignClient.checkToken(token);
         } catch (Exception ex) {
             authentication = new ResultMessageVO();
             authentication.setError("invalid_token");
-            authentication.setError_description(ex.getMessage());
+            authentication.setErrorDescription(ex.getMessage());
         }
 
         log.info("调用check_token接口返回结果信息：{}", JacksonUtils.toJson(authentication));
@@ -78,7 +75,7 @@ public class PermissionServiceImpl implements IPermissionService {
             throw new PermissionException(authentication.getError() + "：Token[" + token + "]");
         }
 
-        String name = authentication.getUser_name();
+        String name = authentication.getUserName();
         String cacheJwtId = redisTemplate.opsForValue().get(Constants.JWT_ID_USERNAME + name);
 
         log.info("UserName=[{}], JWT Id=[{}],", name, cacheJwtId);

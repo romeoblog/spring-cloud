@@ -23,18 +23,20 @@
         <artifactId>example-parent</artifactId>
         <version>${revision}</version>
     </parent>
-    <artifactId>example-service</artifactId>
+    <artifactId>example-demo</artifactId>
     <version>${revision}</version>
     <packaging>pom</packaging>
-    <name>example-service ${project.version}</name>
-    <description>example-service ${project.version}</description>
+    <name>example-demo ${project.version}</name>
+    <description>example-demo ${project.version}</description>
 
     <modules>
-        <module>example-business-service</module>
-        <module>example-order-service</module>
-        <module>example-storage-service</module>
-        <module>example-user-service</module>
-        <module>example-mybatis-service</module>
+        <module>seata-sample</module>
+        <module>springboot-sample</module>
+        <module>nacos-sample</module>
+        <module>seata-eureka-sample</module>
+        <module>seata-tcc-sample</module>
+        <module>seata-ha-sample</module>
+        <module>seata-nacos-sample</module>
     </modules>
 
 </project>

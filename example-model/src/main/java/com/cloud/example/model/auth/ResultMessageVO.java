@@ -15,6 +15,7 @@
  */
 package com.cloud.example.model.auth;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -32,7 +33,8 @@ public class ResultMessageVO implements Serializable {
     /**
      * The type authenticated result username
      */
-    private String user_name;
+    @JsonProperty("user_name")
+    private String userName;
 
     /**
      * The type authenticated result scope
@@ -62,7 +64,8 @@ public class ResultMessageVO implements Serializable {
     /**
      * The type authenticated result client_id
      */
-    private String client_id;
+    @JsonProperty("client_id")
+    private String clientId;
 
     /**
      * The type authentication fail result error
@@ -72,6 +75,7 @@ public class ResultMessageVO implements Serializable {
     /**
      * The type error description
      */
-    private String error_description;
+    @JsonProperty("error_description")
+    private String errorDescription;
 
 }
