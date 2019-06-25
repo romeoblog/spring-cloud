@@ -40,7 +40,7 @@
         <module>example-api</module>
         <module>example-test</module>
         <module>example-demo</module>
-        <!--<module>example-seata</module>-->
+        <module>example-mq</module>
     </modules>
     <packaging>pom</packaging>
     <name>Example Parent POM ${project.version}</name>
