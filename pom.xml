@@ -150,6 +150,9 @@
         <!-- Alibaba AHAH -->
         <alibaba-ahas-sentinel.version>1.0.2</alibaba-ahas-sentinel.version>
 
+        <!-- Apache RocketMQ -->
+        <rocketmq.version>4.5.1</rocketmq.version>
+
         <!-- Plugin -->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.0.1</maven-jar-plugin.version>
@@ -585,6 +588,13 @@
                 <groupId>com.alibaba.csp</groupId>
                 <artifactId>spring-cloud-gateway-starter-ahas-sentinel</artifactId>
                 <version>${alibaba-ahas-sentinel.version}</version>
+            </dependency>
+
+            <!-- Apache RocketMQ -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
             </dependency>
 
             <dependency>
