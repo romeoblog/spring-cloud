@@ -18,19 +18,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>example-parent</artifactId>
+        <artifactId>example-mq</artifactId>
         <groupId>com.cloud.example</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>example-mq</artifactId>
-    <version>${revision}</version>
-    <packaging>pom</packaging>
-    <name>example-mq ${project.version}</name>
-    <modules>
-        <module>example-rocketmq</module>
-        <module>example-rabbitmq</module>
-        <module>example-kafka</module>
-    </modules>
+    <artifactId>example-kafka</artifactId>
+    <packaging>jar</packaging>
+    <name>example-kafka ${project.version}</name>
 
 </project>
