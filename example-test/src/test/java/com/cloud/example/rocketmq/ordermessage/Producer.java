@@ -35,7 +35,7 @@ import java.util.List;
 public class Producer {
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer("please_rename_unique_group_name");
+        DefaultMQProducer producer = new DefaultMQProducer("TopicTestGroup");
 
         producer.setNamesrvAddr("localhost:9876");
 

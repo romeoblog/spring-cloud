@@ -36,7 +36,7 @@ public class ScheduledMessageProducer {
      */
     public static void main(String[] args) throws Exception {
         // 实例化一个生产者来产生延时消息
-        DefaultMQProducer producer = new DefaultMQProducer("ExampleProducerGroup");
+        DefaultMQProducer producer = new DefaultMQProducer("TopicTestGroup");
         producer.setNamesrvAddr("localhost:9876");
         producer.start();
 

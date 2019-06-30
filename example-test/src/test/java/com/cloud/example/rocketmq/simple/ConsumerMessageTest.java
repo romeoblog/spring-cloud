@@ -35,7 +35,7 @@ public class ConsumerMessageTest {
     public static void main(String[] args) throws InterruptedException, MQClientException {
 
         // Instantiate with specified consumer group name.
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("Jodie_Daily_test");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("TopicTestGroup");
 
         // Specify name server addresses.
         consumer.setNamesrvAddr("localhost:9876");

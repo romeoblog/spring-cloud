@@ -34,7 +34,7 @@ public class Consumer {
 
     public static void main(String[] args) throws Exception {
         // 实例化消费者
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("CID_EXAMPLE");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("TopicTestGroup");
         consumer.setNamesrvAddr("localhost:9876");
 
         // 只有订阅的消息有这个属性a, a >=0 and a <= 3

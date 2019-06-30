@@ -31,7 +31,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
 public class Producer {
 
     public static void main(String[] args) throws Exception {
-        DefaultMQProducer producer = new DefaultMQProducer("CID_EXAMPLE");
+        DefaultMQProducer producer = new DefaultMQProducer("TopicTestGroup");
         producer.setNamesrvAddr("localhost:9876");
         producer.start();
 

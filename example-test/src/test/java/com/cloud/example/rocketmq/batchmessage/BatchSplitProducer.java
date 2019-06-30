@@ -31,7 +31,7 @@ public class BatchSplitProducer {
 
     public static void main(String[] args) throws Exception {
 
-        DefaultMQProducer producer = new DefaultMQProducer("BatchProducer");
+        DefaultMQProducer producer = new DefaultMQProducer("TopicTestGroup");
         producer.setNamesrvAddr("localhost:9876");
         producer.start();
 

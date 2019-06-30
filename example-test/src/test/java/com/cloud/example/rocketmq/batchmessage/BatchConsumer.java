@@ -40,7 +40,7 @@ public class BatchConsumer {
 
     public static void main(String[] args) throws InterruptedException, MQClientException {
 
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("BatchConsumer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("TopicTestGroup");
         consumer.setNamesrvAddr("localhost:9876");
         consumer.subscribe("BatchTest", "*");
         consumer.registerMessageListener(new MessageListenerConcurrently() {

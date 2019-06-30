@@ -34,7 +34,7 @@ public class ScheduledMessageConsumer {
 
     public static void main(String[] args) throws Exception {
         // 实例化消费者
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("ExampleConsumer");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("TopicTestGroup");
         consumer.setNamesrvAddr("localhost:9876");
         // 订阅Topics
         consumer.subscribe("TestTopic", "*");

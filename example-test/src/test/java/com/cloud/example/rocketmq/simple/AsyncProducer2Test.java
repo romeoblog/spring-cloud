@@ -39,7 +39,7 @@ public class AsyncProducer2Test {
 
     public static void main(String[] args) throws MQClientException, InterruptedException, UnsupportedEncodingException {
 
-        DefaultMQProducer producer = new DefaultMQProducer("Jodie_Daily_test");
+        DefaultMQProducer producer = new DefaultMQProducer("TopicTestGroup");
         producer.setNamesrvAddr("localhost:9876");
         producer.start();
         producer.setRetryTimesWhenSendAsyncFailed(0);

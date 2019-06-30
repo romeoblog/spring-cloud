@@ -34,7 +34,7 @@ public class OnewayProducerTest {
     public static void main(String[] args) throws Exception {
 
         //Instantiate with a producer group name.
-        DefaultMQProducer producer = new DefaultMQProducer("Jodie_Daily_test");
+        DefaultMQProducer producer = new DefaultMQProducer("TopicTestGroup");
 
         // Specify name server addresses.
         producer.setNamesrvAddr("localhost:9876");

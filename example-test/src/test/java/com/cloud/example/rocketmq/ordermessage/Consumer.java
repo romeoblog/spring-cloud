@@ -40,7 +40,7 @@ import java.util.concurrent.TimeUnit;
 public class Consumer {
 
     public static void main(String[] args) throws Exception {
-        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("please_rename_unique_group_name_3");
+        DefaultMQPushConsumer consumer = new DefaultMQPushConsumer("TopicTestGroup");
         consumer.setNamesrvAddr("localhost:9876");
         /**
          * 设置Consumer第一次启动是从队列头部开始消费还是队列尾部开始消费<br>
