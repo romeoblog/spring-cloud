@@ -265,24 +265,6 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-eureka</artifactId>-->
-                <!--<version>${spring-cloud-eureka.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-hystrix</artifactId>-->
-                <!--<version>${spring-cloud-hystrix.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-feign</artifactId>-->
-                <!--<version>${spring-cloud-feign.version}</version>-->
-            <!--</dependency>-->
-
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
@@ -294,24 +276,6 @@
                 <artifactId>spring-cloud-starter-turbine</artifactId>
                 <version>${spring-cloud-hystrix-turbine.version}</version>
             </dependency>
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-oauth2</artifactId>-->
-                <!--<version>${spring-cloud-starter-oauth2.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.security.oauth.boot</groupId>-->
-                <!--<artifactId>spring-security-oauth2-autoconfigure</artifactId>-->
-                <!--<version>${spring-cloud-starter-oauth2.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-security</artifactId>-->
-                <!--<version>${spring-cloud-starter-security.version}</version>-->
-            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.springframework.security</groupId>
