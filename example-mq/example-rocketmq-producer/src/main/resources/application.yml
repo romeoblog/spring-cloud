@@ -1,0 +1,18 @@
+server:
+  port: 9093
+spring:
+  application:
+    name: example-rocketmq-producer
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          namesrv-addr: localhost:9876
+      bindings:
+        output: {destination: rocketmq-test-topic, content-type: application/json}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
