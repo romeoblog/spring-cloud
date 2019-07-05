@@ -15,7 +15,12 @@
  */
 package com.cloud.example.mq.rocketmq.producer.service;
 
+import com.cloud.example.core.common.dto.MqMessageDTO;
+import lombok.NonNull;
 import org.apache.rocketmq.common.message.MessageConst;
+import org.apache.rocketmq.spring.support.RocketMQHeaders;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
@@ -36,11 +41,33 @@ import java.util.stream.Stream;
 @Service
 public class ProviderService {
 
+    private Logger log = LoggerFactory.getLogger(ProviderService.class);
+
     @Autowired
     private MessageChannel output;
 
     public void send(String message) {
         output.send(MessageBuilder.withPayload(message).build());
+    }
+
+    public Boolean send(MqMessageDTO messageDTO) {
+
+        log.info("RECEIVE_MQ_MSG, msgDto={}", messageDTO);
+
+        MessageBuilder<@NonNull String> messageBuilder = MessageBuilder.withPayload(messageDTO.getBody());
+        messageBuilder.setHeader(RocketMQHeaders.TAGS, messageDTO.getTag());
+        messageBuilder.setHeader(RocketMQHeaders.KEYS, messageDTO.getKey());
+        if (messageDTO.getDelayTimeLevel() != null && messageDTO.getDelayTimeLevel() > 0) {
+            messageBuilder.setHeader("DELAY", messageDTO.getDelayTimeLevel().toString());
+        }
+
+        Message message = messageBuilder.build();
+
+        output.send(message);
+
+        log.info("SEND_MQ_MSG_SUCCESS, messageDTO={}", messageDTO);
+
+        return true;
     }
 
     public <T> void sendWithTags(T msg, String tag) {
