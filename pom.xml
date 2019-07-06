@@ -40,7 +40,7 @@
         <module>example-api</module>
         <module>example-test</module>
         <module>example-demo</module>
-        <!--<module>example-seata</module>-->
+        <module>example-mq</module>
     </modules>
     <packaging>pom</packaging>
     <name>Example Parent POM ${project.version}</name>
@@ -150,6 +150,9 @@
         <!-- Alibaba AHAH -->
         <alibaba-ahas-sentinel.version>1.0.2</alibaba-ahas-sentinel.version>
 
+        <!-- Apache RocketMQ -->
+        <rocketmq.version>4.5.1</rocketmq.version>
+
         <!-- Plugin -->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.0.1</maven-jar-plugin.version>
@@ -253,23 +256,14 @@
                 <scope>import</scope>
             </dependency>
 
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-eureka</artifactId>-->
-                <!--<version>${spring-cloud-eureka.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-hystrix</artifactId>-->
-                <!--<version>${spring-cloud-hystrix.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-feign</artifactId>-->
-                <!--<version>${spring-cloud-feign.version}</version>-->
-            <!--</dependency>-->
+            <!-- Spring Cloud Alibaba Dependencies-->
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>${spring-cloud-alibaba.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
 
             <dependency>
                 <groupId>org.springframework.cloud</groupId>
@@ -282,24 +276,6 @@
                 <artifactId>spring-cloud-starter-turbine</artifactId>
                 <version>${spring-cloud-hystrix-turbine.version}</version>
             </dependency>
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-oauth2</artifactId>-->
-                <!--<version>${spring-cloud-starter-oauth2.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.security.oauth.boot</groupId>-->
-                <!--<artifactId>spring-security-oauth2-autoconfigure</artifactId>-->
-                <!--<version>${spring-cloud-starter-oauth2.version}</version>-->
-            <!--</dependency>-->
-
-            <!--<dependency>-->
-                <!--<groupId>org.springframework.cloud</groupId>-->
-                <!--<artifactId>spring-cloud-starter-security</artifactId>-->
-                <!--<version>${spring-cloud-starter-security.version}</version>-->
-            <!--</dependency>-->
 
             <dependency>
                 <groupId>org.springframework.security</groupId>
@@ -585,6 +561,13 @@
                 <groupId>com.alibaba.csp</groupId>
                 <artifactId>spring-cloud-gateway-starter-ahas-sentinel</artifactId>
                 <version>${alibaba-ahas-sentinel.version}</version>
+            </dependency>
+
+            <!-- Apache RocketMQ -->
+            <dependency>
+                <groupId>org.apache.rocketmq</groupId>
+                <artifactId>rocketmq-client</artifactId>
+                <version>${rocketmq.version}</version>
             </dependency>
 
             <dependency>
