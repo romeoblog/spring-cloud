@@ -95,6 +95,7 @@
         <!--<spring-boot.version>2.0.6.RELEASE</spring-boot.version>-->
         <!--<spring-boot.version>2.0.0.RELEASE</spring-boot.version>-->
         <!--<spring-boot.version>1.5.8.RELEASE</spring-boot.version>-->
+        <springloaded.version>1.2.7.RELEASE</springloaded.version>
 
         <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
         <!--<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>-->
@@ -705,6 +706,29 @@
                 <version>1.5.0.Final</version>
             </extension>
         </extensions>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                    <version>${spring-boot.version}</version>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.springframework</groupId>
+                            <artifactId>springloaded</artifactId>
+                            <version>${springloaded.version}</version>
+                        </dependency>
+                    </dependencies>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>repackage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
         <plugins>
             <!-- 编码规约扫描命令： mvn pmd:pmd-->
             <plugin>
