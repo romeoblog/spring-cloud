@@ -2,11 +2,11 @@ spring:
   application:
     name: example-turbine
 server:
-  port: 8000
+  port: 8030
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://admin:123123@localhost:8761/eureka/,http://admin:123123@localhost:8762/eureka/
+      defaultZone: http://admin:123123@localhost:8830/eureka/,http://admin:123123@localhost:8831/eureka/
   instance:
     preferIpAddress: true
     instanceId: ${spring.application.name}:${server.port}

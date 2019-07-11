@@ -1,5 +1,5 @@
 server:
-  port: 8760
+  port: 8090
 spring:
   application:
     name: example-gateway-zuul
@@ -14,7 +14,7 @@ spring:
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://admin:123123@localhost:8761/eureka/,http://admin:123123@localhost:8762/eureka/
+      defaultZone: http://admin:123123@localhost:8830/eureka/,http://admin:123123@localhost:8831/eureka/
     healthcheck:  # 健康检查
       enabled: true
     registryFetchIntervalSeconds: 5

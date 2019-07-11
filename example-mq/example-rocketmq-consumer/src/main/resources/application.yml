@@ -1,5 +1,5 @@
 server:
-  port: 9094
+  port: 8060
 spring:
   application:
     name: example-rocketmq-consumer
