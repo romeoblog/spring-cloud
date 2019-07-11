@@ -16,7 +16,7 @@
   -->
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
-    <property name="LOG_HOME" value="${user.home}/logs/example"/>
+    <property name="LOG_HOME" value="/var/log/example"/>
 
     <appender name="SYSOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
