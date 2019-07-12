@@ -8,10 +8,10 @@
 
 	<appender name="FILE"
 		class="ch.qos.logback.core.rolling.RollingFileAppender">
-		<file>/var/log/example/rocketmq-console.log</file>
+		<file>${LOG_HOME:-/var/log/example}/rocketmq-console.log</file>
 		<append>true</append>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<fileNamePattern>/var/log/example/rocketmq-console-%d{yyyy-MM-dd}.%i.log
+			<fileNamePattern>${LOG_HOME:-/var/log/example}/rocketmq-console-%d{yyyy-MM-dd}.%i.log
 			</fileNamePattern>
 			<timeBasedFileNamingAndTriggeringPolicy
 				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
