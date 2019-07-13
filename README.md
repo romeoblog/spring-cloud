@@ -7,7 +7,7 @@
 * **服务限流降级**：支持 Feign、RestTemplate 和 Spring Cloud Gateway 等限流降级功能的接入，支持在运行时通过控制台实时修改限流降级规则。
 * **服务注册与发现**：适配 Spring Cloud 服务注册与发现，支持两种配置：Eureka 和 Nacos（推荐）。
 * **分布式配置管理**：支持分布式系统中的外部化配置，配置更改时自动刷新。支持 Nacos Config 作为统一配置。
-* **分布式事务**：我们折中选择由Alibaba团队开发的Seata分布式事务解决方案，已集成支持 Seata 分布式事务方案，使用 @GlobalTransactional 注解，高效并且对业务零侵入地解决分布式事务问题。
+* **分布式事务**：我们折中选择由 Alibaba 团队开发的 Seata 分布式事务解决方案，已集成支持 Seata 分布式事务方案，使用 @GlobalTransactional 注解，高效并且对业务零侵入地解决分布式事务问题。
 * **安全加密支持**：支持对敏感数据不予暴露，采用不对称加密方式，支持对配置文件加密，提高项目的第一频道的安全性。
 * **服务健康与监控**：用于管理和监控 Spring Cloud 的应用，提供简洁的可视化 WEB UI。
 * **全链路监控**：是分布式监控系统，用于跟踪分布式服务之间的应用数据链路，分析处理延时，帮助我们改进系统的性能和定位故障。
@@ -39,7 +39,7 @@
 ### 组织结构
 
     spring-cloud
-    ├── example-api -- openFeign相关接口api
+    ├── example-api -- openFeign 相关接口 api
     ├── example-auth-server -- 认证系统
     ├── example-boot-admin -- 服务健康与监控系统
     ├── example-common -- 工具类及通用代
@@ -54,23 +54,23 @@
     ├────── springboot-sample -- 栗子7
     ├── example-entity -- 数据层公共实体类
     ├── example-enums -- 枚举公共类
-    ├── example-eureka -- Eureka服务注册与发现组件
-    ├── example-gateway -- SpringCloud Gateway网关组件
-    ├── example-gateway-zuul -- SpringCloud Zuul网关组件
-    ├── example-generator -- Mybatis构建自动化
+    ├── example-eureka -- Eureka 服务注册与发现组件
+    ├── example-gateway -- SpringCloud Gateway 网关组件
+    ├── example-gateway-zuul -- SpringCloud Zuul 网关组件
+    ├── example-generator -- Mybatis 构建自动化
     ├── example-model -- 与前端交互视图实体相关，VO、DTO、BTO
-    ├── example-parent-old -- 父POM
+    ├── example-parent-old -- 父 POM
     ├── example-core -- 服务层公共配置信息和组件初始化代码
-    ├── example-service -- 独立服务父POM
+    ├── example-service -- 独立服务父 POM
     ├────── example-business-service -- 独立业务服务1
     ├────── example-order-service -- 独立业务服务2
     ├────── example-storage-service -- 独立业务服务3
     ├────── example-user-service -- 独立业务服务4
     ├────── example-mybatis-service -- 独立业务服务5
-    ├── example-skywalking-agent -- 提供全链路监控agent
+    ├── example-skywalking-agent -- 提供全链路监控 agent
     ├── example-test -- 框架搭建时的相关测试代码
-    ├── example-turbine -- 聚合监控(Hystrix Turbine)
-    ├── sql -- sql执行语句
+    ├── example-turbine -- 聚合监控 (Hystrix Turbine)
+    ├── sql -- sql 执行语句
     └── style -- 框架代码规范约定
 
 ## 版本说明
@@ -78,7 +78,7 @@
 | 技术 | 说明  | 官网 | 
 | ------------------ |-------------------|---------------------------------------------------------------------------------------|
 | Spring Cloud       | 微服务架构框架      | [https://spring.io/projects/spring-cloud](https://spring.io/projects/spring-cloud)    | 
-| Spring Boot        | SpringBoot框架     | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)  | 
+| Spring Boot        | SpringBoot 框架    | [https://spring.io/projects/spring-boot](https://spring.io/projects/spring-boot)  | 
 | Netflix Eureka     | 服务注册与发现      | [https://github.com/Netflix/eureka](https://github.com/Netflix/eureka)            | 
 | Alibaba Nacos      | 服务注册与发现      | [https://github.com/alibaba/nacos](https://github.com/alibaba/nacos)          | 
 | Nacos Config       | 服务配置中心        | [https://github.com/alibaba/nacos](https://github.com/alibaba/nacos)             | 
@@ -92,14 +92,14 @@
 | Alibaba Seata      | 分布式事务框架      | [https://github.com/seata/seata](https://github.com/seata/seata)                          | 
 | Apache Skywalking  | 提供全链路监控      | [https://github.com/apache/skywalking](https://github.com/apache/skywalking)              | 
 | Jasypt             | 安全加密和管理      | [https://github.com/ulisesbocchio/jasypt-spring-boot](https://github.com/ulisesbocchio/jasypt-spring-boot)    | 
-| MyBatis            | ORM框架            | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)          | 
-| MyBatisPlus        | ORM增强工具         | [https://mp.baomidou.com/](https://mp.baomidou.com/)           | 
+| MyBatis            | ORM 框架           | [http://www.mybatis.org/mybatis-3/zh/index.html](http://www.mybatis.org/mybatis-3/zh/index.html)          | 
+| MyBatisPlus        | ORM 增强工具        | [https://mp.baomidou.com/](https://mp.baomidou.com/)           | 
 | MyBatisGenerator   | 数据层代码生成       | [http://www.mybatis.org/generator/index.html](http://www.mybatis.org/generator/index.html)           | 
-| PageHelper         | MyBatis物理分页插件  | [http://git.oschina.net/free/Mybatis_PageHelper](http://git.oschina.net/free/Mybatis_PageHelper)        | 
+| PageHelper         | MyBatis 物理分页插件 | [http://git.oschina.net/free/Mybatis_PageHelper](http://git.oschina.net/free/Mybatis_PageHelper)        | 
 | Swagger-UI         | 文档生产工具        | [https://github.com/swagger-api/swagger-ui](https://github.com/swagger-api/swagger-ui)               | 
 | Redis              | 分布式缓存          |[https://redis.io/](https://redis.io/)                                       | 
 | Druid              | 数据库连接池        |[https://github.com/alibaba/druid](https://github.com/alibaba/druid)          | 
-| JWT                | JWT登录支持        | [https://github.com/auth0/java-jwt](https://github.com/auth0/java-jwt)      | 
+| JWT                | JWT 登录支持       | [https://github.com/auth0/java-jwt](https://github.com/auth0/java-jwt)      | 
 | logback            | 日志收集           | [https://github.com/logstash/logstash-logback-encoder](https://github.com/logstash/logstash-logback-encoder)    | 
 | Lombok             | 简化对象封装工具    | [https://github.com/rzwitserloot/lombok](https://github.com/rzwitserloot/lombok)       | 
 
