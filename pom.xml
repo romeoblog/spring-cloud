@@ -33,7 +33,6 @@
         <module>example-gateway-zuul</module>
         <module>example-auth-server</module>
         <module>example-boot-admin</module>
-        <module>example-turbine</module>
         <module>example-service</module>
         <module>example-docs</module>
         <module>example-generator</module>
@@ -77,6 +76,142 @@
         <connection>scm:git@github.com:romeoblog/spring-cloud.git</connection>
         <developerConnection>scm:git@github.com:romeoblog/spring-cloud.git</developerConnection>
     </scm>
+
+    <profiles>
+        <!-- The type default (Environment) -->
+        <profile>
+            <id>default</id>
+            <properties>
+                <dockerfile-skip>true</dockerfile-skip>
+                <log-home>/var/log/example</log-home>
+                <docker-tag>${project.version}</docker-tag>
+                <docker-repository>romeoblog-default/${project.artifactId}</docker-repository>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <!-- The type develop (Environment) -->
+        <profile>
+            <id>develop</id>
+            <properties>
+                <dockerfile-skip>false</dockerfile-skip>
+                <log-home>/var/log/example</log-home>
+                <docker-tag>latest</docker-tag>
+                <docker-repository>romeoblog-develop/${project.artifactId}</docker-repository>
+            </properties>
+        </profile>
+        <!-- The type internal (Environment) -->
+        <profile>
+            <id>internal</id>
+            <properties>
+                <dockerfile-skip>false</dockerfile-skip>
+                <log-home>/var/log/example</log-home>
+                <docker-tag>${project.version}</docker-tag>
+                <docker-repository>registry.cn-shenzhen.aliyuncs.com/romeoblog-internal/${project.artifactId}</docker-repository>
+            </properties>
+        </profile>
+        <!-- The type product (Environment) -->
+        <profile>
+            <id>product</id>
+            <properties>
+                <dockerfile-skip>false</dockerfile-skip>
+                <log-home>/var/log/example</log-home>
+                <docker-tag>${project.version}</docker-tag>
+                <docker-repository>registry.cn-shenzhen.aliyuncs.com/romeoblog-product/${project.artifactId}</docker-repository>
+            </properties>
+        </profile>
+        <!-- The type docker hub (Environment) -->
+        <profile>
+            <id>hub</id>
+            <properties>
+                <dockerfile-skip>false</dockerfile-skip>
+                <log-home>/var/log/example</log-home>
+                <docker-tag>${project.version}</docker-tag>
+                <docker-repository>romeoblog/${project.artifactId}</docker-repository>
+            </properties>
+        </profile>
+
+        <!-- Profiles Spring Snapshot -->
+        <profile>
+            <id>spring</id>
+            <repositories>
+                <repository>
+                    <id>spring-snapshot</id>
+                    <name>Spring Snapshot Repository</name>
+                    <url>https://repo.spring.io/snapshot</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                </repository>
+                <repository>
+                    <id>spring-snapshots</id>
+                    <name>Spring Snapshots</name>
+                    <url>https://repo.spring.io/libs-snapshot-local</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>spring-milestones</id>
+                    <name>Spring Milestones</name>
+                    <url>https://repo.spring.io/libs-milestone-local</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+                <repository>
+                    <id>spring-releases</id>
+                    <name>Spring Releases</name>
+                    <url>https://repo.spring.io/release</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>spring-snapshot</id>
+                    <name>Spring Snapshot Repository</name>
+                    <url>https://repo.spring.io/snapshot</url>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>spring-snapshots</id>
+                    <name>Spring Snapshots</name>
+                    <url>https://repo.spring.io/libs-snapshot-local</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>spring-milestones</id>
+                    <name>Spring Milestones</name>
+                    <url>https://repo.spring.io/libs-milestone-local</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+                <pluginRepository>
+                    <id>spring-releases</id>
+                    <name>Spring Releases</name>
+                    <url>https://repo.spring.io/libs-release-local</url>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+    </profiles>
 
     <properties>
 
@@ -166,7 +301,6 @@
         <findbugs-maven-plugin.version>3.0.5</findbugs-maven-plugin.version>
         <maven-deploy-plugin.version>2.8.2</maven-deploy-plugin.version>
         <maven-release-plugin.version>2.5.3</maven-release-plugin.version>
-        <dockerfile-maven-plugin.version>1.3.6</dockerfile-maven-plugin.version>
         <maven-javadoc-plugin.version>3.0.0-M1</maven-javadoc-plugin.version>
         <maven-maven-plugin.version>2.0.1.RELEASE</maven-maven-plugin.version>
         <flatten-maven-plugin.version>1.1.0</flatten-maven-plugin.version>
@@ -174,6 +308,8 @@
         <jacoco-maven-plugin.version>0.8.3</jacoco-maven-plugin.version>
         <p3c-pmd.version>1.3.6</p3c-pmd.version>
         <maven-checkstyle-plugin.version>3.0.0</maven-checkstyle-plugin.version>
+        <!--<dockerfile-maven-plugin.version>1.4.10</dockerfile-maven-plugin.version>-->
+        <dockerfile-maven-plugin.version>1.3.6</dockerfile-maven-plugin.version>
 
         <!-- tools-->
         <!--<jackson.version>2.9.1</jackson.version>-->
@@ -617,87 +753,6 @@
         </dependencies>
     </dependencyManagement>
 
-    <!-- Profiles Spring Snapshot -->
-    <profiles>
-        <profile>
-            <id>spring</id>
-            <repositories>
-                <repository>
-                    <id>spring-snapshot</id>
-                    <name>Spring Snapshot Repository</name>
-                    <url>https://repo.spring.io/snapshot</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                    <releases>
-                        <enabled>false</enabled>
-                    </releases>
-                </repository>
-                <repository>
-                    <id>spring-snapshots</id>
-                    <name>Spring Snapshots</name>
-                    <url>https://repo.spring.io/libs-snapshot-local</url>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </repository>
-                <repository>
-                    <id>spring-milestones</id>
-                    <name>Spring Milestones</name>
-                    <url>https://repo.spring.io/libs-milestone-local</url>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </repository>
-                <repository>
-                    <id>spring-releases</id>
-                    <name>Spring Releases</name>
-                    <url>https://repo.spring.io/release</url>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </repository>
-            </repositories>
-            <pluginRepositories>
-                <pluginRepository>
-                    <id>spring-snapshot</id>
-                    <name>Spring Snapshot Repository</name>
-                    <url>https://repo.spring.io/snapshot</url>
-                    <snapshots>
-                        <enabled>true</enabled>
-                    </snapshots>
-                    <releases>
-                        <enabled>false</enabled>
-                    </releases>
-                </pluginRepository>
-                <pluginRepository>
-                    <id>spring-snapshots</id>
-                    <name>Spring Snapshots</name>
-                    <url>https://repo.spring.io/libs-snapshot-local</url>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </pluginRepository>
-                <pluginRepository>
-                    <id>spring-milestones</id>
-                    <name>Spring Milestones</name>
-                    <url>https://repo.spring.io/libs-milestone-local</url>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </pluginRepository>
-                <pluginRepository>
-                    <id>spring-releases</id>
-                    <name>Spring Releases</name>
-                    <url>https://repo.spring.io/libs-release-local</url>
-                    <snapshots>
-                        <enabled>false</enabled>
-                    </snapshots>
-                </pluginRepository>
-            </pluginRepositories>
-        </profile>
-    </profiles>
-
     <build>
         <extensions>
             <extension>
@@ -867,6 +922,37 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.spotify</groupId>
+                <artifactId>dockerfile-maven-plugin</artifactId>
+                <version>${dockerfile-maven-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>build</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>build</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>deploy</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>push</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>${dockerfile-skip}</skip>
+                    <repository>${docker-repository}</repository>
+                    <tag>${docker-tag}</tag>
+                    <buildArgs>
+                        <JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
+                        <LOG_HOME>${log-home}</LOG_HOME>
+                    </buildArgs>
+                    <useMavenSettingsForAuth>true</useMavenSettingsForAuth>
+                </configuration>
             </plugin>
         </plugins>
     </build>
