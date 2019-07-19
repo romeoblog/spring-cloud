@@ -41,7 +41,7 @@ eureka:
   client:
     enabled: false
     serviceUrl:
-      defaultZone: http://admin:123123@127.0.0.1:8761/eureka/
+      defaultZone: http://admin:123123@127.0.0.1:8830/eureka/
     preferIpAddress: true
 
 #Authorization Signature switch(True: Checking)

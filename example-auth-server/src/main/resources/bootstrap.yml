@@ -1,5 +1,5 @@
 server:
-  port: 9500
+  port: 8010
 #  servlet:
 #    context-path: /auth
 spring:

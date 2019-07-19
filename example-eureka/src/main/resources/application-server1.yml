@@ -4,7 +4,7 @@ spring:
       name: admin
       password: 123123
 server:
-  port: 8761
+  port: 8830
 
 # eureka configuration
 eureka:
