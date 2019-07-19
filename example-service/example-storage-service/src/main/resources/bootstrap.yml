@@ -1,5 +1,5 @@
 server:
-  port: 8062
+  port: 8630
 #  servlet:
 #    context-path: /storage
 spring:
