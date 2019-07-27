@@ -232,7 +232,8 @@
         <!--<spring-boot.version>1.5.8.RELEASE</spring-boot.version>-->
         <springloaded.version>1.2.7.RELEASE</springloaded.version>
 
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+        <!--<spring-cloud.version>Greenwich.SR1</spring-cloud.version>-->
         <!--<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>-->
         <!--<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>-->
         <!--<spring-cloud.version>Greenwich.M3</spring-cloud.version>-->
