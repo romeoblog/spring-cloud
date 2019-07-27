@@ -26,7 +26,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -51,7 +50,6 @@ import java.util.Objects;
 @Component
 @Slf4j
 @EnableConfigurationProperties(PermitUrlProperties.class)
-@RefreshScope
 public class AuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Autowired(required = false)
