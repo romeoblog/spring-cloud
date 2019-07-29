@@ -232,7 +232,8 @@
         <!--<spring-boot.version>1.5.8.RELEASE</spring-boot.version>-->
         <springloaded.version>1.2.7.RELEASE</springloaded.version>
 
-        <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+        <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
+        <!--<spring-cloud.version>Greenwich.SR1</spring-cloud.version>-->
         <!--<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>-->
         <!--<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>-->
         <!--<spring-cloud.version>Greenwich.M3</spring-cloud.version>-->
@@ -277,7 +278,8 @@
         <!--<seata.version>0.5.0</seata.version>-->
         <!--<seata.version>0.5.1</seata.version>-->
         <!--<seata.version>0.5.2</seata.version>-->
-        <seata.version>0.6.1</seata.version>
+        <!--<seata.version>0.6.1</seata.version>-->
+        <seata.version>0.7.1</seata.version>
 
         <!-- Sentinel -->
         <!--<sentinel.version>1.6.0</sentinel.version>-->
