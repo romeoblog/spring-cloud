@@ -69,9 +69,153 @@
     ├────── example-mybatis-service -- 独立业务服务5
     ├── example-skywalking-agent -- 提供全链路监控 agent
     ├── example-test -- 框架搭建时的相关测试代码
-    ├── example-turbine -- 聚合监控 (Hystrix Turbine)
     ├── sql -- sql 执行语句
     └── style -- 框架代码规范约定
+
+## 服务端口规约
+<table>
+    <tr>
+		<th colspan="3">网关服务（8080-8099）</th>
+	<tr>
+	<tr>
+		<td>服务名称</td>
+		<td>服务端口号</td>
+		<td>Docker映射端口号</td>
+	</tr>
+	<tr>
+		<td>example-gateway</td>
+		<td>8080</td>
+		<td>8080</td>
+	</tr>
+	<tr>
+		<td>example-gateway-zuul</td>
+		<td>8090</td>
+		<td>8090</td>
+	</tr>
+	<tr>
+		<th colspan="3">认证服务（8010-8019）</th>
+	<tr>
+	<tr>
+		<td>服务名称</td>
+		<td>服务端口号</td>
+		<td>Docker映射端口号</td>
+	</tr>
+	<tr>
+		<td>example-auth-server</td>
+		<td>8010</td>
+		<td>8010</td>
+	</tr>
+	<tr>
+		<th colspan="3">监控服务（8020-8049）</th>
+	<tr>
+		<tr>
+		<td>服务名称</td>
+		<td>服务端口号</td>
+		<td>Docker映射端口号</td>
+	</tr>
+	<tr>
+		<td>example-boot-admin</td>
+		<td>8020</td>
+		<td>8020</td>
+	</tr>
+	<tr>
+		<td>example-turbine</td>
+		<td>8030</td>
+		<td>8030</td>
+	</tr>
+	<tr>
+		<td>apache skywalking</td>
+		<td>8040</td>
+		<td>8040</td>
+	</tr>
+	<tr>
+		<th colspan="3">注册中心服务（8830-8860）</th>
+	<tr>
+	<tr>
+		<td>服务名称</td>
+		<td>服务端口号</td>
+		<td>Docker映射端口号</td>
+	</tr>
+	<tr>
+		<td>example-eureka</td>
+		<td>8830</td>
+		<td>8830</td>
+	</tr>
+	<tr>
+		<td>alibaba nacos</td>
+		<td>8848</td>
+		<td>8848</td>
+	</tr>
+	<tr>
+		<th colspan="3">分布式事务服务（8091-8099）</th>
+	<tr>
+	<tr>
+		<td>服务名称</td>
+		<td>服务端口号</td>
+		<td>Docker映射端口号</td>
+	</tr>
+	<tr>
+		<td>alibaba seata</td>
+		<td>8091</td>
+		<td>8091</td>
+	</tr>
+	<tr>
+		<th colspan="3">消息中间件MQ服务（8050-8079）</th>
+	<tr>
+	<tr>
+		<td>服务名称</td>
+		<td>服务端口号</td>
+		<td>Docker映射端口号</td>
+	</tr>
+	<tr>
+		<td>example-rocketmq-producer</td>
+		<td>8050</td>
+		<td>8050</td>
+	</tr>
+	<tr>
+		<td>example-rocketmq-consumer</td>
+		<td>8060</td>
+		<td>8060</td>
+	</tr>
+	<tr>
+		<td>example-rocketmq-console</td>
+		<td>8070</td>
+		<td>8070</td>
+	</tr>
+	<tr>
+		<th colspan="3">业务服务（8610-8699）</th>
+	<tr>
+	<tr>
+		<td>服务名称</td>
+		<td>服务端口号</td>
+		<td>Docker映射端口号</td>
+	</tr>
+	<tr>
+		<td>example-business-service</td>
+		<td>8610</td>
+		<td>8610</td>
+	</tr>
+	<tr>
+		<td>example-order-service</td>
+		<td>8620</td>
+		<td>8620</td>
+	</tr>
+	<tr>
+		<td>example-storage-service</td>
+		<td>8630</td>
+		<td>8630</td>
+	</tr>
+	<tr>
+		<td>example-user-service</td>
+		<td>8640</td>
+		<td>8640</td>
+	</tr>
+	<tr>
+		<td>example-mybatis-service</td>
+		<td>8650</td>
+		<td>8650</td>
+	</tr>
+</table>
 
 ## 版本说明
 #### 版本依赖关系
