@@ -278,7 +278,8 @@
         <!--<seata.version>0.5.0</seata.version>-->
         <!--<seata.version>0.5.1</seata.version>-->
         <!--<seata.version>0.5.2</seata.version>-->
-        <seata.version>0.6.1</seata.version>
+        <!--<seata.version>0.6.1</seata.version>-->
+        <seata.version>0.7.1</seata.version>
 
         <!-- Sentinel -->
         <!--<sentinel.version>1.6.0</sentinel.version>-->
