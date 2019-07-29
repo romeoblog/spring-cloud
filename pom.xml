@@ -216,7 +216,7 @@
     <properties>
 
         <!-- parent version -->
-        <revision>4.3.3</revision>
+        <revision>4.3.4</revision>
 
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
