@@ -80,7 +80,7 @@
             <artifactId>logback-classic</artifactId>
         </dependency>
 
-        <!--undertow包的依赖-->
+        <!--Undertow-->
         <!--<dependency>-->
             <!--<groupId>org.springframework.boot</groupId>-->
             <!--<artifactId>spring-boot-starter-undertow</artifactId>-->
@@ -138,6 +138,7 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
+            <scope>provided</scope>
         </dependency>
 
     </dependencies>
