@@ -21,7 +21,9 @@ import com.cloud.example.service.mybatis.service.IMybatisService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 /**
@@ -31,11 +33,17 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
  * @date 2019-07-29
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class MybatisTest {
 
     @Autowired
     private IMybatisService mybatisService;
+
+    @Autowired
+    private Environment environment;
+
+    @Value("${server.port}")
+    private String post;
 
     @Test
     public void testSecKill() {
@@ -43,5 +51,12 @@ public class MybatisTest {
         Page<TestVO> testVOPage = mybatisService.listRecord(1, 10);
 
         System.out.println(testVOPage.getRecords());
+    }
+
+    @Test
+    public void test() {
+        String property = environment.getProperty("spring.application.name");
+        System.out.println(property);
+        System.out.println(post);
     }
 }
