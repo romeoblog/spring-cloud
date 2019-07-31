@@ -168,6 +168,16 @@
 		<td>Docker映射端口号</td>
 	</tr>
 	<tr>
+        <td>roketmq-name-server</td>
+        <td>9876</td>
+        <td>9876</td>
+    </tr>
+    <tr>
+        <td>roketmq-broker</td>
+        <td>10909、10911</td>
+        <td>10909、10911</td>
+    </tr>
+	<tr>
 		<td>example-rocketmq-producer</td>
 		<td>8050</td>
 		<td>8050</td>
