@@ -125,7 +125,7 @@
 
         <!-- Seata -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
+            <groupId>com.alibaba.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
             <optional>true</optional>
         </dependency>
