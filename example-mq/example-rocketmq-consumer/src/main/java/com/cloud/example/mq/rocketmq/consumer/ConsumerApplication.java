@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.cloud.stream.messaging.Sink;
 
@@ -30,6 +31,7 @@ import org.springframework.cloud.stream.messaging.Sink;
  */
 @SpringBootApplication
 @EnableBinding({Sink.class})
+@EnableDiscoveryClient
 public class ConsumerApplication {
 
     private final static Logger logger = LoggerFactory.getLogger(ConsumerApplication.class);

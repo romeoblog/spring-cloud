@@ -1,17 +1,24 @@
-server:
-  port: 8060
 spring:
-  application:
-    name: example-rocketmq-consumer
   cloud:
+    nacos:
+      discovery:
+        enabled: true
+        serverAddr: 192.168.2.48:8848
     stream:
       rocketmq:
         binder:
-          namesrv-addr: localhost:9876
+          nameServer: localhost:9876
         bindings:
           input: {consumer.orderly: true}
       bindings:
         input: {destination: rocketmq-test-topic, content-type: text/plain, group: rocketmq-test-group, consumer.maxAttempts: 1}
+
+eureka:
+  client:
+    enabled: false
+    serviceUrl:
+      defaultZone: http://admin:123123@192.168.2.48:8830/eureka/
+      preferIpAddress: true
 
 management:
   endpoints:
