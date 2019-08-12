@@ -20,6 +20,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
@@ -146,8 +147,11 @@ public class ThreadTest {
 
     @Test
     public void setStart() {
-        int[] arr = {1, 2,  3, 4, 5, 6, 7};
+        int[] arr = {1, 2,  3, 3, 3, 4, 5, 6, 7};
         System.out.println(binarySearch(arr, 1));
+
+        int i = Arrays.binarySearch(arr, 3);
+        System.out.println(i);
 
     }
 
