@@ -15,10 +15,12 @@
  */
 package com.cloud.example.thread;
 
+import com.google.common.collect.Lists;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Vector;
 
@@ -138,8 +140,38 @@ public class ThreadTest {
         Integer s3 = new Integer(-128);
         Integer s4 = new Integer(-128);
 
-        System.out.println(Objects.equals(s1,s5.intValue()));
+        System.out.println(Objects.equals(s1, s5.intValue()));
         System.out.println(s3 == s4);
     }
 
+    @Test
+    public void setStart() {
+        int[] arr = {1, 2,  3, 4, 5, 6, 7};
+        System.out.println(binarySearch(arr, 1));
+
+    }
+
+    public static List<Integer> binarySearch(int[] arr, int target) {
+
+        int length = arr.length;
+
+        int star = -1;
+        int end = -1;
+
+        for (int i = 0; i < length; i++) {
+            if (arr[i] == target) {
+                if (star == -1) {
+                    star = i;
+                }
+                continue;
+            }
+
+            if (star != -1 && i + 1 != target) {
+                end = i - 1;
+                break;
+            }
+        }
+
+        return Lists.newArrayList(star,end);
+    }
 }
