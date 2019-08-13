@@ -293,6 +293,9 @@
         <!-- Apache RocketMQ -->
         <rocketmq.version>4.5.1</rocketmq.version>
 
+        <!-- Elasticsearch -->
+        <elasticsearch.version>7.3.0</elasticsearch.version>
+
         <!-- Plugin -->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.0.1</maven-jar-plugin.version>
@@ -709,6 +712,25 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
                 <version>${rocketmq.version}</version>
+            </dependency>
+
+            <!-- Elasticsearch -->
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-client</artifactId>
+                <version>${elasticsearch.version}</version>
             </dependency>
 
             <dependency>
