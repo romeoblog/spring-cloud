@@ -60,7 +60,7 @@
     ├── example-generator -- Mybatis 构建自动化
     ├── example-model -- 与前端交互视图实体相关，VO、DTO、BTO
     ├── example-modules -- 模块集
-    ├────── example-elasticsearch -- elasticsearch
+    ├────── example-elasticsearch -- 全文搜索引擎 Elasticsearch
     ├── example-core -- 服务层公共配置信息和组件初始化代码
     ├── example-service -- 独立服务父 POM
     ├────── example-business-service -- 独立业务服务1
@@ -202,7 +202,7 @@
         <td>Docker映射端口号</td>
     </tr>
     <tr>
-        <td>elastisearch</td>
+        <td>example-elastisearch</td>
         <td>8700</td>
         <td>8700</td>
     </tr>
