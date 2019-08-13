@@ -59,7 +59,8 @@
     ├── example-gateway-zuul -- SpringCloud Zuul 网关组件
     ├── example-generator -- Mybatis 构建自动化
     ├── example-model -- 与前端交互视图实体相关，VO、DTO、BTO
-    ├── example-parent-old -- 父 POM
+    ├── example-modules -- 模块集
+    ├────── example-elasticsearch -- elasticsearch
     ├── example-core -- 服务层公共配置信息和组件初始化代码
     ├── example-service -- 独立服务父 POM
     ├────── example-business-service -- 独立业务服务1
@@ -192,6 +193,19 @@
 		<td>8070</td>
 		<td>8070</td>
 	</tr>
+	<tr>
+    	<th colspan="3">全文搜索引擎Elastisearch（8700-8709）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>elastisearch</td>
+        <td>8700</td>
+        <td>8700</td>
+    </tr>
 	<tr>
 		<th colspan="3">业务服务（8610-8699）</th>
 	<tr>
