@@ -1,13 +1,13 @@
 package com.cloud.example.search.utils;
 
-import org.elasticsearch.action.admin.indices.create.CreateIndexRequest;
-import org.elasticsearch.action.admin.indices.create.CreateIndexResponse;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
-import org.elasticsearch.action.admin.indices.get.GetIndexRequest;
 import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.CreateIndexRequest;
+import org.elasticsearch.client.indices.CreateIndexResponse;
+import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.client.indices.PutMappingRequest;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentBuilder;
@@ -85,8 +85,11 @@ public class ElasticsearchUtils {
      */
     public static boolean createMapping(String index, Map<String, Map<String, String>> proNames) throws Exception {
 
-        PutMappingRequest request = new PutMappingRequest(index);
+        if (!existsIndex(index)) {
+            return false;
+        }
 
+        PutMappingRequest request = new PutMappingRequest(index);
 
         XContentBuilder builder = XContentFactory.jsonBuilder().startObject().field("dynamic", "strict").startObject("properties");
 
@@ -158,8 +161,7 @@ public class ElasticsearchUtils {
      * @throws IOException 异常信息
      */
     public static boolean existsIndex(String index) throws IOException {
-        GetIndexRequest request = new GetIndexRequest();
-        request.indices(index);
+        GetIndexRequest request = new GetIndexRequest(index);
         request.local(false);
         request.humanReadable(true);
         request.includeDefaults(false);
