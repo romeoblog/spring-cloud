@@ -8,7 +8,10 @@ import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.indices.PutMappingRequest;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.xcontent.XContentBuilder;
+import org.elasticsearch.common.xcontent.XContentFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * The type elasticsearch utils
@@ -43,7 +47,7 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * 创建索引（不带映射，交给es识别字段的类型，并创建相应的映射）
+     * 创建索引
      *
      * @param index 索引名
      * @return 创建是否成功
@@ -66,7 +70,55 @@ public class ElasticsearchUtils {
 
         boolean acknowledged = createIndexResponse.isAcknowledged();
 
-        LOGGER.info("Create index success? {}", acknowledged);
+        LOGGER.info("Create index successfully? {}", acknowledged);
+
+        return acknowledged;
+    }
+
+    /**
+     * 创建索引映射
+     *
+     * @param index    索引名
+     * @param proNames 字段参数集
+     * @return 创建是否成功
+     * @throws Exception
+     */
+    public static boolean createMapping(String index, Map<String, Map<String, String>> proNames) throws Exception {
+
+        PutMappingRequest request = new PutMappingRequest(index);
+
+
+        XContentBuilder builder = XContentFactory.jsonBuilder().startObject().field("dynamic", "strict").startObject("properties");
+
+        if (!proNames.isEmpty()) {
+            for (Map.Entry<String, Map<String, String>> proName : proNames.entrySet()) {
+                if (null != proName.getKey()) {
+                    builder.startObject(proName.getKey());
+
+                    if (!proName.getValue().isEmpty()) {
+
+                        for (Map.Entry<String, String> filed : proName.getValue().entrySet()) {
+                            String pro = filed.getKey();
+                            String value = filed.getValue();
+
+                            if (null != pro && null != value) {
+                                builder.field(pro, value);
+                            }
+                        }
+                    }
+
+                    builder.endObject();
+                }
+            }
+        }
+        builder.endObject().endObject();
+        request.source(builder);
+
+        AcknowledgedResponse putMappingResponse = client.indices().putMapping(request, RequestOptions.DEFAULT);
+
+        boolean acknowledged = putMappingResponse.isAcknowledged();
+
+        LOGGER.info("Create mapping successfully? {}", acknowledged);
 
         return acknowledged;
     }
@@ -93,7 +145,7 @@ public class ElasticsearchUtils {
 
         boolean acknowledged = response.isAcknowledged();
 
-        LOGGER.info("Delete index success? {}", acknowledged);
+        LOGGER.info("Delete index successfully? {}", acknowledged);
 
         return acknowledged;
     }
@@ -115,9 +167,9 @@ public class ElasticsearchUtils {
         boolean exists = client.indices().exists(request, RequestOptions.DEFAULT);
 
         if (exists) {
-            LOGGER.info("Index [{}] is exist!", index);
+            LOGGER.info("The index [{}] is exist!", index);
         } else {
-            LOGGER.info("Index [{}] is not exist!", index);
+            LOGGER.info("The index [{}] is not exist!", index);
         }
 
         return exists;

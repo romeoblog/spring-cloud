@@ -1,10 +1,13 @@
 package com.cloud.example.search;
 
 import com.cloud.example.search.utils.ElasticsearchUtils;
+import com.google.common.collect.Maps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+
+import java.util.Map;
 
 /**
  * ElasticsearchTest
@@ -23,6 +26,21 @@ public class ElasticsearchTest {
         boolean createIndex = ElasticsearchUtils.createIndex("index_test");
 
         System.out.println(createIndex);
+    }
+
+    @Test
+    public void createMappingTest() throws Exception {
+        Map<String, Map<String, String>> proNames = Maps.newHashMap();
+
+        Map<String, String> messageFields = Maps.newHashMap();
+        messageFields.put("type", "text");
+        messageFields.put("index", "not_analyzed");
+
+        proNames.put("message", messageFields);
+
+        boolean createMapping = ElasticsearchUtils.createMapping("index_test", proNames);
+
+        System.out.println(createMapping);
     }
 
     @Test
