@@ -32,7 +32,7 @@ import java.io.IOException;
  */
 public class ElasticsearchClientFactory {
 
-    private final Logger logger = LoggerFactory.getLogger(ElasticsearchClientFactory.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ElasticsearchClientFactory.class);
 
     /**
      * Assigns connection timeout
@@ -92,7 +92,7 @@ public class ElasticsearchClientFactory {
         restClient = builder.build();
         restHighLevelClient = new RestHighLevelClient(builder);
 
-        logger.info("Init elasticsearch factory success.");
+        LOGGER.info("Init elasticsearch factory success.");
     }
 
     /**
@@ -134,6 +134,6 @@ public class ElasticsearchClientFactory {
                 e.printStackTrace();
             }
         }
-        logger.info("Close elasticsearch client success.");
+        LOGGER.info("Close elasticsearch client success.");
     }
 }
