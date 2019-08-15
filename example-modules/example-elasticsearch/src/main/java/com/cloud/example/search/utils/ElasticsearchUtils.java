@@ -3,6 +3,7 @@ package com.cloud.example.search.utils;
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.core.exception.CommonException;
+import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.DocWriteRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
@@ -35,7 +36,7 @@ import java.util.Map;
 import java.util.UUID;
 
 /**
- * The type elasticsearch utils
+ * A wrapper for the ElasticsearchUtils that provides methods for accessing the Indices API.
  *
  * @author Benji
  * @date 2019-08-13
@@ -60,11 +61,12 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * 创建索引（建议手工建立索引和映射）
+     * Creates an index using the Create Index API.
+     * (It is recommended to manually create index and mapping.)
      *
-     * @param index 索引名
-     * @return 创建是否成功
-     * @throws IOException 异常信息
+     * @param index the index
+     * @return b
+     * @throws IOException the IOException
      */
     public static boolean createIndex(String index) throws IOException {
         LOGGER.info("Create index param: index={}", index);
@@ -90,14 +92,15 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * 创建索引映射（XContentBuilder object）（建议手工建立索引和映射）
+     * Create or Updates the mappings on an index using the Put Mapping API.（XContentBuilder object）
+     * (It is recommended to manually create index and mapping.)
      *
-     * @param index    索引名
-     * @param proNames 字段参数集
-     * @return 创建是否成功
-     * @throws Exception
+     * @param index    the index
+     * @param proNames the pro names
+     * @return b
+     * @throws IOException the IOException
      */
-    public static boolean createMapping(String index, Map<String, Map<String, String>> proNames) throws Exception {
+    public static boolean createMapping(String index, Map<String, Map<String, String>> proNames) throws IOException {
         LOGGER.info("Create Mapping param: index={}, proNames={}", index, JacksonUtils.toJson(proNames));
 
         if (!existsIndex(index)) {
@@ -142,11 +145,66 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * 删除索引
+     * Updates the mappings on an index using the Put Mapping API (Outer JSON format).
      *
-     * @param index 索引名
-     * @return 执行是否成功
-     * @throws IOException 异常信息
+     * @param index       the index
+     * @param mappingJson the mapping json
+     * @return b
+     * @throws IOException the IOException
+     */
+    public static boolean createMapping(String index, String mappingJson) throws IOException {
+        LOGGER.info("Create Mapping param: index={}, mappingJson={}", index, JacksonUtils.toJson(mappingJson));
+
+        if (!existsIndex(index)) {
+            return false;
+        }
+
+        if (StringUtils.isEmpty(mappingJson)) {
+            LOGGER.error("The mapping json is not-exist or json content is empty!");
+
+            return false;
+        }
+
+        PutMappingRequest request = new PutMappingRequest(index);
+
+        ///String json = "{\"properties\": {\"message\": {\"type\": \"text\"}}}";
+
+        ///request.source(json, XContentType.JSON);
+
+        request.source(mappingJson, XContentType.JSON);
+
+        AcknowledgedResponse putMappingResponse = client.indices().putMapping(request, RequestOptions.DEFAULT);
+
+        boolean acknowledged = putMappingResponse.isAcknowledged();
+
+        LOGGER.info("Create mapping json successfully? {}", acknowledged);
+
+        return acknowledged;
+    }
+
+    /**
+     * Updates the mappings on an index using the Put Mapping API (Internal JSON format).
+     *
+     * @param index the index
+     * @return b
+     * @throws IOException the IOException
+     */
+    public static boolean createMapping(String index) throws IOException {
+
+        String fileName = "mappings/" + index + "-mapping.json";
+
+        String mappingJson = new ClassPathResourceReader(fileName).getContent();
+
+        return createMapping(index, mappingJson);
+
+    }
+
+    /**
+     * Deletes an index using the Delete Index API.
+     *
+     * @param index the index
+     * @return b
+     * @throws IOException the IOException
      */
     public static boolean deleteIndex(String index) throws IOException {
         LOGGER.info("Delete index param: index={}", index);
@@ -169,11 +227,11 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * 判断索引是否存在
+     * Checks if the index (indices) exists or not.
      *
-     * @param index 索引名
-     * @return 索引是否存在
-     * @throws IOException 异常信息
+     * @param index the index
+     * @return b
+     * @throws IOException the IOException
      */
     public static boolean existsIndex(String index) throws IOException {
         GetIndexRequest request = new GetIndexRequest(index);
@@ -193,13 +251,13 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * The type Create document in ES
+     * Index a document using the Index API.
      *
-     * @param jsonObject The JSON Object Data String
-     * @param index      The index
+     * @param jsonObject the JSON Object String
+     * @param index      the index
      * @param id         The document id
      * @return id
-     * @throws IOException IOException
+     * @throws IOException the IOException
      */
     public static String createDocument(JSONObject jsonObject, String index, String id) throws IOException {
         LOGGER.info("Batch create document param: json={}, index={}, id={}", jsonObject, index, id);
@@ -219,9 +277,9 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * The type Create document in ES and auto create documentId
+     * Index a document using the Index API and Auto create documentId.
      *
-     * @param jsonObject The JSON Object Data String
+     * @param jsonObject the JSON Object String
      * @param index      The index
      * @return id
      * @throws IOException IOException
@@ -231,7 +289,7 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * The type Update document by id
+     * Updates a document using the Update API.
      *
      * @param jsonObject The JSON Object Data String
      * @param index      The index
@@ -251,15 +309,15 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * The type batch create document
+     * Executes a bulk request using the Bulk API.
      *
-     * @param batchJsonObject the batch JsonObject data
+     * @param batchJsonObject the batch JsonObject
      * @param index           the index
      * @param ids             the ids
      * @throws IOException IOException
      */
     public static void batchCreateDocument(List<JSONObject> batchJsonObject, String index, String... ids) throws IOException {
-        LOGGER.info("Batch create document param: list={}, ids={}", batchJsonObject, ids);
+        LOGGER.info("Executes batch create document param: list={}, ids={}", batchJsonObject, ids);
 
         BulkRequest request = new BulkRequest();
 
@@ -275,7 +333,7 @@ public class ElasticsearchUtils {
 
         BulkResponse responses = client.bulk(request, RequestOptions.DEFAULT);
 
-        LOGGER.info("Batch create document response status: {}, name: {}", responses.status().getStatus(), responses.status().name());
+        LOGGER.info("Executes batch create document response status: {}, name: {}", responses.status().getStatus(), responses.status().name());
 
     }
 

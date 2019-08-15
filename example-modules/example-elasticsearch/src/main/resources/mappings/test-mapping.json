@@ -1,24 +1,43 @@
 {
   "properties": {
-    "title": {
-      "type": "string",
-      "store": "yes"
+    "name": {
+      "type": "text"
     },
-    "description": {
-      "type": "string",
-      "index": "not_analyzed"
+    "address": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
     },
-    "price": {
-      "type": "double"
+    "city": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
     },
-    "onSale": {
-      "type": "boolean"
+    "location": {
+      "type": "geo_point"
     },
-    "type": {
-      "type": "integer"
+    "province": {
+      "type": "keyword"
     },
-    "createDate": {
-      "type": "date"
+    "uid": {
+      "type": "long"
+    },
+    "user": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
     }
   }
 }

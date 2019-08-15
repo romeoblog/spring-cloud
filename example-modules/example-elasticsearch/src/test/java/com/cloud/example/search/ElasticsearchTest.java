@@ -1,6 +1,7 @@
 package com.cloud.example.search;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.example.search.utils.ClassPathResourceReader;
 import com.cloud.example.search.utils.ElasticsearchUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -45,6 +46,20 @@ public class ElasticsearchTest {
         proNames.put("name", messageFields);
 
         boolean createMapping = ElasticsearchUtils.createMapping(INDEX_NAME, proNames);
+
+        System.out.println(createMapping);
+    }
+
+    @Test
+    public void createMappingJsonTest() throws Exception {
+
+        // boolean createMapping = ElasticsearchUtils.createMapping(INDEX_NAME);
+
+        String fileName = "mappings/" + INDEX_NAME + "-mapping.json";
+
+        String mappingJson = new ClassPathResourceReader(fileName).getContent();
+
+        boolean createMapping = ElasticsearchUtils.createMapping(INDEX_NAME, mappingJson);
 
         System.out.println(createMapping);
     }

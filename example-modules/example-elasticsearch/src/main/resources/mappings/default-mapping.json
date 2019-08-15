@@ -1,5 +1,8 @@
 {
   "properties": {
+    "name": {
+      "type": "text"
+    },
     "address": {
       "type": "text",
       "fields": {
@@ -9,12 +12,12 @@
         }
       }
     },
-    "city" : {
-      "type" : "text",
-      "fields" : {
-        "keyword" : {
-          "type" : "keyword",
-          "ignore_above" : 256
+    "city": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
         }
       }
     },
@@ -28,15 +31,6 @@
       "type": "long"
     },
     "user": {
-      "type": "text",
-      "fields": {
-        "keyword": {
-          "type": "keyword",
-          "ignore_above": 256
-        }
-      }
-    },
-    "test": {
       "type": "text",
       "fields": {
         "keyword": {
