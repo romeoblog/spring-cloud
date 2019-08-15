@@ -92,7 +92,7 @@ public class ElasticsearchClientFactory {
         restClient = builder.build();
         restHighLevelClient = new RestHighLevelClient(builder);
 
-        LOGGER.info("Init elasticsearch factory success.");
+        LOGGER.info("Init elasticsearch factory successfully.");
     }
 
     /**
@@ -134,6 +134,6 @@ public class ElasticsearchClientFactory {
                 e.printStackTrace();
             }
         }
-        LOGGER.info("Close elasticsearch client success.");
+        LOGGER.info("Close elasticsearch client successfully.");
     }
 }

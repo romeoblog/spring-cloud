@@ -1,6 +1,7 @@
 package com.cloud.example.search.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.core.exception.CommonException;
 import org.elasticsearch.action.DocWriteRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -66,6 +67,7 @@ public class ElasticsearchUtils {
      * @throws IOException 异常信息
      */
     public static boolean createIndex(String index) throws IOException {
+        LOGGER.info("Create index param: index={}", index);
 
         if (existsIndex(index)) {
             return false;
@@ -96,6 +98,7 @@ public class ElasticsearchUtils {
      * @throws Exception
      */
     public static boolean createMapping(String index, Map<String, Map<String, String>> proNames) throws Exception {
+        LOGGER.info("Create Mapping param: index={}, proNames={}", index, JacksonUtils.toJson(proNames));
 
         if (!existsIndex(index)) {
             return false;
@@ -146,6 +149,7 @@ public class ElasticsearchUtils {
      * @throws IOException 异常信息
      */
     public static boolean deleteIndex(String index) throws IOException {
+        LOGGER.info("Delete index param: index={}", index);
 
         if (!existsIndex(index)) {
             return false;
@@ -198,6 +202,7 @@ public class ElasticsearchUtils {
      * @throws IOException IOException
      */
     public static String createDocument(JSONObject jsonObject, String index, String id) throws IOException {
+        LOGGER.info("Batch create document param: json={}, index={}, id={}", jsonObject, index, id);
 
         IndexRequest request = new IndexRequest(index);
         request.id(id);
@@ -234,6 +239,8 @@ public class ElasticsearchUtils {
      * @throws IOException IOException
      */
     public static void updateDocumentById(JSONObject jsonObject, String index, String id) throws IOException {
+        LOGGER.info("Batch update document by id param: json={}, index={}, id={}", jsonObject, index, id);
+
         UpdateRequest request = new UpdateRequest(index, id);
 
         request.doc(jsonObject, XContentType.JSON);
@@ -252,6 +259,8 @@ public class ElasticsearchUtils {
      * @throws IOException IOException
      */
     public static void batchCreateDocument(List<JSONObject> batchJsonObject, String index, String... ids) throws IOException {
+        LOGGER.info("Batch create document param: list={}, ids={}", batchJsonObject, ids);
+
         BulkRequest request = new BulkRequest();
 
         if (batchJsonObject == null || batchJsonObject.isEmpty()) {
