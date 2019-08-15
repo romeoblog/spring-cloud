@@ -1,6 +1,10 @@
 package com.cloud.example.search.utils;
 
+import com.alibaba.fastjson.JSONObject;
+import org.elasticsearch.action.DocWriteRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.index.IndexRequest;
+import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.client.RequestOptions;
@@ -12,6 +16,7 @@ import org.elasticsearch.client.indices.PutMappingRequest;
 import org.elasticsearch.common.settings.Settings;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
+import org.elasticsearch.common.xcontent.XContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -174,6 +179,31 @@ public class ElasticsearchUtils {
         }
 
         return exists;
+    }
+
+    /**
+     * The type Create document in ES
+     *
+     * @param jsonObject The JSON Object Data String
+     * @param index      The index
+     * @param id         The Current Data id
+     * @return id
+     * @throws IOException IOException
+     */
+    public static String createDocument(JSONObject jsonObject, String index, String id) throws IOException {
+
+        IndexRequest request = new IndexRequest(index);
+        request.id(id);
+        request.source(jsonObject, XContentType.JSON);
+
+        // can be create or update (default) change only create
+        request.opType(DocWriteRequest.OpType.CREATE);
+
+        IndexResponse response = client.index(request, RequestOptions.DEFAULT);
+
+        LOGGER.info("addData response status:{},id:{}", response.status().getStatus(), response.getId());
+
+        return response.getId();
     }
 
 

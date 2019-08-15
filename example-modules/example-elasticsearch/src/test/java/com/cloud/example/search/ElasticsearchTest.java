@@ -1,5 +1,6 @@
 package com.cloud.example.search;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.example.search.utils.ElasticsearchUtils;
 import com.google.common.collect.Maps;
 import org.junit.Test;
@@ -59,6 +60,23 @@ public class ElasticsearchTest {
         boolean existsIndex = ElasticsearchUtils.existsIndex(INDEX_NAME);
 
         System.out.println(existsIndex);
+
+    }
+
+
+    @Test
+    public void createDocument() throws Exception {
+
+        String jsonString = "{" +
+                "\"user\":\"kimchy\"," +
+                "\"postDate\":\"2013-01-30\"," +
+                "\"message\":\"trying out Elasticsearch\"" +
+                "}";
+        JSONObject jsonObject = JSONObject.parseObject(jsonString);
+
+        String id = ElasticsearchUtils.createDocument(jsonObject, INDEX_NAME, "1");
+
+        System.out.println(id);
 
     }
 
