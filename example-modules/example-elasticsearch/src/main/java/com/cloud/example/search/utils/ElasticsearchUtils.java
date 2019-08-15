@@ -47,7 +47,7 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * 创建索引
+     * 创建索引（建议手工建立索引和映射）
      *
      * @param index 索引名
      * @return 创建是否成功
@@ -76,7 +76,7 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * 创建索引映射
+     * 创建索引映射（XContentBuilder object）（建议手工建立索引和映射）
      *
      * @param index    索引名
      * @param proNames 字段参数集
@@ -125,7 +125,6 @@ public class ElasticsearchUtils {
 
         return acknowledged;
     }
-
 
     /**
      * 删除索引

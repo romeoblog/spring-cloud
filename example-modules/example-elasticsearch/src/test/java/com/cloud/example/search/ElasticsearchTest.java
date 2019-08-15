@@ -19,11 +19,13 @@ import java.util.Map;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class ElasticsearchTest {
 
+    private final String INDEX_NAME = "test";
+
     // ElasticsearchStatusException[Elasticsearch exception [type=invalid_index_name_exception,
     // reason=Invalid index name [indexTest], must be lowercase]
     @Test
     public void createIndexTest() throws Exception {
-        boolean createIndex = ElasticsearchUtils.createIndex("index_test");
+        boolean createIndex = ElasticsearchUtils.createIndex(INDEX_NAME);
 
         System.out.println(createIndex);
     }
@@ -33,19 +35,20 @@ public class ElasticsearchTest {
         Map<String, Map<String, String>> proNames = Maps.newHashMap();
 
         Map<String, String> messageFields = Maps.newHashMap();
-        messageFields.put("type", "text");
-        messageFields.put("index", "not_analyzed");
+        messageFields.put("type", "keyword");
+        //messageFields.put("analyzer", "ik_max_word");
+        messageFields.put("index", "true");
 
-        proNames.put("message", messageFields);
+        proNames.put("name", messageFields);
 
-        boolean createMapping = ElasticsearchUtils.createMapping("index_test", proNames);
+        boolean createMapping = ElasticsearchUtils.createMapping(INDEX_NAME, proNames);
 
         System.out.println(createMapping);
     }
 
     @Test
     public void deleteIndexTest() throws Exception {
-        boolean deleteIndex = ElasticsearchUtils.deleteIndex("index_test");
+        boolean deleteIndex = ElasticsearchUtils.deleteIndex(INDEX_NAME);
 
         System.out.println(deleteIndex);
     }
@@ -53,7 +56,7 @@ public class ElasticsearchTest {
     @Test
     public void existsIndexTest() throws Exception {
 
-        boolean existsIndex = ElasticsearchUtils.existsIndex("twitter");
+        boolean existsIndex = ElasticsearchUtils.existsIndex(INDEX_NAME);
 
         System.out.println(existsIndex);
 

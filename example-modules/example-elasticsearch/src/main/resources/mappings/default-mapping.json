@@ -1,25 +1,48 @@
 {
-  "mappings": {
-    "properties": {
-      "title": {
-        "type": "string",
-        "store": "yes"
-      },
-      "description": {
-        "type": "string",
-        "index": "not_analyzed"
-      },
-      "price": {
-        "type": "double"
-      },
-      "onSale": {
-        "type": "boolean"
-      },
-      "type": {
-        "type": "integer"
-      },
-      "createDate": {
-        "type": "date"
+  "properties": {
+    "address": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "city" : {
+      "type" : "text",
+      "fields" : {
+        "keyword" : {
+          "type" : "keyword",
+          "ignore_above" : 256
+        }
+      }
+    },
+    "location": {
+      "type": "geo_point"
+    },
+    "province": {
+      "type": "keyword"
+    },
+    "uid": {
+      "type": "long"
+    },
+    "user": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "test": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
       }
     }
   }

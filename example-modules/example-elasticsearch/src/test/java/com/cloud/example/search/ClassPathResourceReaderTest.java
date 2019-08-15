@@ -1,5 +1,6 @@
 package com.cloud.example.search;
 
+import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.search.utils.ClassPathResourceReader;
 import org.junit.Test;
 
@@ -16,6 +17,10 @@ public class ClassPathResourceReaderTest {
         String content = new ClassPathResourceReader("mappings/default-mapping.json").getContent();
 
         System.out.println(content);
+
+        String toJson = JacksonUtils.toJson(content);
+
+        System.out.println(toJson);
     }
 
 }
