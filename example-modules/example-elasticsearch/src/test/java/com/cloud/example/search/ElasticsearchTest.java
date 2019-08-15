@@ -2,12 +2,14 @@ package com.cloud.example.search;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.example.search.utils.ElasticsearchUtils;
+import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -64,7 +66,7 @@ public class ElasticsearchTest {
     }
 
     @Test
-    public void createDocument() throws Exception {
+    public void createDocumentTest() throws Exception {
 
         String jsonString = "{" +
                 "\"user\":\"kimchy\"," +
@@ -80,7 +82,7 @@ public class ElasticsearchTest {
     }
 
     @Test
-    public void createDocumentAuto() throws Exception {
+    public void createDocumentAutoTest() throws Exception {
 
         String jsonString = "{" +
                 "\"user\":\"kimchy\"," +
@@ -96,7 +98,7 @@ public class ElasticsearchTest {
     }
 
     @Test
-    public void updateDocumentById() throws Exception {
+    public void updateDocumentByIdTest() throws Exception {
 
         String jsonString = "{" +
                 "\"updated\":\"2017-01-01\"," +
@@ -105,6 +107,48 @@ public class ElasticsearchTest {
         JSONObject jsonObject = JSONObject.parseObject(jsonString);
 
         ElasticsearchUtils.updateDocumentById(jsonObject, INDEX_NAME, "1");
+
+    }
+
+    @Test
+    public void batchCreateDocumentTest() throws Exception {
+
+        List<JSONObject> list = Lists.newArrayList();
+
+        String jsonString1 = "{" +
+                "\"user\":\"kimchy1\"," +
+                "\"postDate\":\"2019-08-27\"," +
+                "\"message\":\"trying out Elasticsearch 1\"" +
+                "}";
+        JSONObject jsonObject1 = JSONObject.parseObject(jsonString1);
+
+        String jsonString2 = "{" +
+                "\"user\":\"kimchy2\"," +
+                "\"postDate\":\"2019-08-28\"," +
+                "\"message\":\"trying out Elasticsearch 2\"" +
+                "}";
+        JSONObject jsonObject2 = JSONObject.parseObject(jsonString2);
+
+        String jsonString3 = "{" +
+                "\"user\":\"kimchy3\"," +
+                "\"postDate\":\"2019-08-29\"," +
+                "\"message\":\"trying out Elasticsearch 3\"" +
+                "}";
+        JSONObject jsonObject3 = JSONObject.parseObject(jsonString3);
+
+        String jsonString4 = "{" +
+                "\"user\":\"kimchy4\"," +
+                "\"postDate\":\"2019-08-30\"," +
+                "\"message\":\"trying out Elasticsearch 4\"" +
+                "}";
+        JSONObject jsonObject4 = JSONObject.parseObject(jsonString4);
+
+        list.add(jsonObject1);
+        list.add(jsonObject2);
+        list.add(jsonObject3);
+        list.add(jsonObject4);
+
+        ElasticsearchUtils.batchCreateDocument(list, INDEX_NAME, "2", "3", "4", "5");
 
     }
 

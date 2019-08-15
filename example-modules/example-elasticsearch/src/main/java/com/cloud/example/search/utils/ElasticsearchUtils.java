@@ -1,8 +1,11 @@
 package com.cloud.example.search.utils;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.example.core.exception.CommonException;
 import org.elasticsearch.action.DocWriteRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
+import org.elasticsearch.action.bulk.BulkRequest;
+import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.IndicesOptions;
@@ -26,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -237,6 +241,33 @@ public class ElasticsearchUtils {
         UpdateResponse response = client.update(request, RequestOptions.DEFAULT);
 
         LOGGER.info("Update document response status: {}, id: {}", response.status().getStatus(), response.getId());
+    }
+
+    /**
+     * The type batch create document
+     *
+     * @param batchJsonObject the batch JsonObject data
+     * @param index           the index
+     * @param ids             the ids
+     * @throws IOException IOException
+     */
+    public static void batchCreateDocument(List<JSONObject> batchJsonObject, String index, String... ids) throws IOException {
+        BulkRequest request = new BulkRequest();
+
+        if (batchJsonObject == null || batchJsonObject.isEmpty()) {
+            throw new CommonException("List is empty.");
+        }
+
+        //// batchJsonObject.forEach(e -> request.add(new IndexRequest(index).id(ids[0]).source(e, XContentType.JSON)));
+
+        ForEachUtils.forEach(0, batchJsonObject, (_index, _item) -> {
+            request.add(new IndexRequest(index).id(ids[_index]).source(_item, XContentType.JSON));
+        });
+
+        BulkResponse responses = client.bulk(request, RequestOptions.DEFAULT);
+
+        LOGGER.info("Batch create document response status: {}, name: {}", responses.status().getStatus(), responses.status().name());
+
     }
 
 
