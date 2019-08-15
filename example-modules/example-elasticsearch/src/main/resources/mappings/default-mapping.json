@@ -1,0 +1,26 @@
+{
+  "mappings": {
+    "properties": {
+      "title": {
+        "type": "string",
+        "store": "yes"
+      },
+      "description": {
+        "type": "string",
+        "index": "not_analyzed"
+      },
+      "price": {
+        "type": "double"
+      },
+      "onSale": {
+        "type": "boolean"
+      },
+      "type": {
+        "type": "integer"
+      },
+      "createDate": {
+        "type": "date"
+      }
+    }
+  }
+}
