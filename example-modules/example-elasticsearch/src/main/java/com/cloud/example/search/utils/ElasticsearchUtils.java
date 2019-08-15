@@ -25,6 +25,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.io.IOException;
 import java.util.Map;
+import java.util.UUID;
 
 /**
  * The type elasticsearch utils
@@ -186,7 +187,7 @@ public class ElasticsearchUtils {
      *
      * @param jsonObject The JSON Object Data String
      * @param index      The index
-     * @param id         The Current Data id
+     * @param id         The document id
      * @return id
      * @throws IOException IOException
      */
@@ -204,6 +205,18 @@ public class ElasticsearchUtils {
         LOGGER.info("addData response status:{},id:{}", response.status().getStatus(), response.getId());
 
         return response.getId();
+    }
+
+    /**
+     * The type Create document in ES and auto create documentId
+     *
+     * @param jsonObject The JSON Object Data String
+     * @param index      The index
+     * @return id
+     * @throws IOException IOException
+     */
+    public static String createDocument(JSONObject jsonObject, String index) throws IOException {
+        return createDocument(jsonObject, index, UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
     }
 
 

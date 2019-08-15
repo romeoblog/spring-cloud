@@ -63,7 +63,6 @@ public class ElasticsearchTest {
 
     }
 
-
     @Test
     public void createDocument() throws Exception {
 
@@ -75,6 +74,22 @@ public class ElasticsearchTest {
         JSONObject jsonObject = JSONObject.parseObject(jsonString);
 
         String id = ElasticsearchUtils.createDocument(jsonObject, INDEX_NAME, "1");
+
+        System.out.println(id);
+
+    }
+
+    @Test
+    public void createDocumentAuto() throws Exception {
+
+        String jsonString = "{" +
+                "\"user\":\"kimchy\"," +
+                "\"postDate\":\"2013-01-30\"," +
+                "\"message\":\"trying out Elasticsearch\"" +
+                "}";
+        JSONObject jsonObject = JSONObject.parseObject(jsonString);
+
+        String id = ElasticsearchUtils.createDocument(jsonObject, INDEX_NAME);
 
         System.out.println(id);
 
