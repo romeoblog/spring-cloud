@@ -95,5 +95,18 @@ public class ElasticsearchTest {
 
     }
 
+    @Test
+    public void updateDocumentById() throws Exception {
+
+        String jsonString = "{" +
+                "\"updated\":\"2017-01-01\"," +
+                "\"reason\":\"daily update\"" +
+                "}";
+        JSONObject jsonObject = JSONObject.parseObject(jsonString);
+
+        ElasticsearchUtils.updateDocumentById(jsonObject, INDEX_NAME, "1");
+
+    }
+
 
 }

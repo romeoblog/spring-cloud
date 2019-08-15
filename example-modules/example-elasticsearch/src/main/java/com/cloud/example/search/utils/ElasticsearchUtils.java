@@ -7,6 +7,8 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
+import org.elasticsearch.action.update.UpdateRequest;
+import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.elasticsearch.client.indices.CreateIndexRequest;
@@ -202,7 +204,7 @@ public class ElasticsearchUtils {
 
         IndexResponse response = client.index(request, RequestOptions.DEFAULT);
 
-        LOGGER.info("addData response status:{},id:{}", response.status().getStatus(), response.getId());
+        LOGGER.info("Create document response status: {}, id: {}", response.status().getStatus(), response.getId());
 
         return response.getId();
     }
@@ -217,6 +219,24 @@ public class ElasticsearchUtils {
      */
     public static String createDocument(JSONObject jsonObject, String index) throws IOException {
         return createDocument(jsonObject, index, UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
+    }
+
+    /**
+     * The type Update document by id
+     *
+     * @param jsonObject The JSON Object Data String
+     * @param index      The index
+     * @param id         id
+     * @throws IOException IOException
+     */
+    public static void updateDocumentById(JSONObject jsonObject, String index, String id) throws IOException {
+        UpdateRequest request = new UpdateRequest(index, id);
+
+        request.doc(jsonObject, XContentType.JSON);
+
+        UpdateResponse response = client.update(request, RequestOptions.DEFAULT);
+
+        LOGGER.info("Update document response status: {}, id: {}", response.status().getStatus(), response.getId());
     }
 
 
