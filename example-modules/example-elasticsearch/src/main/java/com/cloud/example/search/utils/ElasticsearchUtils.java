@@ -115,8 +115,6 @@ public class ElasticsearchUtils {
     public static boolean createIndex(String index) throws IOException {
         LOGGER.info("Create index param: index={}", index);
 
-        System.out.println(shards + "==" + replicas);
-
         if (existsIndex(index)) {
             return false;
         }
