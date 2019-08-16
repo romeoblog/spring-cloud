@@ -394,31 +394,9 @@ public class ElasticsearchUtils {
         // A query that matches on all documents.
         /// sourceBuilder.query(QueryBuilders.matchAllQuery());
 
-        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+        BoolQueryBuilder boolQueryBuilder = handlerBoolQueryBuilder(termName, startTime, endTime, matchPhrase, matchStr);
 
-        if (StringUtils.isNotEmpty(termName) && startTime > 0 && endTime > 0) {
-            boolQuery.must(QueryBuilders.rangeQuery(termName)
-                    .format("epoch_millis")
-                    .from(startTime)
-                    .to(endTime)
-                    .includeLower(true)
-                    .includeUpper(true));
-        }
-
-        // A query that matches document with type PHRASE or BOOLEAN
-        if (StringUtils.isNotEmpty(matchStr)) {
-            String[] matchStrArray = matchStr.split(",");
-            for (String s : matchStrArray) {
-                String[] ss = s.split("=");
-                if (ss.length > 1) {
-                    if (matchPhrase == Boolean.TRUE) {
-                        boolQuery.must(QueryBuilders.matchPhraseQuery(ss[0], ss[1]));
-                    } else {
-                        boolQuery.must(QueryBuilders.matchQuery(ss[0], ss[1]));
-                    }
-                }
-            }
-        }
+        sourceBuilder.query(boolQueryBuilder);
 
         // Requesting highlightField
         if (StringUtils.isNotEmpty(highlightField)) {
@@ -431,14 +409,12 @@ public class ElasticsearchUtils {
             sourceBuilder.highlighter(highlightBuilder);
         }
 
-        sourceBuilder.query(boolQuery);
-
         // Include fields
         if (StringUtils.isNotEmpty(fields)) {
             sourceBuilder.fetchSource(fields.split(","), null);
         }
         sourceBuilder.fetchSource(true);
-
+        sourceBuilder.explain(true);
         if (StringUtils.isNotEmpty(sortField)) {
             sourceBuilder.sort(sortField, SortOrder.DESC);
         }
@@ -493,6 +469,48 @@ public class ElasticsearchUtils {
         LOGGER.info("A query that matches documents matching return result: {}", JacksonUtils.toJson(sourceList));
 
         return sourceList;
+    }
+
+    /**
+     * A Query that matches documents matching boolean combinations of other queries.
+     *
+     * @param termName    the term name
+     * @param startTime   the start time
+     * @param endTime     the end time
+     * @param matchPhrase checks if matchPhrase
+     * @param matchStr    the matchStr of the field
+     * @return
+     */
+    private static BoolQueryBuilder handlerBoolQueryBuilder(String termName, long startTime, long endTime, boolean matchPhrase, String matchStr) {
+
+        BoolQueryBuilder boolQueryBuilder = QueryBuilders.boolQuery();
+
+        if (StringUtils.isNotEmpty(termName) && startTime > 0 && endTime > 0) {
+            boolQueryBuilder.must(QueryBuilders.rangeQuery(termName)
+                    .format("epoch_millis")
+                    .from(startTime)
+                    .to(endTime)
+                    .includeLower(true)
+                    .includeUpper(true));
+        }
+
+        // A query that matches document with type PHRASE or BOOLEAN
+        if (StringUtils.isNotEmpty(matchStr)) {
+            String[] matchStrArray = matchStr.split(",");
+            for (String s : matchStrArray) {
+                String[] ss = s.split("=");
+                if (ss.length > 1) {
+                    if (matchPhrase == Boolean.TRUE) {
+                        boolQueryBuilder.must(QueryBuilders.matchPhraseQuery(ss[0], ss[1]));
+                    } else {
+                        boolQueryBuilder.must(QueryBuilders.matchQuery(ss[0], ss[1]));
+                    }
+                }
+            }
+        }
+
+        return boolQueryBuilder;
+
     }
 
 
