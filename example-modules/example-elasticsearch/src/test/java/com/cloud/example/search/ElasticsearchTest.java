@@ -19,6 +19,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.cloud.example.common.utils.DateUtils;
 import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.search.utils.ClassPathResourceReader;
+import com.cloud.example.search.utils.ElasticsearchPage;
 import com.cloud.example.search.utils.ElasticsearchUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -187,7 +188,7 @@ public class ElasticsearchTest {
 
 
     @Test
-    public void searchDocumentTest() throws Exception {
+    public void searchListDocumentTest() throws Exception {
 
         String start = "20190827";
         String end = "20190829";
@@ -201,6 +202,20 @@ public class ElasticsearchTest {
         //List<Map<String, Object>> searchDocument = ElasticsearchUtils.searchListDocument(INDEX_NAME, "postDate", DateUtils.getDateByDay(start).getTime(), DateUtils.getDateByDay(end).getTime(), 1, "postDate,message", "_id", true, null, "message=Elasticsearch");
 
         List<Map<String, Object>> searchDocument = ElasticsearchUtils.searchListDocument(INDEX_NAME, "postDate", DateUtils.getDateByDay(start).getTime(), DateUtils.getDateByDay(end).getTime(), 10, "postDate,message", "_id", false, "message", "message=Elasticsearch");
+
+        System.out.println("======================");
+        System.out.println(JacksonUtils.toJson(searchDocument));
+        System.out.println("======================");
+
+    }
+
+    @Test
+    public void searchPageDocumentTest() throws Exception {
+
+        String start = "20190827";
+        String end = "20190829";
+
+        ElasticsearchPage searchDocument = ElasticsearchUtils.searchPageDocument(INDEX_NAME, 1,10,"postDate", DateUtils.getDateByDay(start).getTime(), DateUtils.getDateByDay(end).getTime(), "postDate,message", "_id", false, "message", "message=Elasticsearch");
 
         System.out.println("======================");
         System.out.println(JacksonUtils.toJson(searchDocument));

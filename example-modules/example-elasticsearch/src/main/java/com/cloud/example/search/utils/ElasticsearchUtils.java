@@ -46,6 +46,7 @@ import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
@@ -364,9 +365,51 @@ public class ElasticsearchUtils {
     }
 
     /**
+     * A Query that matches documents matching using the matches List API.
+     *
+     * @param index          the index
+     * @param termName       the term name
+     * @param startTime      the start time
+     * @param endTime        the end time
+     * @param fields         the list of include field
+     * @param sortField      The name of the field with sort desc
+     * @param matchPhrase    checks if matchPhrase
+     * @param highlightField the highlight of the field
+     * @param matchStr       the matchStr of the field
+     * @return List
+     * @throws IOException the IOException
+     */
+    public static List<Map<String, Object>> searchListDocument(String index, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
+        return searchDocument(index, 0, 0, termName, startTime, endTime, size, fields, sortField, matchPhrase, highlightField, matchStr);
+    }
+
+    /**
+     * A Query that matches documents matching using the matches Page API.
+     *
+     * @param index          the index
+     * @param currentPage    the current page
+     * @param pageSize       the page size
+     * @param termName       the term name
+     * @param startTime      the start time
+     * @param endTime        the end time
+     * @param fields         the list of include field
+     * @param sortField      The name of the field with sort desc
+     * @param matchPhrase    checks if matchPhrase
+     * @param highlightField the highlight of the field
+     * @param matchStr       the matchStr of the field
+     * @return ElasticsearchPage
+     * @throws IOException the IOException
+     */
+    public static ElasticsearchPage searchPageDocument(String index, int currentPage, int pageSize, String termName, long startTime, long endTime, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
+        return searchDocument(index, currentPage, pageSize, termName, startTime, endTime, 0, fields, sortField, matchPhrase, highlightField, matchStr);
+    }
+
+    /**
      * A Query that matches documents matching using the matches API.
      *
      * @param index          the index
+     * @param currentPage    the current page
+     * @param pageSize       the page size
      * @param termName       the term name
      * @param startTime      the start time
      * @param endTime        the end time
@@ -376,10 +419,11 @@ public class ElasticsearchUtils {
      * @param matchPhrase    checks if matchPhrase
      * @param highlightField the highlight of the field
      * @param matchStr       the matchStr of the field
-     * @return list
+     * @param <T>            List or ElasticsearchPage
+     * @return
      * @throws IOException the IOException
      */
-    public static List<Map<String, Object>> searchListDocument(String index, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
+    private static <T> T searchDocument(String index, int currentPage, int pageSize, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
         LOGGER.info("A Query that matches documents matching using the matches API Param: index={}, termName={}, startTime={}, endTime={}, size={}, fields={}, sortField={}, matchPhrase={}, highlightField={}, matchStr={}",
                 index, termName, startTime, endTime, size, fields, sortField, matchPhrase, highlightField, matchStr);
         // The provided indices with the given search source.
@@ -419,9 +463,17 @@ public class ElasticsearchUtils {
             sourceBuilder.sort(sortField, SortOrder.DESC);
         }
 
+        boolean isPage = false;
+
         // default=10
         if (size != null && size > 0) {
             sourceBuilder.size(size);
+        }
+
+        // Set from and  size
+        if (currentPage > 0 && pageSize > 0) {
+            sourceBuilder.from(currentPage - 1).size(pageSize);
+            isPage = true;
         }
 
         sourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
@@ -432,7 +484,15 @@ public class ElasticsearchUtils {
         long totalHits = searchResponse.getHits().getTotalHits().value;
         long length = searchResponse.getHits().getHits().length;
         LOGGER.info("The total number: {}, The hits of the search request number: {}", totalHits, length);
-        return setSearchResponse(searchResponse, highlightField);
+
+
+        List<Map<String, Object>> sourceList = setSearchResponse(searchResponse, highlightField);
+
+        if (isPage) {
+            return (T) new ElasticsearchPage(currentPage, pageSize, (int) totalHits, sourceList);
+        }
+
+        return (T) sourceList;
     }
 
     /**
@@ -443,6 +503,12 @@ public class ElasticsearchUtils {
      * @return list
      */
     private static List<Map<String, Object>> setSearchResponse(SearchResponse searchResponse, String highlightField) {
+
+        if (searchResponse.status().getStatus() != RestStatus.OK.getStatus()) {
+            LOGGER.error("The request has failed of the status={}. ", searchResponse.status().getStatus());
+            return null;
+        }
+
         List<Map<String, Object>> sourceList = Lists.newArrayList();
         StringBuffer stringBuffer = new StringBuffer();
 
