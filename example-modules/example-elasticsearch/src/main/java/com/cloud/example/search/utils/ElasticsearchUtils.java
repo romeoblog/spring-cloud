@@ -18,6 +18,7 @@ package com.cloud.example.search.utils;
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.core.exception.CommonException;
+import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.DocWriteRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
@@ -25,6 +26,8 @@ import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
+import org.elasticsearch.action.search.SearchRequest;
+import org.elasticsearch.action.search.SearchResponse;
 import org.elasticsearch.action.support.IndicesOptions;
 import org.elasticsearch.action.support.master.AcknowledgedResponse;
 import org.elasticsearch.action.update.UpdateRequest;
@@ -36,9 +39,18 @@ import org.elasticsearch.client.indices.CreateIndexResponse;
 import org.elasticsearch.client.indices.GetIndexRequest;
 import org.elasticsearch.client.indices.PutMappingRequest;
 import org.elasticsearch.common.settings.Settings;
+import org.elasticsearch.common.text.Text;
+import org.elasticsearch.common.unit.TimeValue;
 import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilders;
+import org.elasticsearch.search.SearchHit;
+import org.elasticsearch.search.SearchHits;
+import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
+import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,6 +61,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
+import java.util.concurrent.TimeUnit;
 
 /**
  * A wrapper for the ElasticsearchUtils that provides methods for accessing the Indices API.
@@ -297,7 +310,7 @@ public class ElasticsearchUtils {
      * @param jsonObject the JSON Object String
      * @param index      The index
      * @return id
-     * @throws IOException IOException
+     * @throws IOException the IOException
      */
     public static String createDocument(JSONObject jsonObject, String index) throws IOException {
         return createDocument(jsonObject, index, UUID.randomUUID().toString().replaceAll("-", "").toUpperCase());
@@ -309,7 +322,7 @@ public class ElasticsearchUtils {
      * @param jsonObject The JSON Object Data String
      * @param index      The index
      * @param id         id
-     * @throws IOException IOException
+     * @throws IOException the IOException
      */
     public static void updateDocumentById(JSONObject jsonObject, String index, String id) throws IOException {
         LOGGER.info("Batch update document by id param: json={}, index={}, id={}", jsonObject, index, id);
@@ -329,7 +342,7 @@ public class ElasticsearchUtils {
      * @param batchJsonObject the batch JsonObject
      * @param index           the index
      * @param ids             the ids
-     * @throws IOException IOException
+     * @throws IOException the IOException
      */
     public static void batchCreateDocument(List<JSONObject> batchJsonObject, String index, String... ids) throws IOException {
         LOGGER.info("Executes batch create document param: list={}, ids={}", batchJsonObject, ids);
@@ -348,6 +361,138 @@ public class ElasticsearchUtils {
 
         LOGGER.info("Executes batch create document response status: {}, name: {}", responses.status().getStatus(), responses.status().name());
 
+    }
+
+    /**
+     * A Query that matches documents matching using the matches API.
+     *
+     * @param index          the index
+     * @param termName       the term name
+     * @param startTime      the start time
+     * @param endTime        the end time
+     * @param size           the document size
+     * @param fields         the list of include field
+     * @param sortField      The name of the field with sort desc
+     * @param matchPhrase    checks if matchPhrase
+     * @param highlightField the highlight of the field
+     * @param matchStr       the matchStr of the field
+     * @return list
+     * @throws IOException the IOException
+     */
+    public static List<Map<String, Object>> searchListDocument(String index, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
+        LOGGER.info("A Query that matches documents matching using the matches API Param: index={}, termName={}, startTime={}, endTime={}, size={}, fields={}, sortField={}, matchPhrase={}, highlightField={}, matchStr={}",
+                index, termName, startTime, endTime, size, fields, sortField, matchPhrase, highlightField, matchStr);
+        // The provided indices with the given search source.
+        SearchRequest searchRequest = new SearchRequest(StringUtils.split(index, ","));
+
+        // Set ignores unavailable indices、execute the search to prefer local shard. (default: to randomize across shards.)
+        searchRequest.indicesOptions(IndicesOptions.lenientExpandOpen());
+        searchRequest.preference("_local");
+
+        SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
+
+        // A query that matches on all documents.
+        /// sourceBuilder.query(QueryBuilders.matchAllQuery());
+
+        BoolQueryBuilder boolQuery = QueryBuilders.boolQuery();
+
+        if (StringUtils.isNotEmpty(termName) && startTime > 0 && endTime > 0) {
+            boolQuery.must(QueryBuilders.rangeQuery(termName)
+                    .format("epoch_millis")
+                    .from(startTime)
+                    .to(endTime)
+                    .includeLower(true)
+                    .includeUpper(true));
+        }
+
+        // A query that matches document with type PHRASE or BOOLEAN
+        if (StringUtils.isNotEmpty(matchStr)) {
+            String[] matchStrArray = matchStr.split(",");
+            for (String s : matchStrArray) {
+                String[] ss = s.split("=");
+                if (ss.length > 1) {
+                    if (matchPhrase == Boolean.TRUE) {
+                        boolQuery.must(QueryBuilders.matchPhraseQuery(ss[0], ss[1]));
+                    } else {
+                        boolQuery.must(QueryBuilders.matchQuery(ss[0], ss[1]));
+                    }
+                }
+            }
+        }
+
+        // Requesting highlightField
+        if (StringUtils.isNotEmpty(highlightField)) {
+            HighlightBuilder highlightBuilder = new HighlightBuilder();
+            /// highlightBuilder.preTags("<span style='color:red' >");
+            /// highlightBuilder.postTags("</span>");
+
+            // Add the field highlighter to the highlight builder
+            highlightBuilder.field(highlightField);
+            sourceBuilder.highlighter(highlightBuilder);
+        }
+
+        sourceBuilder.query(boolQuery);
+
+        // Include fields
+        if (StringUtils.isNotEmpty(fields)) {
+            sourceBuilder.fetchSource(fields.split(","), null);
+        }
+        sourceBuilder.fetchSource(true);
+
+        if (StringUtils.isNotEmpty(sortField)) {
+            sourceBuilder.sort(sortField, SortOrder.DESC);
+        }
+
+        // default=10
+        if (size != null && size > 0) {
+            sourceBuilder.size(size);
+        }
+
+        sourceBuilder.timeout(new TimeValue(60, TimeUnit.SECONDS));
+        searchRequest.source(sourceBuilder);
+
+        SearchResponse searchResponse = client.search(searchRequest, RequestOptions.DEFAULT);
+
+        long totalHits = searchResponse.getHits().getTotalHits().value;
+        long length = searchResponse.getHits().getHits().length;
+        LOGGER.info("The total number: {}, The hits of the search request number: {}", totalHits, length);
+        return setSearchResponse(searchResponse, highlightField);
+    }
+
+    /**
+     * Handler SearchResponse
+     *
+     * @param searchResponse the searchResponse
+     * @param highlightField the highlightField
+     * @return list
+     */
+    private static List<Map<String, Object>> setSearchResponse(SearchResponse searchResponse, String highlightField) {
+        List<Map<String, Object>> sourceList = Lists.newArrayList();
+        StringBuffer stringBuffer = new StringBuffer();
+
+        SearchHits hits = searchResponse.getHits();
+
+        for (SearchHit hit : hits.getHits()) {
+            hit.getSourceAsMap().put("id", hit.getId());
+
+            if (StringUtils.isNotEmpty(highlightField)) {
+
+                Text[] text = hit.getHighlightFields().get(highlightField).getFragments();
+
+                if (text != null) {
+                    for (Text str : text) {
+                        stringBuffer.append(str.string());
+                    }
+                    hit.getSourceAsMap().put(highlightField, stringBuffer.toString());
+                }
+            }
+
+            sourceList.add(hit.getSourceAsMap());
+        }
+
+        LOGGER.info("A query that matches documents matching return result: {}", JacksonUtils.toJson(sourceList));
+
+        return sourceList;
     }
 
 

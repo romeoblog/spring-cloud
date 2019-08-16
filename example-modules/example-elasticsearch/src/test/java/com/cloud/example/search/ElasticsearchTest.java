@@ -16,10 +16,13 @@
 package com.cloud.example.search;
 
 import com.alibaba.fastjson.JSONObject;
+import com.cloud.example.common.utils.DateUtils;
+import com.cloud.example.common.utils.JacksonUtils;
 import com.cloud.example.search.utils.ClassPathResourceReader;
 import com.cloud.example.search.utils.ElasticsearchUtils;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
+import org.apache.commons.lang3.StringUtils;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -180,6 +183,37 @@ public class ElasticsearchTest {
 
         ElasticsearchUtils.batchCreateDocument(list, INDEX_NAME, "2", "3", "4", "5");
 
+    }
+
+
+    @Test
+    public void searchDocumentTest() throws Exception {
+
+        String start = "20190827";
+        String end = "20190829";
+
+        ///List<Map<String, Object>> searchDocument = ElasticsearchUtils.searchListDocument(INDEX_NAME, "postDate", DateUtils.getDateByDay(start).getTime(), DateUtils.getDateByDay(end).getTime(), null, null, null, false, null, null);
+
+        // List<Map<String, Object>> searchDocument = ElasticsearchUtils.searchListDocument(INDEX_NAME, "postDate", DateUtils.getDateByDay(start).getTime(), DateUtils.getDateByDay(end).getTime(), null, null, null, true, null, "message=Elasticsearch 2");
+
+        //List<Map<String, Object>> searchDocument = ElasticsearchUtils.searchListDocument(INDEX_NAME, "postDate", DateUtils.getDateByDay(start).getTime(), DateUtils.getDateByDay(end).getTime(), null, "postDate,message", null, true, null, "message=Elasticsearch");
+
+        //List<Map<String, Object>> searchDocument = ElasticsearchUtils.searchListDocument(INDEX_NAME, "postDate", DateUtils.getDateByDay(start).getTime(), DateUtils.getDateByDay(end).getTime(), 1, "postDate,message", "_id", true, null, "message=Elasticsearch");
+
+        List<Map<String, Object>> searchDocument = ElasticsearchUtils.searchListDocument(INDEX_NAME, "postDate", DateUtils.getDateByDay(start).getTime(), DateUtils.getDateByDay(end).getTime(), 10, "postDate,message", "_id", false, "message", "message=Elasticsearch");
+
+        System.out.println("======================");
+        System.out.println(JacksonUtils.toJson(searchDocument));
+        System.out.println("======================");
+
+    }
+
+    @Test
+    public void test() {
+        String ss = "";
+
+        System.out.println(ss.split(",")[0]);
+        System.out.println(StringUtils.split(ss,",")[0]);
     }
 
 
