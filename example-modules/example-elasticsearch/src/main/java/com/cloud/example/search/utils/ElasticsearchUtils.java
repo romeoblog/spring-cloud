@@ -79,6 +79,10 @@ public class ElasticsearchUtils {
 
     private static final Integer INDEX_NUMBER_OF_REPLICAS = 2;
 
+    private static final String SEPARATOR_COMMA = ",";
+
+    private static final String SEPARATOR_EQUAL = "=";
+
     @Autowired
     private RestHighLevelClient restHighLevelClient;
 
@@ -427,7 +431,7 @@ public class ElasticsearchUtils {
         LOGGER.info("A Query that matches documents matching using the matches API Param: index={}, termName={}, startTime={}, endTime={}, size={}, fields={}, sortField={}, matchPhrase={}, highlightField={}, matchStr={}",
                 index, termName, startTime, endTime, size, fields, sortField, matchPhrase, highlightField, matchStr);
         // The provided indices with the given search source.
-        SearchRequest searchRequest = new SearchRequest(StringUtils.split(index, ","));
+        SearchRequest searchRequest = new SearchRequest(StringUtils.split(index, SEPARATOR_COMMA));
 
         // Set ignores unavailable indices、execute the search to prefer local shard. (default: to randomize across shards.)
         searchRequest.indicesOptions(IndicesOptions.lenientExpandOpen());
@@ -455,7 +459,7 @@ public class ElasticsearchUtils {
 
         // Include fields
         if (StringUtils.isNotEmpty(fields)) {
-            sourceBuilder.fetchSource(fields.split(","), null);
+            sourceBuilder.fetchSource(fields.split(SEPARATOR_COMMA), null);
         }
         sourceBuilder.fetchSource(true);
         sourceBuilder.explain(true);
@@ -562,9 +566,9 @@ public class ElasticsearchUtils {
 
         // A query that matches document with type PHRASE or BOOLEAN
         if (StringUtils.isNotEmpty(matchStr)) {
-            String[] matchStrArray = matchStr.split(",");
+            String[] matchStrArray = matchStr.split(SEPARATOR_COMMA);
             for (String s : matchStrArray) {
-                String[] ss = s.split("=");
+                String[] ss = s.split(SEPARATOR_EQUAL);
                 if (ss.length > 1) {
                     if (matchPhrase == Boolean.TRUE) {
                         boolQueryBuilder.must(QueryBuilders.matchPhraseQuery(ss[0], ss[1]));
