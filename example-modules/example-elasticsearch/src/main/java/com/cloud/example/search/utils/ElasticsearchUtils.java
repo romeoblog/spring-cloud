@@ -342,9 +342,7 @@ public class ElasticsearchUtils {
 
         //// batchJsonObject.forEach(e -> request.add(new IndexRequest(index).id(ids[0]).source(e, XContentType.JSON)));
 
-        ForEachUtils.forEach(0, batchJsonObject, (_index, _item) -> {
-            request.add(new IndexRequest(index).id(ids[_index]).source(_item, XContentType.JSON));
-        });
+        ForEachUtils.forEach(batchJsonObject, (i, item) -> request.add(new IndexRequest(index).id(ids[i]).source(item, XContentType.JSON)));
 
         BulkResponse responses = client.bulk(request, RequestOptions.DEFAULT);
 

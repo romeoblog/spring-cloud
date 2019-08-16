@@ -27,12 +27,12 @@ import java.util.function.BiConsumer;
 public class ForEachUtils {
 
     /**
-     * forEach element and provide start index
+     * ForEach element and provide start index
      *
      * @param startIndex the start index
      * @param elements   the elements
      * @param action     the action
-     * @param <T>
+     * @param <T>        t
      */
     public static <T> void forEach(int startIndex, Iterable<? extends T> elements, BiConsumer<Integer, ? super T> action) {
         Objects.requireNonNull(elements);
@@ -49,5 +49,16 @@ public class ForEachUtils {
 
             action.accept(index - 1, element);
         }
+    }
+
+    /**
+     * ForEach element
+     *
+     * @param elements the elements
+     * @param action   the action
+     * @param <T>      t
+     */
+    public static <T> void forEach(Iterable<? extends T> elements, BiConsumer<Integer, ? super T> action) {
+        forEach(0, elements, action);
     }
 }
