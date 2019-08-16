@@ -8,20 +8,15 @@ import java.io.InputStreamReader;
 import java.util.stream.Collectors;
 
 /**
- * 文本文件读取
+ * The type reader text file
  *
  * @author Benji
  * @date 2019-08-15
  */
 public final class ClassPathResourceReader {
-    /**
-     * path:文件路径
-     */
+
     private final String path;
 
-    /**
-     * content:文件内容
-     */
     private String content;
 
     public ClassPathResourceReader(String path) {
