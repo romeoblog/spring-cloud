@@ -55,6 +55,7 @@ import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -75,9 +76,9 @@ public class ElasticsearchUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ElasticsearchUtils.class);
 
-    private static final Integer INDEX_NUMBER_OF_SHARDS = 3;
+    private static Integer shards;
 
-    private static final Integer INDEX_NUMBER_OF_REPLICAS = 2;
+    private static Integer replicas;
 
     private static final String SEPARATOR_COMMA = ",";
 
@@ -93,6 +94,16 @@ public class ElasticsearchUtils {
         client = this.restHighLevelClient;
     }
 
+    @Value("${elasticsearch.index.shards}")
+    public void setShards(Integer shards) {
+        ElasticsearchUtils.shards = shards;
+    }
+
+    @Value("${elasticsearch.index.replicas}")
+    public void setReplicas(Integer replicas) {
+        ElasticsearchUtils.replicas = replicas;
+    }
+
     /**
      * Creates an index using the Create Index API.
      * (It is recommended to manually create index and mapping.)
@@ -104,6 +115,8 @@ public class ElasticsearchUtils {
     public static boolean createIndex(String index) throws IOException {
         LOGGER.info("Create index param: index={}", index);
 
+        System.out.println(shards + "==" + replicas);
+
         if (existsIndex(index)) {
             return false;
         }
@@ -111,8 +124,8 @@ public class ElasticsearchUtils {
         CreateIndexRequest request = new CreateIndexRequest(index);
 
         request.settings(Settings.builder()
-                .put("index.number_of_shards", INDEX_NUMBER_OF_SHARDS)
-                .put("index.number_of_replicas", INDEX_NUMBER_OF_REPLICAS)
+                .put("index.number_of_shards", shards)
+                .put("index.number_of_replicas", replicas)
         );
 
         CreateIndexResponse createIndexResponse = client.indices().create(request, RequestOptions.DEFAULT);

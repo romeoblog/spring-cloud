@@ -4,3 +4,6 @@ elasticsearch:
   port: 9200
   maxConnTotal: 30
   maxConnPerRoute: 10
+  index:
+    shards: 3
+    replicas: 2
