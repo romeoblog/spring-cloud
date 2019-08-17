@@ -35,9 +35,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableTransactionManagement
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.cloud.example"})
-@MapperScan(basePackages = {"com.cloud.example.service.user.mapper", "com.cloud.example.mapper"})
-@EnableFeignClients(basePackages = {"com.cloud.example.api"})
+@ComponentScan(basePackages = {"com.cloud.mesh"})
+@MapperScan(basePackages = {"com.cloud.mesh.service.user.mapper", "com.cloud.mesh.mapper"})
+@EnableFeignClients(basePackages = {"com.cloud.mesh.api"})
 @EnableDiscoveryClient
 @Slf4j
 public class UserApplication {
