@@ -39,7 +39,7 @@ public class ElasticsearchConfig {
      * Elasticsearch cluster ip values, with split ','
      */
     @Value("${elasticsearch.ip}")
-    private String ip;
+    private String hostName;
 
     /**
      * Elasticsearch port
@@ -60,13 +60,20 @@ public class ElasticsearchConfig {
     private Integer maxConnPerRoute;
 
     @Bean
-    public HttpHost httpHost() {
-        return new HttpHost(ip, port, "http");
+    public HttpHost[] httpHosts() {
+        String[] hostNames = hostName.split(",");
+        int length = hostNames.length;
+
+        HttpHost[] httpHosts = new HttpHost[length];
+        for (int i = 0; i < length; i++) {
+            httpHosts[i] = new HttpHost(hostNames[i], port, "http");
+        }
+        return httpHosts;
     }
 
     @Bean(initMethod = "init", destroyMethod = "close")
     public ElasticsearchClientFactory getFactory() {
-        return ElasticsearchClientFactory.build(httpHost(), maxConnTotal, maxConnPerRoute);
+        return ElasticsearchClientFactory.build(httpHosts(), maxConnTotal, maxConnPerRoute);
     }
 
     @Bean

@@ -55,7 +55,8 @@ public class ElasticsearchClientFactory {
      */
     public static int MAX_CONN_TOTAL = 30;
 
-    private static HttpHost HTTP_HOST;
+    private static HttpHost[] HTTP_HOSTS;
+
     private RestClientBuilder builder;
     private RestClient restClient;
     private RestHighLevelClient restHighLevelClient;
@@ -65,17 +66,17 @@ public class ElasticsearchClientFactory {
     private ElasticsearchClientFactory() {
     }
 
-    public static ElasticsearchClientFactory build(HttpHost httpHost,
+    public static ElasticsearchClientFactory build(HttpHost[] httpHosts,
                                                    Integer maxConnectNum, Integer maxConnectPerRoute) {
-        HTTP_HOST = httpHost;
+        HTTP_HOSTS = httpHosts;
         MAX_CONN_TOTAL = maxConnectNum;
         MAX_CONN_PER_ROUTE = maxConnectPerRoute;
         return elasticsearchClientFactory;
     }
 
-    public static ElasticsearchClientFactory build(HttpHost httpHost, Integer connectTimeOut, Integer socketTimeOut,
+    public static ElasticsearchClientFactory build(HttpHost[] httpHosts, Integer connectTimeOut, Integer socketTimeOut,
                                                    Integer connectionRequestTime, Integer maxConnectNum, Integer maxConnectPerRoute) {
-        HTTP_HOST = httpHost;
+        HTTP_HOSTS = httpHosts;
         CONNECT_TIMEOUT_MILLIS = connectTimeOut;
         SOCKET_TIMEOUT_MILLIS = socketTimeOut;
         CONNECTION_REQUEST_TIMEOUT_MILLIS = connectionRequestTime;
@@ -86,7 +87,7 @@ public class ElasticsearchClientFactory {
 
 
     public void init() {
-        builder = RestClient.builder(HTTP_HOST);
+        builder = RestClient.builder(HTTP_HOSTS);
         setConnectTimeOutConfig();
         setMultiConnectConfig();
         restClient = builder.build();
