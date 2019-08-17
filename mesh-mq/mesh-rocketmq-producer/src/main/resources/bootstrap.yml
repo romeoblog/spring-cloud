@@ -2,4 +2,4 @@ server:
   port: 8050
 spring:
   application:
-    name: example-rocketmq-producer
+    name: mesh-rocketmq-producer

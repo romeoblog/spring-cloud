@@ -3,7 +3,7 @@ spring:
     nacos:
       discovery:
         enabled: true
-        serverAddr: 192.168.2.48:8848
+        serverAddr: 192.168.2.100:8848
     stream:
       rocketmq:
         binder:
