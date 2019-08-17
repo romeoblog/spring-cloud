@@ -71,9 +71,9 @@ public class SwaggerProvider implements SwaggerResourcesProvider {
         return resources;
     }
 
-    // RouteDefinition{id='CompositeDiscoveryClient_DG-MALL-ORDER-SERVICE', predicates=[PredicateDefinition{name='Path', args={pattern=/MESH-ORDER-SERVICE/**}}], filters=[FilterDefinition{name='RewritePath', args={regexp=/EXAMPLE-ORDER-SERVICE/(?<remaining>.*), replacement=/${remaining}}}], uri=lb://EXAMPLE-ORDER-SERVICE, order=0}
-    // RouteDefinition{id='CompositeDiscoveryClient_DG-MALL-CLOUD-GATEWAY', predicates=[PredicateDefinition{name='Path', args={pattern=/MESH-GATEWAY/**}}], filters=[FilterDefinition{name='RewritePath', args={regexp=/EXAMPLE-CLOUD-GATEWAY/(?<remaining>.*), replacement=/${remaining}}}], uri=lb://EXAMPLE-GATEWAY, order=0}
-    // RouteDefinition{id='CompositeDiscoveryClient_DG-MALL-EUREKA-EUREKA', predicates=[PredicateDefinition{name='Path', args={pattern=/MESH-EUREKA-EUREKA/**}}], filters=[FilterDefinition{name='RewritePath', args={regexp=/EXAMPLE-EUREKA-EUREKA/(?<remaining>.*), replacement=/${remaining}}}], uri=lb://EXAMPLE-EUREKA, order=0}
+    // RouteDefinition{id='CompositeDiscoveryClient_DG-MALL-ORDER-SERVICE', predicates=[PredicateDefinition{name='Path', args={pattern=/MESH-ORDER-SERVICE/**}}], filters=[FilterDefinition{name='RewritePath', args={regexp=/MESH-ORDER-SERVICE/(?<remaining>.*), replacement=/${remaining}}}], uri=lb://MESH-ORDER-SERVICE, order=0}
+    // RouteDefinition{id='CompositeDiscoveryClient_DG-MALL-CLOUD-GATEWAY', predicates=[PredicateDefinition{name='Path', args={pattern=/MESH-GATEWAY/**}}], filters=[FilterDefinition{name='RewritePath', args={regexp=/MESH-CLOUD-GATEWAY/(?<remaining>.*), replacement=/${remaining}}}], uri=lb://MESH-GATEWAY, order=0}
+    // RouteDefinition{id='CompositeDiscoveryClient_DG-MALL-EUREKA-EUREKA', predicates=[PredicateDefinition{name='Path', args={pattern=/MESH-EUREKA-EUREKA/**}}], filters=[FilterDefinition{name='RewritePath', args={regexp=/MESH-EUREKA-EUREKA/(?<remaining>.*), replacement=/${remaining}}}], uri=lb://MESH-EUREKA, order=0}
 
 
     /*@Override

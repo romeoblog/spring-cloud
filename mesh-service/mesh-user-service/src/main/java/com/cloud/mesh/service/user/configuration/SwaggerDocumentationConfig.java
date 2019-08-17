@@ -41,8 +41,8 @@ public class SwaggerDocumentationConfig {
     @Bean
     public Docket customImplementation() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.cloud.example.service.user"))
-                .apis(RequestHandlerSelectors.basePackage("com.cloud.example.service.user.controller")).build()
+                .apis(RequestHandlerSelectors.basePackage("com.cloud.mesh.service.user"))
+                .apis(RequestHandlerSelectors.basePackage("com.cloud.mesh.service.user.controller")).build()
                 .apiInfo(apiInfo());
     }
 
