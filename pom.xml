@@ -43,7 +43,7 @@
         <module>mesh-modules</module>
     </modules>
     <packaging>pom</packaging>
-    <name>Example Parent POM ${project.version}</name>
+    <name>Mesh Parent POM ${project.version}</name>
     <url>https://github.com/romeoblog/spring-cloud.git</url>
     <description>top mesh project pom.xml file</description>
     <prerequisites>
