@@ -1,5 +1,0 @@
-server:
-  port: 8060
-spring:
-  application:
-    name: example-rocketmq-consumer

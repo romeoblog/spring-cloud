@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: mesh-gateway
+server:
+  port: 8080

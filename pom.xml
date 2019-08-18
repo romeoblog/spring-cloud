@@ -19,33 +19,33 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cloud.example</groupId>
-    <artifactId>example-parent</artifactId>
+    <groupId>com.cloud.mesh</groupId>
+    <artifactId>mesh-parent</artifactId>
     <version>${revision}</version>
     <modules>
-        <module>example-common</module>
-        <module>example-core</module>
-        <module>example-entity</module>
-        <module>example-enums</module>
-        <module>example-model</module>
-        <module>example-eureka</module>
-        <module>example-gateway</module>
-        <module>example-gateway-zuul</module>
-        <module>example-auth-server</module>
-        <module>example-boot-admin</module>
-        <module>example-service</module>
-        <module>example-docs</module>
-        <module>example-generator</module>
-        <module>example-api</module>
-        <module>example-test</module>
-        <module>example-demo</module>
-        <module>example-mq</module>
-        <module>example-modules</module>
+        <module>mesh-common</module>
+        <module>mesh-core</module>
+        <module>mesh-entity</module>
+        <module>mesh-enums</module>
+        <module>mesh-model</module>
+        <module>mesh-eureka</module>
+        <module>mesh-gateway</module>
+        <module>mesh-gateway-zuul</module>
+        <module>mesh-auth-server</module>
+        <module>mesh-boot-admin</module>
+        <module>mesh-service</module>
+        <module>mesh-docs</module>
+        <module>mesh-generator</module>
+        <module>mesh-api</module>
+        <module>mesh-test</module>
+        <module>mesh-demo</module>
+        <module>mesh-mq</module>
+        <module>mesh-modules</module>
     </modules>
     <packaging>pom</packaging>
-    <name>Example Parent POM ${project.version}</name>
+    <name>Mesh Parent POM ${project.version}</name>
     <url>https://github.com/romeoblog/spring-cloud.git</url>
-    <description>top example project pom.xml file</description>
+    <description>top mesh project pom.xml file</description>
     <prerequisites>
         <maven>3.2.5</maven>
     </prerequisites>
@@ -84,7 +84,7 @@
             <id>default</id>
             <properties>
                 <dockerfile-skip>true</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>${project.version}</docker-tag>
                 <docker-repository>romeoblog-default/${project.artifactId}</docker-repository>
             </properties>
@@ -97,7 +97,7 @@
             <id>develop</id>
             <properties>
                 <dockerfile-skip>false</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>latest</docker-tag>
                 <docker-repository>romeoblog-develop/${project.artifactId}</docker-repository>
             </properties>
@@ -107,7 +107,7 @@
             <id>internal</id>
             <properties>
                 <dockerfile-skip>false</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>${project.version}</docker-tag>
                 <docker-repository>registry.cn-shenzhen.aliyuncs.com/romeoblog-internal/${project.artifactId}</docker-repository>
             </properties>
@@ -117,7 +117,7 @@
             <id>product</id>
             <properties>
                 <dockerfile-skip>false</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>${project.version}</docker-tag>
                 <docker-repository>registry.cn-shenzhen.aliyuncs.com/romeoblog-product/${project.artifactId}</docker-repository>
             </properties>
@@ -127,7 +127,7 @@
             <id>hub</id>
             <properties>
                 <dockerfile-skip>false</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>${project.version}</docker-tag>
                 <docker-repository>romeoblog/${project.artifactId}</docker-repository>
             </properties>
@@ -217,7 +217,7 @@
     <properties>
 
         <!-- parent version -->
-        <revision>4.3.5.SNAPSHOT</revision>
+        <revision>5.0.0.SNAPSHOT</revision>
 
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
@@ -436,32 +436,32 @@
             <!-- Model -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-core</artifactId>
+                <artifactId>mesh-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-entity</artifactId>
+                <artifactId>mesh-entity</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-enums</artifactId>
+                <artifactId>mesh-enums</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-model</artifactId>
+                <artifactId>mesh-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-common</artifactId>
+                <artifactId>mesh-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-api</artifactId>
+                <artifactId>mesh-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

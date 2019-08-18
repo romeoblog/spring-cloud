@@ -1,4 +1,4 @@
-# Spring Cloud Example
+# Spring Cloud Mesh
 
 该项目包含开发分布式应用微服务的必需组件，通过 Spring Cloud 架构模型 和相关 Spring Cloud 组件来开发分布式应用服务。
 
@@ -39,12 +39,12 @@
 ### 组织结构
 
     spring-cloud
-    ├── example-api -- openFeign 相关接口 api
-    ├── example-auth-server -- 认证系统
-    ├── example-boot-admin -- 服务健康与监控系统
-    ├── example-common -- 工具类及通用代
-    ├── example-docs -- 项目文档信息
-    ├── example-demo -- 相关框架实例
+    ├── mesh-api -- openFeign 相关接口 api
+    ├── mesh-auth-server -- 认证系统
+    ├── mesh-boot-admin -- 服务健康与监控系统
+    ├── mesh-common -- 工具类及通用代
+    ├── mesh-docs -- 项目文档信息
+    ├── mesh-demo -- 相关框架实例
     ├────── nacos-sample -- 栗子1
     ├────── seata-eureka-sample -- 栗子2
     ├────── seata-ha-sample -- 栗子3
@@ -52,24 +52,24 @@
     ├────── seata-sample -- 栗子5
     ├────── seata-tcc-sample -- 栗子6
     ├────── springboot-sample -- 栗子7
-    ├── example-entity -- 数据层公共实体类
-    ├── example-enums -- 枚举公共类
-    ├── example-eureka -- Eureka 服务注册与发现组件
-    ├── example-gateway -- SpringCloud Gateway 网关组件
-    ├── example-gateway-zuul -- SpringCloud Zuul 网关组件
-    ├── example-generator -- Mybatis 构建自动化
-    ├── example-model -- 与前端交互视图实体相关，VO、DTO、BTO
-    ├── example-modules -- 模块集
-    ├────── example-elasticsearch -- 全文搜索引擎 Elasticsearch
-    ├── example-core -- 服务层公共配置信息和组件初始化代码
-    ├── example-service -- 独立服务父 POM
-    ├────── example-business-service -- 独立业务服务1
-    ├────── example-order-service -- 独立业务服务2
-    ├────── example-storage-service -- 独立业务服务3
-    ├────── example-user-service -- 独立业务服务4
-    ├────── example-mybatis-service -- 独立业务服务5
-    ├── example-skywalking-agent -- 提供全链路监控 agent
-    ├── example-test -- 框架搭建时的相关测试代码
+    ├── mesh-entity -- 数据层公共实体类
+    ├── mesh-enums -- 枚举公共类
+    ├── mesh-eureka -- Eureka 服务注册与发现组件
+    ├── mesh-gateway -- SpringCloud Gateway 网关组件
+    ├── mesh-gateway-zuul -- SpringCloud Zuul 网关组件
+    ├── mesh-generator -- Mybatis 构建自动化
+    ├── mesh-model -- 与前端交互视图实体相关，VO、DTO、BTO
+    ├── mesh-modules -- 模块集
+    ├────── mesh-elasticsearch -- 全文搜索引擎 Elasticsearch
+    ├── mesh-core -- 服务层公共配置信息和组件初始化代码
+    ├── mesh-service -- 独立服务父 POM
+    ├────── mesh-business-service -- 独立业务服务1
+    ├────── mesh-order-service -- 独立业务服务2
+    ├────── mesh-storage-service -- 独立业务服务3
+    ├────── mesh-user-service -- 独立业务服务4
+    ├────── mesh-mybatis-service -- 独立业务服务5
+    ├── mesh-skywalking-agent -- 提供全链路监控 agent
+    ├── mesh-test -- 框架搭建时的相关测试代码
     ├── sql -- sql 执行语句
     └── style -- 框架代码规范约定
 
@@ -84,12 +84,12 @@
 		<td>Docker映射端口号</td>
 	</tr>
 	<tr>
-		<td>example-gateway</td>
+		<td>mesh-gateway</td>
 		<td>8080</td>
 		<td>8080</td>
 	</tr>
 	<tr>
-		<td>example-gateway-zuul</td>
+		<td>mesh-gateway-zuul</td>
 		<td>8090</td>
 		<td>8090</td>
 	</tr>
@@ -102,7 +102,7 @@
 		<td>Docker映射端口号</td>
 	</tr>
 	<tr>
-		<td>example-auth-server</td>
+		<td>mesh-auth-server</td>
 		<td>8010</td>
 		<td>8010</td>
 	</tr>
@@ -115,12 +115,12 @@
 		<td>Docker映射端口号</td>
 	</tr>
 	<tr>
-		<td>example-boot-admin</td>
+		<td>mesh-boot-admin</td>
 		<td>8020</td>
 		<td>8020</td>
 	</tr>
 	<tr>
-		<td>example-turbine</td>
+		<td>mesh-turbine</td>
 		<td>8030</td>
 		<td>8030</td>
 	</tr>
@@ -138,7 +138,7 @@
 		<td>Docker映射端口号</td>
 	</tr>
 	<tr>
-		<td>example-eureka</td>
+		<td>mesh-eureka</td>
 		<td>8830</td>
 		<td>8830</td>
 	</tr>
@@ -179,17 +179,17 @@
         <td>10909、10911</td>
     </tr>
 	<tr>
-		<td>example-rocketmq-producer</td>
+		<td>mesh-rocketmq-producer</td>
 		<td>8050</td>
 		<td>8050</td>
 	</tr>
 	<tr>
-		<td>example-rocketmq-consumer</td>
+		<td>mesh-rocketmq-consumer</td>
 		<td>8060</td>
 		<td>8060</td>
 	</tr>
 	<tr>
-		<td>example-rocketmq-console</td>
+		<td>mesh-rocketmq-console</td>
 		<td>8070</td>
 		<td>8070</td>
 	</tr>
@@ -202,7 +202,7 @@
         <td>Docker映射端口号</td>
     </tr>
     <tr>
-        <td>example-elastisearch</td>
+        <td>mesh-elastisearch</td>
         <td>8700</td>
         <td>8700</td>
     </tr>
@@ -215,27 +215,27 @@
 		<td>Docker映射端口号</td>
 	</tr>
 	<tr>
-		<td>example-business-service</td>
+		<td>mesh-business-service</td>
 		<td>8610</td>
 		<td>8610</td>
 	</tr>
 	<tr>
-		<td>example-order-service</td>
+		<td>mesh-order-service</td>
 		<td>8620</td>
 		<td>8620</td>
 	</tr>
 	<tr>
-		<td>example-storage-service</td>
+		<td>mesh-storage-service</td>
 		<td>8630</td>
 		<td>8630</td>
 	</tr>
 	<tr>
-		<td>example-user-service</td>
+		<td>mesh-user-service</td>
 		<td>8640</td>
 		<td>8640</td>
 	</tr>
 	<tr>
-		<td>example-mybatis-service</td>
+		<td>mesh-mybatis-service</td>
 		<td>8650</td>
 		<td>8650</td>
 	</tr>
@@ -275,7 +275,7 @@
 
 ##### 系统架构图
 
-![系统架构图](example-docs/src/main/asciidoc-zh/images/architectural-design.png)
+![系统架构图](mesh-docs/src/main/asciidoc-zh/images/architectural-design.png)
 
 ##### 业务架构图
 TDB
@@ -307,7 +307,7 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
 zheng_weilu@163.com
 
 #### 微信：
-![个人微信](example-docs/src/main/name.jpeg)
+![个人微信](mesh-docs/src/main/name.jpeg)
 
 ## 许可证
 
