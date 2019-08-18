@@ -47,6 +47,7 @@ import org.elasticsearch.common.xcontent.XContentBuilder;
 import org.elasticsearch.common.xcontent.XContentFactory;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.elasticsearch.index.query.BoolQueryBuilder;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.elasticsearch.index.query.QueryBuilders;
 import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
@@ -359,7 +360,7 @@ public class ElasticsearchUtils {
      *
      * @param index the index
      * @param id    the id
-     * @throws IOException
+     * @throws IOException the IOException
      */
     public static void deleteDocumentById(String index, String id) throws IOException {
         LOGGER.info("Delete document by id param: index={}, id={}", index, id);
@@ -411,11 +412,27 @@ public class ElasticsearchUtils {
      * @param matchPhrase    checks if matchPhrase
      * @param highlightField the highlight of the field
      * @param matchStr       the matchStr of the field
-     * @return List
+     * @return l
      * @throws IOException the IOException
      */
     public static List<Map<String, Object>> searchListDocument(String index, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
         return searchDocument(index, 0, 0, termName, startTime, endTime, size, fields, sortField, matchPhrase, highlightField, matchStr);
+    }
+
+    /**
+     * A Query that matches documents matching using the matches List API (Custom the query builder).
+     *
+     * @param index          the index
+     * @param query          the queryBuilder
+     * @param size           the page size
+     * @param fields         the list of include field
+     * @param sortField      The name of the field with sort desc
+     * @param highlightField the highlight of the field
+     * @return l
+     * @throws IOException the IOException
+     */
+    public static List<Map<String, Object>> searchListDocument(String index, QueryBuilder query, Integer size, String fields, String sortField, String highlightField) throws IOException {
+        return searchDocument(index, 0, 0, query, size, fields, sortField, highlightField);
     }
 
     /**
@@ -432,12 +449,30 @@ public class ElasticsearchUtils {
      * @param matchPhrase    checks if matchPhrase
      * @param highlightField the highlight of the field
      * @param matchStr       the matchStr of the field
-     * @return ElasticsearchPage
+     * @return e
      * @throws IOException the IOException
      */
     public static ElasticsearchPage searchPageDocument(String index, int currentPage, int pageSize, String termName, long startTime, long endTime, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
         return searchDocument(index, currentPage, pageSize, termName, startTime, endTime, 0, fields, sortField, matchPhrase, highlightField, matchStr);
     }
+
+    /**
+     * A Query that matches documents matching using the matches Page API (Custom the query builder).
+     *
+     * @param index          the index
+     * @param currentPage    the current page
+     * @param pageSize       the page size
+     * @param query          the queryBuilder
+     * @param fields         the list of include field
+     * @param sortField      The name of the field with sort desc
+     * @param highlightField the highlight of the field
+     * @return e
+     * @throws IOException the IOException
+     */
+    public static ElasticsearchPage searchPageDocument(String index, int currentPage, int pageSize, QueryBuilder query, String fields, String sortField, String highlightField) throws IOException {
+        return searchDocument(index, currentPage, pageSize, query, 0, fields, sortField, highlightField);
+    }
+
 
     /**
      * A Query that matches documents matching using the matches API.
@@ -454,13 +489,34 @@ public class ElasticsearchUtils {
      * @param matchPhrase    checks if matchPhrase
      * @param highlightField the highlight of the field
      * @param matchStr       the matchStr of the field
-     * @param <T>            List or ElasticsearchPage
-     * @return
+     * @param <T>            l or e
+     * @return l or e
      * @throws IOException the IOException
      */
     private static <T> T searchDocument(String index, int currentPage, int pageSize, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
-        LOGGER.info("A Query that matches documents matching using the matches API Param: index={}, termName={}, startTime={}, endTime={}, size={}, fields={}, sortField={}, matchPhrase={}, highlightField={}, matchStr={}",
-                index, termName, startTime, endTime, size, fields, sortField, matchPhrase, highlightField, matchStr);
+        BoolQueryBuilder boolQueryBuilder = handlerBoolQueryBuilder(termName, startTime, endTime, matchPhrase, matchStr);
+        return searchDocument(index, currentPage, pageSize, boolQueryBuilder, size, fields, sortField, highlightField);
+    }
+
+    /**
+     * A Query that matches documents matching using the matches API (Custom the query builder).
+     *
+     * @param index          the index
+     * @param currentPage    the current page
+     * @param pageSize       the page size
+     * @param query          the queryBuilder
+     * @param size           the document size
+     * @param fields         the list of include field
+     * @param sortField      The name of the field with sort desc
+     * @param highlightField the highlight of the field
+     * @param <T>            l or e
+     * @return l or e
+     * @throws IOException the IOException
+     */
+    private static <T> T searchDocument(String index, int currentPage, int pageSize, QueryBuilder query, Integer size, String fields, String sortField, String highlightField) throws IOException {
+        LOGGER.info("A Query that matches documents matching using the matches API Param: index={}, queryName={}, size={}, fields={}, sortField={}, highlightField={}",
+                index, query.getName(), size, fields, sortField, highlightField);
+
         // The provided indices with the given search source.
         SearchRequest searchRequest = new SearchRequest(StringUtils.split(index, SEPARATOR_COMMA));
 
@@ -473,9 +529,9 @@ public class ElasticsearchUtils {
         // A query that matches on all documents.
         /// sourceBuilder.query(QueryBuilders.matchAllQuery());
 
-        BoolQueryBuilder boolQueryBuilder = handlerBoolQueryBuilder(termName, startTime, endTime, matchPhrase, matchStr);
+        /// BoolQueryBuilder boolQueryBuilder = handlerBoolQueryBuilder(termName, startTime, endTime, matchPhrase, matchStr);
 
-        sourceBuilder.query(boolQueryBuilder);
+        sourceBuilder.query(query);
 
         // Requesting highlightField
         if (StringUtils.isNotEmpty(highlightField)) {
