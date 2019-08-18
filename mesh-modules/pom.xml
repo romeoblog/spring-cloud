@@ -29,6 +29,7 @@
 
     <modules>
         <module>mesh-elasticsearch</module>
+        <module>mesh-async-elasticsearch</module>
     </modules>
 
 </project>
