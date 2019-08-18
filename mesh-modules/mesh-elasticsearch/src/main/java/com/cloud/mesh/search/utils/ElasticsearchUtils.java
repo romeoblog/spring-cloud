@@ -24,6 +24,8 @@ import org.elasticsearch.action.DocWriteRequest;
 import org.elasticsearch.action.admin.indices.delete.DeleteIndexRequest;
 import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
+import org.elasticsearch.action.delete.DeleteRequest;
+import org.elasticsearch.action.delete.DeleteResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
@@ -336,8 +338,8 @@ public class ElasticsearchUtils {
      * Updates a document using the Update API.
      *
      * @param jsonObject The JSON Object Data String
-     * @param index      The index
-     * @param id         id
+     * @param index      the index
+     * @param id         the id
      * @throws IOException the IOException
      */
     public static void updateDocumentById(JSONObject jsonObject, String index, String id) throws IOException {
@@ -350,6 +352,24 @@ public class ElasticsearchUtils {
         UpdateResponse response = client.update(request, RequestOptions.DEFAULT);
 
         LOGGER.info("Update document response status: {}, id: {}", response.status().getStatus(), response.getId());
+    }
+
+    /**
+     * Deletes a document by id using the Delete API.
+     *
+     * @param index the index
+     * @param id    the id
+     * @throws IOException
+     */
+    public static void deleteDocumentById(String index, String id) throws IOException {
+        LOGGER.info("Delete document by id param: index={}, id={}", index, id);
+
+        DeleteRequest request = new DeleteRequest(index, id);
+
+        DeleteResponse deleteResponse = client.delete(request, RequestOptions.DEFAULT);
+
+        LOGGER.info("Delete document response status: {}, id: {}", deleteResponse.status().getStatus(), deleteResponse.getId());
+
     }
 
     /**

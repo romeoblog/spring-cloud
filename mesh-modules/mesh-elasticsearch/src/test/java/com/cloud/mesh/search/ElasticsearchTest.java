@@ -145,6 +145,11 @@ public class ElasticsearchTest {
     }
 
     @Test
+    public void deleteDocumentByIdTest() throws Exception {
+        ElasticsearchUtils.deleteDocumentById(INDEX_NAME, "334AB0FDEBEA4B439FDC93C9C3E6A7D6");
+    }
+
+    @Test
     public void batchCreateDocumentTest() throws Exception {
 
         List<JSONObject> list = Lists.newArrayList();
