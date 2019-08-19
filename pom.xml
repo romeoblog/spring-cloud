@@ -19,32 +19,33 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.cloud.example</groupId>
-    <artifactId>example-parent</artifactId>
+    <groupId>com.cloud.mesh</groupId>
+    <artifactId>mesh-parent</artifactId>
     <version>${revision}</version>
     <modules>
-        <module>example-common</module>
-        <module>example-core</module>
-        <module>example-entity</module>
-        <module>example-enums</module>
-        <module>example-model</module>
-        <module>example-eureka</module>
-        <module>example-gateway</module>
-        <module>example-gateway-zuul</module>
-        <module>example-auth-server</module>
-        <module>example-boot-admin</module>
-        <module>example-service</module>
-        <module>example-docs</module>
-        <module>example-generator</module>
-        <module>example-api</module>
-        <module>example-test</module>
-        <module>example-demo</module>
-        <module>example-mq</module>
+        <module>mesh-common</module>
+        <module>mesh-core</module>
+        <module>mesh-entity</module>
+        <module>mesh-enums</module>
+        <module>mesh-model</module>
+        <module>mesh-eureka</module>
+        <module>mesh-gateway</module>
+        <module>mesh-gateway-zuul</module>
+        <module>mesh-auth-server</module>
+        <module>mesh-boot-admin</module>
+        <module>mesh-service</module>
+        <module>mesh-docs</module>
+        <module>mesh-generator</module>
+        <module>mesh-api</module>
+        <module>mesh-test</module>
+        <module>mesh-demo</module>
+        <module>mesh-mq</module>
+        <module>mesh-modules</module>
     </modules>
     <packaging>pom</packaging>
-    <name>Example Parent POM ${project.version}</name>
+    <name>Mesh Parent POM ${project.version}</name>
     <url>https://github.com/romeoblog/spring-cloud.git</url>
-    <description>top example project pom.xml file</description>
+    <description>top mesh project pom.xml file</description>
     <prerequisites>
         <maven>3.2.5</maven>
     </prerequisites>
@@ -64,10 +65,16 @@
             <url>https://my.oschina.net/u/3747226</url>
             <email>zheng_weilu@163.com</email>
         </developer>
+        <developer>
+            <id>willlu.zheng</id>
+            <name>willlu.zheng</name>
+            <url>www.willlu.cn</url>
+            <email>willluzheng@gmail.com</email>
+        </developer>
     </developers>
 
     <organization>
-        <name>Blog</name>
+        <name>Mesh</name>
         <url>https://github.com/romeoblog</url>
     </organization>
 
@@ -83,7 +90,7 @@
             <id>default</id>
             <properties>
                 <dockerfile-skip>true</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>${project.version}</docker-tag>
                 <docker-repository>romeoblog-default/${project.artifactId}</docker-repository>
             </properties>
@@ -96,7 +103,7 @@
             <id>develop</id>
             <properties>
                 <dockerfile-skip>false</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>latest</docker-tag>
                 <docker-repository>romeoblog-develop/${project.artifactId}</docker-repository>
             </properties>
@@ -106,7 +113,7 @@
             <id>internal</id>
             <properties>
                 <dockerfile-skip>false</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>${project.version}</docker-tag>
                 <docker-repository>registry.cn-shenzhen.aliyuncs.com/romeoblog-internal/${project.artifactId}</docker-repository>
             </properties>
@@ -116,7 +123,7 @@
             <id>product</id>
             <properties>
                 <dockerfile-skip>false</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>${project.version}</docker-tag>
                 <docker-repository>registry.cn-shenzhen.aliyuncs.com/romeoblog-product/${project.artifactId}</docker-repository>
             </properties>
@@ -126,7 +133,7 @@
             <id>hub</id>
             <properties>
                 <dockerfile-skip>false</dockerfile-skip>
-                <log-home>/var/log/example</log-home>
+                <log-home>/var/log/mesh</log-home>
                 <docker-tag>${project.version}</docker-tag>
                 <docker-repository>romeoblog/${project.artifactId}</docker-repository>
             </properties>
@@ -216,7 +223,7 @@
     <properties>
 
         <!-- parent version -->
-        <revision>4.3.4</revision>
+        <revision>5.0.0.SNAPSHOT</revision>
 
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
@@ -269,7 +276,8 @@
 
 
         <!--<spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>-->
-        <spring-cloud-alibaba.version>0.9.1.BUILD-SNAPSHOT</spring-cloud-alibaba.version>
+        <!--<spring-cloud-alibaba.version>0.9.1.BUILD-SNAPSHOT</spring-cloud-alibaba.version>-->
+        <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
 
         <!-- Nacos -->
         <nacos-client.version>1.1.0</nacos-client.version>
@@ -290,6 +298,9 @@
 
         <!-- Apache RocketMQ -->
         <rocketmq.version>4.5.1</rocketmq.version>
+
+        <!-- Elasticsearch -->
+        <elasticsearch.version>7.3.0</elasticsearch.version>
 
         <!-- Plugin -->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
@@ -318,13 +329,14 @@
         <jackson.version>2.9.9</jackson.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-lang3.version>3.6</commons-lang3.version>
-        <guava.version>23.0</guava.version>
+        <guava.version>28.0-jre</guava.version>
         <gson.version>2.8.2</gson.version>
         <hutool.version>3.1.2</hutool.version>
         <velocity-engine.version>2.0</velocity-engine.version>
         <slf4j.version>1.7.25</slf4j.version>
         <logback-classic.version>1.2.0</logback-classic.version>
         <commons-dbutils.version>1.7</commons-dbutils.version>
+        <fastjson.version>1.2.59</fastjson.version>
 
         <dbunit.version>2.5.0</dbunit.version>
 
@@ -397,7 +409,7 @@
 
             <!-- Spring Cloud Alibaba Dependencies-->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
+                <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
@@ -431,32 +443,32 @@
             <!-- Model -->
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-core</artifactId>
+                <artifactId>mesh-core</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-entity</artifactId>
+                <artifactId>mesh-entity</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-enums</artifactId>
+                <artifactId>mesh-enums</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-model</artifactId>
+                <artifactId>mesh-model</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-common</artifactId>
+                <artifactId>mesh-common</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>example-api</artifactId>
+                <artifactId>mesh-api</artifactId>
                 <version>${project.version}</version>
             </dependency>
 
@@ -621,9 +633,15 @@
                 <version>${velocity-engine.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
             <!-- Alibaba Nacos -->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
+                <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
                 <exclusions>
@@ -634,7 +652,7 @@
                 </exclusions>
             </dependency>
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
+                <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
                 <exclusions>
@@ -652,13 +670,13 @@
 
             <!-- Alibaba Seata -->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
+                <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
                 <exclusions>
                     <exclusion>
                         <groupId>io.seata</groupId>
-                        <artifactId>seata-spring</artifactId>
+                        <artifactId>seata-all</artifactId>
                     </exclusion>
                 </exclusions>
             </dependency>
@@ -670,7 +688,7 @@
 
             <!-- Alibaba Sentinel -->
             <dependency>
-                <groupId>org.springframework.cloud</groupId>
+                <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
                 <version>${spring-cloud-alibaba.version}</version>
             </dependency>
@@ -707,6 +725,25 @@
                 <groupId>org.apache.rocketmq</groupId>
                 <artifactId>rocketmq-client</artifactId>
                 <version>${rocketmq.version}</version>
+            </dependency>
+
+            <!-- Elasticsearch -->
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-high-level-client</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch</groupId>
+                <artifactId>elasticsearch</artifactId>
+                <version>${elasticsearch.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.elasticsearch.client</groupId>
+                <artifactId>elasticsearch-rest-client</artifactId>
+                <version>${elasticsearch.version}</version>
             </dependency>
 
             <dependency>
@@ -750,6 +787,7 @@
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
+                <scope>provided</scope>
             </dependency>
 
         </dependencies>

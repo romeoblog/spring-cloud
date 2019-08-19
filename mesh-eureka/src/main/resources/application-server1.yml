@@ -1,0 +1,32 @@
+spring:
+  security:
+    user:
+      name: admin
+      password: 123123
+server:
+  port: 8830
+
+# eureka configuration
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${server.port}
+  client:
+    # 表示是否注册自身到eureka服务器
+    # register-with-eureka: false
+    # 是否从eureka上获取注册信息
+    # fetch-registry: false
+    service-url:
+      defaultZone: http://admin:123123@127.0.0.1:8762/eureka/
+
+# print detail info
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    health:
+      sensitive: false
+  endpoint:
+    health:
+      show-details: ALWAYS
+

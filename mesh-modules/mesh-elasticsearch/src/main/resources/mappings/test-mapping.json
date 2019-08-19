@@ -1,0 +1,43 @@
+{
+  "properties": {
+    "name": {
+      "type": "text"
+    },
+    "address": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "city": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    },
+    "location": {
+      "type": "geo_point"
+    },
+    "province": {
+      "type": "keyword"
+    },
+    "uid": {
+      "type": "long"
+    },
+    "user": {
+      "type": "text",
+      "fields": {
+        "keyword": {
+          "type": "keyword",
+          "ignore_above": 256
+        }
+      }
+    }
+  }
+}

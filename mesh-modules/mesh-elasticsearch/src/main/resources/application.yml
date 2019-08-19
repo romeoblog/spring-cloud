@@ -1,0 +1,9 @@
+elasticsearch:
+  #ip: 192.168.2.100,192.168.2.101,192.168.2.102
+  ip: 192.168.2.100
+  port: 9200
+  maxConnTotal: 30
+  maxConnPerRoute: 10
+  index:
+    shards: 3
+    replicas: 2

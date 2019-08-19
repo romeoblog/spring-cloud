@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cloud.mesh.service.business.mapper.DemoMapperExt">
+
+
+    <resultMap id="DemoResultMap" type="com.cloud.mesh.service.business.entity.DemoVO">
+        <result column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="age" property="age"/>
+        <result column="address" property="address"/>
+
+    </resultMap>
+
+    <select id="getInformation" resultMap="DemoResultMap">
+		select * from demo where id = 1
+	</select>
+
+
+</mapper>

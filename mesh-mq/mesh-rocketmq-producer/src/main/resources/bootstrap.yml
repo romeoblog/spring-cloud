@@ -1,0 +1,5 @@
+server:
+  port: 8050
+spring:
+  application:
+    name: mesh-rocketmq-producer

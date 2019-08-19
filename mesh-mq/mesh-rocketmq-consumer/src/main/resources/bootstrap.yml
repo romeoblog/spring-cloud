@@ -1,0 +1,5 @@
+server:
+  port: 8060
+spring:
+  application:
+    name: mesh-rocketmq-consumer
