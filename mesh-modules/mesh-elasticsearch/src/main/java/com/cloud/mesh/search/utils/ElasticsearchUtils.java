@@ -659,7 +659,7 @@ public class ElasticsearchUtils {
             sourceList.add(hit.getSourceAsMap());
         }
 
-        LOGGER.info("A query that matches documents matching return result: {}", JacksonUtils.toJson(sourceList));
+        /// LOGGER.info("A query that matches documents matching return result: {}", JacksonUtils.toJson(sourceList));
 
         return sourceList;
     }

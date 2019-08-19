@@ -16,7 +16,14 @@
 package com.cloud.mesh.search.service.impl;
 
 import com.cloud.mesh.search.service.IQueryService;
+import com.cloud.mesh.search.utils.ElasticsearchPage;
+import com.cloud.mesh.search.utils.ElasticsearchUtils;
+import org.elasticsearch.index.query.QueryBuilder;
 import org.springframework.stereotype.Service;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 /**
  * A Query that matches documents matching interface implements service
@@ -27,5 +34,29 @@ import org.springframework.stereotype.Service;
 @Service
 public class QueryServiceImpl implements IQueryService {
 
+    @Override
+    public Map<String, Object> getDocumentById(String index, String id, String fields) throws IOException {
+        return ElasticsearchUtils.getDocumentById(index, id, fields);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryForList(String index, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
+        return ElasticsearchUtils.searchListDocument(index, termName, startTime, endTime, size, fields, sortField, matchPhrase, highlightField, matchStr);
+    }
+
+    @Override
+    public List<Map<String, Object>> queryForList(String index, QueryBuilder query, Integer size, String fields, String sortField, String highlightField) throws IOException {
+        return ElasticsearchUtils.searchListDocument(index, query, size, fields, sortField, highlightField);
+    }
+
+    @Override
+    public ElasticsearchPage queryForPage(String index, int currentPage, int pageSize, String termName, long startTime, long endTime, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
+        return ElasticsearchUtils.searchPageDocument(index, currentPage, pageSize, termName, startTime, endTime, fields, sortField, matchPhrase, highlightField, matchStr);
+    }
+
+    @Override
+    public ElasticsearchPage queryForPage(String index, int currentPage, int pageSize, QueryBuilder query, String fields, String sortField, String highlightField) throws IOException {
+        return ElasticsearchUtils.searchPageDocument(index, currentPage, pageSize, query, fields, sortField, highlightField);
+    }
 
 }
