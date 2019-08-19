@@ -20,11 +20,13 @@ import com.cloud.mesh.common.utils.JacksonUtils;
 import com.cloud.mesh.core.aop.JoinPointContext;
 import io.seata.core.context.RootContext;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -65,6 +67,9 @@ public class ControllerAspect {
 
     private String serverPort, requestMethod;
 
+    @Value("${spring.cloud.alibaba.seata.txServiceGroup:}")
+    private String enableSeataStr;
+
     @Pointcut("!execution(* com.cloud.mesh.api.*.*(..))" +
             "&& (@annotation(org.springframework.web.bind.annotation.RequestMapping)" +
             " || @annotation(org.springframework.web.bind.annotation.GetMapping )" +
@@ -93,6 +98,7 @@ public class ControllerAspect {
         if (!log.isInfoEnabled()) {
             return;
         }
+
         List<Object> args = new ArrayList<>();
         long stop = System.nanoTime();
         long diffNanos = stop - start;
@@ -101,7 +107,7 @@ public class ControllerAspect {
         sb.append(REQUEST_URL).append(this.getRequestUrl()).append(SEPARATOR);
         sb.append(SERVER_PORT).append(this.serverPort).append(SEPARATOR);
         sb.append(REQUEST_METHOD).append(this.requestMethod).append(SEPARATOR);
-        sb.append(SEATA_XID).append(RootContext.getXID()).append(SEPARATOR);
+        sb.append(SEATA_XID).append(getSeataXid()).append(SEPARATOR);
         sb.append(RUNTIME).append(diff).append(TIME_UNIT_NAME).append(SEPARATOR);
         if (ctx.getArgs().length > 0) {
             sb.append(ARGS).append(LOG_ARG).append(SEPARATOR);
@@ -126,7 +132,7 @@ public class ControllerAspect {
         sb.append(REQUEST_URL).append(this.getRequestUrl()).append(SEPARATOR);
         sb.append(SERVER_PORT).append(this.serverPort).append(SEPARATOR);
         sb.append(REQUEST_METHOD).append(this.requestMethod).append(SEPARATOR);
-        sb.append(SEATA_XID).append(RootContext.getXID()).append(SEPARATOR);
+        sb.append(SEATA_XID).append(getSeataXid()).append(SEPARATOR);
         sb.append(RUNTIME).append(diff).append(TIME_UNIT_NAME).append(SEPARATOR);
         if (ctx.getArgs().length > 0) {
             sb.append(ARGS).append(LOG_ARG).append(SEPARATOR);
@@ -156,6 +162,13 @@ public class ControllerAspect {
         this.requestMethod = method;
 
         return currentURL;
+    }
+
+    private String getSeataXid() {
+        if (StringUtils.isEmpty(enableSeataStr)) {
+            return null;
+        }
+        return RootContext.getXID();
     }
 
 }
