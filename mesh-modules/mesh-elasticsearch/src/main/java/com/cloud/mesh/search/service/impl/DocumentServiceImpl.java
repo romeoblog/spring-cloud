@@ -16,7 +16,7 @@
 package com.cloud.mesh.search.service.impl;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.mesh.search.entity.DocumentDTO;
+import com.cloud.mesh.model.search.DocumentVO;
 import com.cloud.mesh.search.service.IDocumentService;
 import com.cloud.mesh.search.utils.ElasticsearchUtils;
 import com.google.common.collect.Lists;
@@ -34,8 +34,8 @@ import java.util.List;
 @Service
 public class DocumentServiceImpl implements IDocumentService {
     @Override
-    public String createDocument(String index, DocumentDTO documentDTO) throws IOException {
-        return ElasticsearchUtils.createDocument(documentDTO.getJsonObject(), index);
+    public String createDocument(String index, DocumentVO documentVO) throws IOException {
+        return ElasticsearchUtils.createDocument(documentVO.getJsonObject(), index);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class DocumentServiceImpl implements IDocumentService {
     }
 
     @Override
-    public Boolean batchCreateDocument(String index, List<DocumentDTO> batchJsonObject) throws IOException {
+    public Boolean batchCreateDocument(String index, List<DocumentVO> batchJsonObject) throws IOException {
         List<JSONObject> jsonObjects = Lists.newArrayListWithCapacity(batchJsonObject.size());
         List<String> ids = Lists.newArrayListWithCapacity(batchJsonObject.size());
 
@@ -58,8 +58,8 @@ public class DocumentServiceImpl implements IDocumentService {
     }
 
     @Override
-    public Boolean updateDocumentById(String index, DocumentDTO documentDTO) throws IOException {
-        ElasticsearchUtils.updateDocumentById(documentDTO.getJsonObject(), index, documentDTO.getId());
+    public Boolean updateDocumentById(String index, DocumentVO documentVO) throws IOException {
+        ElasticsearchUtils.updateDocumentById(documentVO.getJsonObject(), index, documentVO.getId());
         return true;
     }
 

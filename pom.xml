@@ -336,6 +336,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <logback-classic.version>1.2.0</logback-classic.version>
         <commons-dbutils.version>1.7</commons-dbutils.version>
+        <fastjson.version>1.2.59</fastjson.version>
 
         <dbunit.version>2.5.0</dbunit.version>
 
@@ -630,6 +631,12 @@
                 <groupId>org.apache.velocity</groupId>
                 <artifactId>velocity-engine-core</artifactId>
                 <version>${velocity-engine.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
             </dependency>
 
             <!-- Alibaba Nacos -->

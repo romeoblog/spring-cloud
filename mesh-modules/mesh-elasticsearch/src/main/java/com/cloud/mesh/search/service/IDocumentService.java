@@ -16,7 +16,7 @@
 package com.cloud.mesh.search.service;
 
 import com.alibaba.fastjson.JSONObject;
-import com.cloud.mesh.search.entity.DocumentDTO;
+import com.cloud.mesh.model.search.DocumentVO;
 
 import java.io.IOException;
 import java.util.List;
@@ -33,11 +33,11 @@ public interface IDocumentService {
      * Index a document using the Index API.
      *
      * @param index       the index
-     * @param documentDTO the document dto
+     * @param documentVO the document dto
      * @return id
      * @throws IOException the IOException
      */
-    String createDocument(String index, DocumentDTO documentDTO) throws IOException;
+    String createDocument(String index, DocumentVO documentVO) throws IOException;
 
     /**
      * Index a document using the Index API.
@@ -57,17 +57,17 @@ public interface IDocumentService {
      * @return b
      * @throws IOException the IOException
      */
-    Boolean batchCreateDocument(String index, List<DocumentDTO> batchJsonObject) throws IOException;
+    Boolean batchCreateDocument(String index, List<DocumentVO> batchJsonObject) throws IOException;
 
     /**
      * Updates a document using the Update API.
      *
      * @param index       the index
-     * @param documentDTO the document dto
+     * @param documentVO the document dto
      * @return b
      * @throws IOException the IOException
      */
-    Boolean updateDocumentById(String index, DocumentDTO documentDTO) throws IOException;
+    Boolean updateDocumentById(String index, DocumentVO documentVO) throws IOException;
 
     /**
      * Deletes a document by id using the Delete API.

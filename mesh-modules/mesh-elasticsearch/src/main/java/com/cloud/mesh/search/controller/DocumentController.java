@@ -17,7 +17,7 @@ package com.cloud.mesh.search.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.mesh.common.model.ResultMsg;
-import com.cloud.mesh.search.entity.DocumentDTO;
+import com.cloud.mesh.model.search.DocumentVO;
 import com.cloud.mesh.search.service.IDocumentService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -46,7 +46,7 @@ public class DocumentController {
     @PutMapping(value = "/createDocument/{index}", produces = {"application/json"})
     public ResultMsg<String> createDocument(
             @ApiParam(value = "index", required = true) @PathVariable String index,
-            @ApiParam(value = "document", required = true) @RequestBody DocumentDTO document) throws IOException {
+            @ApiParam(value = "document", required = true) @RequestBody DocumentVO document) throws IOException {
         return ResultMsg.ok(documentService.createDocument(index, document));
     }
 
@@ -62,7 +62,7 @@ public class DocumentController {
     @PostMapping(value = "/batchCreateDocument/{index}", produces = {"application/json"})
     public ResultMsg<Boolean> batchCreateDocument(
             @ApiParam(value = "index", required = true) @PathVariable String index,
-            @ApiParam(value = "documents", required = true) @RequestBody List<DocumentDTO> documents) throws IOException {
+            @ApiParam(value = "documents", required = true) @RequestBody List<DocumentVO> documents) throws IOException {
         return ResultMsg.ok(documentService.batchCreateDocument(index, documents));
     }
 
@@ -70,7 +70,7 @@ public class DocumentController {
     @PostMapping(value = "/updateDocumentById/{index}", produces = {"application/json"})
     public ResultMsg<Boolean> updateDocumentById(
             @ApiParam(value = "index", required = true) @PathVariable String index,
-            @ApiParam(value = "document", required = true) @RequestBody DocumentDTO document) throws IOException {
+            @ApiParam(value = "document", required = true) @RequestBody DocumentVO document) throws IOException {
         return ResultMsg.ok(documentService.updateDocumentById(index, document));
     }
 
