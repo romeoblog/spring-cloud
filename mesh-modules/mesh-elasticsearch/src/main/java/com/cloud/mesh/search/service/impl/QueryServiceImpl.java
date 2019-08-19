@@ -16,6 +16,7 @@
 package com.cloud.mesh.search.service.impl;
 
 import com.cloud.mesh.search.service.IQueryService;
+import org.springframework.stereotype.Service;
 
 /**
  * A Query that matches documents matching interface implements service
@@ -23,6 +24,7 @@ import com.cloud.mesh.search.service.IQueryService;
  * @author Benji
  * @date 2019-08-17
  */
+@Service
 public class QueryServiceImpl implements IQueryService {
 
 

@@ -17,7 +17,7 @@ package com.cloud.mesh.search.utils;
 
 import com.alibaba.fastjson.JSONObject;
 import com.cloud.mesh.common.utils.JacksonUtils;
-import com.cloud.mesh.core.exception.CommonException;
+import com.cloud.mesh.core.exception.ElasticsearchException;
 import com.google.common.collect.Lists;
 import org.apache.commons.lang3.StringUtils;
 import org.elasticsearch.action.DocWriteRequest;
@@ -118,9 +118,7 @@ public class ElasticsearchUtils {
     public static boolean createIndex(String index) throws IOException {
         LOGGER.info("Create index param: index={}", index);
 
-        if (existsIndex(index)) {
-            return false;
-        }
+        existsIndex(index);
 
         CreateIndexRequest request = new CreateIndexRequest(index);
 
@@ -150,9 +148,7 @@ public class ElasticsearchUtils {
     public static boolean createMapping(String index, Map<String, Map<String, String>> proNames) throws IOException {
         LOGGER.info("Create Mapping param: index={}, proNames={}", index, JacksonUtils.toJson(proNames));
 
-        if (!existsIndex(index)) {
-            return false;
-        }
+        existsIndex(index);
 
         PutMappingRequest request = new PutMappingRequest(index);
 
@@ -192,24 +188,20 @@ public class ElasticsearchUtils {
     }
 
     /**
-     * Updates the mappings on an index using the Put Mapping API (Outer JSON format).
+     * Create or Updates the mappings on an index using the Put Mapping API (Outer JSON format).
      *
      * @param index       the index
      * @param mappingJson the mapping json
      * @return b
      * @throws IOException the IOException
      */
-    public static boolean createMapping(String index, String mappingJson) throws IOException {
+    public static boolean createMapping(String index, JSONObject mappingJson) throws IOException {
         LOGGER.info("Create Mapping param: index={}, mappingJson={}", index, JacksonUtils.toJson(mappingJson));
 
-        if (!existsIndex(index)) {
-            return false;
-        }
+        existsIndex(index);
 
-        if (StringUtils.isEmpty(mappingJson)) {
-            LOGGER.error("The mapping json is not-exist or json content is empty!");
-
-            return false;
+        if (StringUtils.isEmpty(mappingJson.toJSONString())) {
+            throw new ElasticsearchException("The mapping json is not-exist or json content is empty!");
         }
 
         PutMappingRequest request = new PutMappingRequest(index);
@@ -218,7 +210,7 @@ public class ElasticsearchUtils {
 
         ///request.source(json, XContentType.JSON);
 
-        request.source(mappingJson, XContentType.JSON);
+        request.source(mappingJson.toJSONString(), XContentType.JSON);
 
         AcknowledgedResponse putMappingResponse = client.indices().putMapping(request, RequestOptions.DEFAULT);
 
@@ -238,11 +230,13 @@ public class ElasticsearchUtils {
      */
     public static boolean createMapping(String index) throws IOException {
 
+        existsIndex(index);
+
         String fileName = "mappings/" + index + "-mapping.json";
 
         String mappingJson = new ClassPathResourceReader(fileName).getContent();
 
-        return createMapping(index, mappingJson);
+        return createMapping(index, JSONObject.parseObject(mappingJson));
 
     }
 
@@ -257,7 +251,7 @@ public class ElasticsearchUtils {
         LOGGER.info("Delete index param: index={}", index);
 
         if (!existsIndex(index)) {
-            return false;
+            throw new ElasticsearchException("The Delete Index[{" + index + "}] is not exists");
         }
 
         DeleteIndexRequest request = new DeleteIndexRequest(index);
@@ -289,7 +283,7 @@ public class ElasticsearchUtils {
         boolean exists = client.indices().exists(request, RequestOptions.DEFAULT);
 
         if (exists) {
-            LOGGER.info("The index [{}] is exist!", index);
+            LOGGER.info("The index [{}] already exists.", index);
         } else {
             LOGGER.info("The index [{}] is not exist!", index);
         }
@@ -308,6 +302,10 @@ public class ElasticsearchUtils {
      */
     public static String createDocument(JSONObject jsonObject, String index, String id) throws IOException {
         LOGGER.info("Batch create document param: json={}, index={}, id={}", jsonObject, index, id);
+
+        if (!existsIndex(index)) {
+            throw new ElasticsearchException("Create a document index[{" + index + "}] is not exists");
+        }
 
         IndexRequest request = new IndexRequest(index);
         request.id(id);
@@ -344,7 +342,11 @@ public class ElasticsearchUtils {
      * @throws IOException the IOException
      */
     public static void updateDocumentById(JSONObject jsonObject, String index, String id) throws IOException {
-        LOGGER.info("Batch update document by id param: json={}, index={}, id={}", jsonObject, index, id);
+        LOGGER.info("Update document by id param: json={}, index={}, id={}", jsonObject, index, id);
+
+        if (!existsIndex(index)) {
+            throw new ElasticsearchException("Update a document index[{" + index + "}] is not exists");
+        }
 
         UpdateRequest request = new UpdateRequest(index, id);
 
@@ -365,6 +367,10 @@ public class ElasticsearchUtils {
     public static void deleteDocumentById(String index, String id) throws IOException {
         LOGGER.info("Delete document by id param: index={}, id={}", index, id);
 
+        if (!existsIndex(index)) {
+            throw new ElasticsearchException("Deletes a document index[{" + index + "}] is not exists");
+        }
+
         DeleteRequest request = new DeleteRequest(index, id);
 
         DeleteResponse deleteResponse = client.delete(request, RequestOptions.DEFAULT);
@@ -384,10 +390,14 @@ public class ElasticsearchUtils {
     public static void batchCreateDocument(List<JSONObject> batchJsonObject, String index, String... ids) throws IOException {
         LOGGER.info("Executes batch create document param: list={}, ids={}", batchJsonObject, ids);
 
+        if (!existsIndex(index)) {
+            throw new ElasticsearchException("Executes batch as the Index[{" + index + "}] is not exists");
+        }
+
         BulkRequest request = new BulkRequest();
 
         if (batchJsonObject == null || batchJsonObject.isEmpty()) {
-            throw new CommonException("List is empty.");
+            throw new ElasticsearchException("Executes a bulk with the list is empty.");
         }
 
         //// batchJsonObject.forEach(e -> request.add(new IndexRequest(index).id(ids[0]).source(e, XContentType.JSON)));

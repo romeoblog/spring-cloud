@@ -78,7 +78,7 @@ public class ElasticsearchTest {
 
         String mappingJson = new ClassPathResourceReader(fileName).getContent();
 
-        boolean createMapping = ElasticsearchUtils.createMapping(INDEX_NAME, mappingJson);
+        boolean createMapping = ElasticsearchUtils.createMapping(INDEX_NAME, JSONObject.parseObject(mappingJson));
 
         System.out.println(createMapping);
     }

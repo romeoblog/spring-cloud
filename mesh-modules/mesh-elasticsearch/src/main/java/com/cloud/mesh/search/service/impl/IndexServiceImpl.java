@@ -15,7 +15,12 @@
  */
 package com.cloud.mesh.search.service.impl;
 
+import com.alibaba.fastjson.JSONObject;
 import com.cloud.mesh.search.service.IIndexService;
+import com.cloud.mesh.search.utils.ElasticsearchUtils;
+import org.springframework.stereotype.Service;
+
+import java.io.IOException;
 
 /**
  * Index a document interface implement service
@@ -23,7 +28,22 @@ import com.cloud.mesh.search.service.IIndexService;
  * @author Benji
  * @date 2019-08-17
  */
+@Service
 public class IndexServiceImpl implements IIndexService {
 
+    @Override
+    public Boolean createIndex(String index) throws IOException {
+        return ElasticsearchUtils.createIndex(index);
+    }
+
+    @Override
+    public Boolean createMapping(String index, JSONObject mappingJson) throws IOException {
+        return ElasticsearchUtils.createMapping(index, mappingJson);
+    }
+
+    @Override
+    public Boolean deleteIndex(String index) throws IOException {
+        return ElasticsearchUtils.deleteIndex(index);
+    }
 
 }

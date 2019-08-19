@@ -15,6 +15,10 @@
  */
 package com.cloud.mesh.search.service;
 
+import com.alibaba.fastjson.JSONObject;
+
+import java.io.IOException;
+
 /**
  * Index a document interface service
  *
@@ -23,5 +27,32 @@ package com.cloud.mesh.search.service;
  */
 public interface IIndexService {
 
+    /**
+     * Creates an index using the Create Index API.
+     *
+     * @param index the index
+     * @return b
+     * @throws IOException the IOException
+     */
+    Boolean createIndex(String index) throws IOException;
+
+    /**
+     * Create or Updates the mappings on an index using the Put Mapping API (Outer JSON format).
+     *
+     * @param index       the index
+     * @param mappingJson the json object
+     * @return b
+     * @throws IOException the IOException
+     */
+    Boolean createMapping(String index, JSONObject mappingJson) throws IOException;
+
+    /**
+     * Delete an index using the Delete Index API.
+     *
+     * @param index the index
+     * @return b
+     * @throws IOException the IOException
+     */
+    Boolean deleteIndex(String index) throws IOException;
 
 }

@@ -15,9 +15,16 @@
  */
 package com.cloud.mesh.search.controller;
 
+import com.alibaba.fastjson.JSONObject;
+import com.cloud.mesh.common.model.ResultMsg;
+import com.cloud.mesh.search.service.IIndexService;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 /**
  * Index a document Controller
@@ -29,6 +36,29 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/v7/es/index")
 @Api(value = "IndexController", description = "IndexController")
 public class IndexController {
+
+    @Autowired
+    private IIndexService indexService;
+
+    @ApiOperation(value = "Creates an index using the Create Index API.")
+    @PostMapping(value = "/createIndex/{index}", produces = {"application/json"})
+    public ResultMsg<Boolean> createIndex(@ApiParam(value = "index", required = true) @PathVariable String index) throws IOException {
+        return ResultMsg.ok(indexService.createIndex(index));
+    }
+
+    @ApiOperation(value = "Creates Or Updates the mappings on an index using the Put Mapping API.")
+    @PutMapping(value = "/createMapping/{index}", produces = {"application/json"})
+    public ResultMsg<Boolean> createMapping(
+            @ApiParam(value = "index", required = true) @PathVariable String index,
+            @ApiParam(value = "jsonObject", required = true) @RequestBody JSONObject jsonObject) throws IOException {
+        return ResultMsg.ok(indexService.createMapping(index, jsonObject));
+    }
+
+    @ApiOperation(value = " Deletes an index using the Delete Index API.")
+    @DeleteMapping(value = "/deleteIndex/{index}", produces = {"application/json"})
+    public ResultMsg<Boolean> deleteIndex(@ApiParam(value = "index", required = true) @PathVariable String index) throws IOException {
+        return ResultMsg.ok(indexService.deleteIndex(index));
+    }
 
 
 }
