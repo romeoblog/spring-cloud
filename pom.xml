@@ -65,10 +65,16 @@
             <url>https://my.oschina.net/u/3747226</url>
             <email>zheng_weilu@163.com</email>
         </developer>
+        <developer>
+            <id>willlu.zheng</id>
+            <name>willlu.zheng</name>
+            <url>www.willlu.cn</url>
+            <email>willluzheng@gmail.com</email>
+        </developer>
     </developers>
 
     <organization>
-        <name>Blog</name>
+        <name>Mesh</name>
         <url>https://github.com/romeoblog</url>
     </organization>
 
