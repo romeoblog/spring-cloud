@@ -26,6 +26,8 @@ import org.elasticsearch.action.bulk.BulkRequest;
 import org.elasticsearch.action.bulk.BulkResponse;
 import org.elasticsearch.action.delete.DeleteRequest;
 import org.elasticsearch.action.delete.DeleteResponse;
+import org.elasticsearch.action.get.GetRequest;
+import org.elasticsearch.action.get.GetResponse;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.index.IndexResponse;
 import org.elasticsearch.action.search.SearchRequest;
@@ -53,6 +55,7 @@ import org.elasticsearch.rest.RestStatus;
 import org.elasticsearch.search.SearchHit;
 import org.elasticsearch.search.SearchHits;
 import org.elasticsearch.search.builder.SearchSourceBuilder;
+import org.elasticsearch.search.fetch.subphase.FetchSourceContext;
 import org.elasticsearch.search.fetch.subphase.highlight.HighlightBuilder;
 import org.elasticsearch.search.sort.SortOrder;
 import org.slf4j.Logger;
@@ -408,6 +411,29 @@ public class ElasticsearchUtils {
 
         LOGGER.info("Executes batch create document response status: {}, name: {}", responses.status().getStatus(), responses.status().name());
 
+    }
+
+    /**
+     * Retrieves a document by id using the Get API.
+     *
+     * @param index  the index
+     * @param id     the id
+     * @param fields the list of include field
+     * @return m
+     * @throws IOException the IOException
+     */
+    public static Map<String, Object> getDocumentById(String index, String id, String fields) throws IOException {
+        GetRequest request = new GetRequest(index, id);
+
+        // Include fields split ","
+        if (StringUtils.isNotEmpty(fields)) {
+            FetchSourceContext fetchSourceContext = new FetchSourceContext(true, fields.split(SEPARATOR_COMMA), null);
+            request.fetchSourceContext(fetchSourceContext);
+        }
+
+        GetResponse getResponse = client.get(request, RequestOptions.DEFAULT);
+
+        return getResponse.getSourceAsMap();
     }
 
     /**
