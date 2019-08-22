@@ -31,6 +31,7 @@
         <module>mesh-elasticsearch</module>
         <module>mesh-async-elasticsearch</module>
         <module>mesh-mongodb</module>
+        <module>mesh-cassandra</module>
     </modules>
 
 </project>
