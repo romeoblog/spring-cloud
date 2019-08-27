@@ -1,4 +1,25 @@
-# 1. Installing Logstash
+# Download and unzip Elasticsearch
+
+1. https://www.elastic.co/downloads/elasticsearch
+
+2. Run bin/elasticsearch (or bin\elasticsearch.bat on Windows)
+
+3. Run curl http://localhost:9200/ or Invoke-RestMethod http://localhost:9200 with PowerShell
+
+# Download and unzip Kibana
+
+1. https://www.elastic.co/downloads/kibana
+
+2. Open config/kibana.yml in an editor
+
+3. Set elasticsearch.hosts to point at your Elasticsearch instance
+
+4. Run bin/kibana (or bin\kibana.bat on Windows)
+
+5. Point your browser at http://localhost:5601
+
+
+# Installing Logstash
 
 ## To check your Java version, run the following command:
     
