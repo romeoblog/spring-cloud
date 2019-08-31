@@ -60,7 +60,10 @@
     ├── mesh-generator -- Mybatis 构建自动化
     ├── mesh-model -- 与前端交互视图实体相关，VO、DTO、BTO
     ├── mesh-modules -- 模块集
+    ├────── mesh-async-elasticsearch
     ├────── mesh-elasticsearch -- 全文搜索引擎 Elasticsearch
+    ├────── mesh-mongodb
+    ├────── mesh-cassandra
     ├── mesh-core -- 服务层公共配置信息和组件初始化代码
     ├── mesh-service -- 独立服务父 POM
     ├────── mesh-business-service -- 独立业务服务1
