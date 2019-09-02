@@ -280,7 +280,7 @@
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
 
         <!-- Nacos -->
-        <nacos-client.version>1.1.0</nacos-client.version>
+        <nacos-client.version>1.1.1</nacos-client.version>
 
         <!-- Seata -->
         <!--<seata.version>0.5.0</seata.version>-->
