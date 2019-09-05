@@ -225,45 +225,24 @@
         <!-- parent version -->
         <revision>5.0.1.SNAPSHOT</revision>
 
+        <!-- encoding、jdk -->
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
+
+        <!-- spring -->
         <spring.version>5.1.5.RELEASE</spring.version>
-        <!--<spring.version>5.0.0.RELEASE</spring.version>-->
-        <!--<spring.version>4.3.12.RELEASE</spring.version>-->
-
         <spring-boot.version>2.1.5.RELEASE</spring-boot.version>
-        <!--<spring-boot.version>2.1.4.RELEASE</spring-boot.version>-->
-        <!--<spring-boot.version>2.1.0.RELEASE</spring-boot.version>-->
-        <!--<spring-boot.version>2.0.6.RELEASE</spring-boot.version>-->
-        <!--<spring-boot.version>2.0.0.RELEASE</spring-boot.version>-->
-        <!--<spring-boot.version>1.5.8.RELEASE</spring-boot.version>-->
         <springloaded.version>1.2.7.RELEASE</springloaded.version>
-
         <spring-cloud.version>Greenwich.SR2</spring-cloud.version>
-        <!--<spring-cloud.version>Greenwich.SR1</spring-cloud.version>-->
-        <!--<spring-cloud.version>Greenwich.RELEASE</spring-cloud.version>-->
-        <!--<spring-cloud.version>Finchley.RELEASE</spring-cloud.version>-->
-        <!--<spring-cloud.version>Greenwich.M3</spring-cloud.version>-->
-
-        <spring-cloud-hystrix-dashboard.version>1.4.6.RELEASE</spring-cloud-hystrix-dashboard.version>
-        <spring-cloud-hystrix-turbine.version>1.4.6.RELEASE</spring-cloud-hystrix-turbine.version>
-
-        <!--<spring-cloud-starter-oauth2.version>2.0.1.RELEASE</spring-cloud-starter-oauth2.version>-->
-        <!--<spring-cloud-starter-security.version>1.2.3.RELEASE</spring-cloud-starter-security.version>-->
         <spring-security-jwt.version>1.0.10.RELEASE</spring-security-jwt.version>
         <java-jwt.version>3.8.1</java-jwt.version>
         <spring-boot-admin-server.version>2.1.2</spring-boot-admin-server.version>
-
         <platform-bom.version>Cairo-SR8</platform-bom.version>
-        <!--<mysql-connector-java.version>5.1.44</mysql-connector-java.version>-->
         <mysql-connector-java.version>8.0.11</mysql-connector-java.version>
         <mybatis-plus.version>2.1.2</mybatis-plus.version>
-        <!--<springfox.version>2.6.1</springfox.version>-->
         <springfox.version>2.9.2</springfox.version>
-        <swagger-models.version>1.5.22</swagger-models.version>
         <redis.clients.version>2.8.2</redis.clients.version>
         <druid.version>1.1.6</druid.version>
-        <!--<druid.version>1.1.5</druid.version>-->
         <druid-spring-boot-starter.version>1.1.10</druid-spring-boot-starter.version>
         <spring-boot-starter-jdbc.version>${spring-boot.version}</spring-boot-starter-jdbc.version>
         <spring-boot-starter-data-redis.version>${spring-boot.version}</spring-boot-starter-data-redis.version>
@@ -274,39 +253,17 @@
         <mybatis-spring-boot-starter.version>1.3.1</mybatis-spring-boot-starter.version>
         <jasypt-spring-boot-starter.version>2.1.1</jasypt-spring-boot-starter.version>
 
-
-        <!--<spring-cloud-alibaba.version>0.2.1.RELEASE</spring-cloud-alibaba.version>-->
-        <!--<spring-cloud-alibaba.version>0.9.1.BUILD-SNAPSHOT</spring-cloud-alibaba.version>-->
+        <!-- components -->
         <spring-cloud-alibaba.version>2.1.0.RELEASE</spring-cloud-alibaba.version>
-
-        <!-- Nacos -->
         <nacos-client.version>1.1.3</nacos-client.version>
-
-        <!-- Seata -->
-        <!--<seata.version>0.5.0</seata.version>-->
-        <!--<seata.version>0.5.1</seata.version>-->
-        <!--<seata.version>0.5.2</seata.version>-->
-        <!--<seata.version>0.6.1</seata.version>-->
-        <!--<seata.version>0.7.1</seata.version>-->
         <seata.version>0.8.0</seata.version>
-
-        <!-- Sentinel -->
-        <!--<sentinel.version>1.6.0</sentinel.version>-->
         <sentinel.version>1.6.0</sentinel.version>
-
-        <!-- Alibaba AHAH -->
         <alibaba-ahas-sentinel.version>1.0.2</alibaba-ahas-sentinel.version>
-
-        <!-- Apache RocketMQ -->
         <rocketmq.version>4.5.1</rocketmq.version>
-
-        <!-- Elasticsearch -->
         <elasticsearch.version>7.3.0</elasticsearch.version>
-
-        <!-- Alibaba Canal -->
         <canal.version>1.1.3</canal.version>
 
-        <!-- Plugin -->
+        <!-- plugin -->
         <maven-compiler-plugin.version>3.6.2</maven-compiler-plugin.version>
         <maven-jar-plugin.version>3.0.1</maven-jar-plugin.version>
         <maven-surefire-plugin.version>2.19.1</maven-surefire-plugin.version>
@@ -329,7 +286,6 @@
         <dockerfile-maven-plugin.version>1.3.6</dockerfile-maven-plugin.version>
 
         <!-- tools-->
-        <!--<jackson.version>2.9.1</jackson.version>-->
         <jackson.version>2.9.9</jackson.version>
         <commons-beanutils.version>1.9.3</commons-beanutils.version>
         <commons-lang3.version>3.6</commons-lang3.version>
@@ -341,12 +297,13 @@
         <logback-classic.version>1.2.0</logback-classic.version>
         <commons-dbutils.version>1.7</commons-dbutils.version>
         <fastjson.version>1.2.59</fastjson.version>
-
         <dbunit.version>2.5.0</dbunit.version>
 
+        <!-- other -->
         <junit.version>4.12</junit.version>
         <javax.servlet-api.version>4.0.1</javax.servlet-api.version>
         <swagger-bootstrap-ui.version>1.6</swagger-bootstrap-ui.version>
+        <swagger-models.version>1.5.22</swagger-models.version>
         <lombok.version>1.18.6</lombok.version>
 
     </properties>
@@ -418,18 +375,6 @@
                 <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
-                <version>${spring-cloud-hystrix-dashboard.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.springframework.cloud</groupId>
-                <artifactId>spring-cloud-starter-turbine</artifactId>
-                <version>${spring-cloud-hystrix-turbine.version}</version>
             </dependency>
 
             <dependency>
