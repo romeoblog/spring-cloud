@@ -15,6 +15,7 @@
  */
 package com.cloud.mesh.search.service.impl;
 
+import com.cloud.mesh.model.search.QueryRequestVO;
 import com.cloud.mesh.search.service.IQueryService;
 import com.cloud.mesh.search.utils.ElasticsearchPage;
 import com.cloud.mesh.search.utils.ElasticsearchUtils;
@@ -40,6 +41,11 @@ public class QueryServiceImpl implements IQueryService {
     }
 
     @Override
+    public List<Map<String, Object>> queryForList(QueryRequestVO data) throws IOException {
+        return ElasticsearchUtils.searchListDocument(data.getIndex(), data.getTermName(), data.getStartTime(), data.getEndTime(), data.getSize(), data.getFields(), data.getSortField(), data.getMatchPhrase(), data.getHighlightField(), data.getMatchStr());
+    }
+
+    @Override
     public List<Map<String, Object>> queryForList(String index, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException {
         return ElasticsearchUtils.searchListDocument(index, termName, startTime, endTime, size, fields, sortField, matchPhrase, highlightField, matchStr);
     }
@@ -57,6 +63,11 @@ public class QueryServiceImpl implements IQueryService {
     @Override
     public ElasticsearchPage queryForPage(String index, int currentPage, int pageSize, QueryBuilder query, String fields, String sortField, String highlightField) throws IOException {
         return ElasticsearchUtils.searchPageDocument(index, currentPage, pageSize, query, fields, sortField, highlightField);
+    }
+
+    @Override
+    public ElasticsearchPage queryForPage(QueryRequestVO data) throws IOException {
+        return ElasticsearchUtils.searchPageDocument(data.getIndex(), data.getCurrentPage(), data.getPageSize(), data.getTermName(), data.getStartTime(), data.getEndTime(), data.getFields(), data.getSortField(), data.getMatchPhrase(), data.getHighlightField(), data.getMatchStr());
     }
 
 }

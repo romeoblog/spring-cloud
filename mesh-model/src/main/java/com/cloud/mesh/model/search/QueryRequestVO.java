@@ -36,16 +36,34 @@ public class QueryRequestVO implements Serializable {
     private String index;
 
     /**
+     * the term name
+     */
+    @ApiModelProperty(value = "termName")
+    private String termName;
+
+    /**
      * the list of include field
      */
     @ApiModelProperty(value = "fields")
     private String fields;
 
     /**
+     * checks if matchPhrase
+     */
+    @ApiModelProperty(value = "matchPhrase")
+    private Boolean matchPhrase;
+
+    /**
      * the matchStr of the field
      */
     @ApiModelProperty(value = "matchStr")
     private String matchStr;
+
+    /**
+     * the document size
+     */
+    @ApiModelProperty(value = "size")
+    private Integer size;
 
     /**
      * the current page
@@ -72,9 +90,15 @@ public class QueryRequestVO implements Serializable {
     private Long endTime;
 
     /**
-     * The name of the field with sort desc
+     * the name of the field with sort desc
      */
     @ApiModelProperty(value = "sortField")
     private String sortField;
+
+    /**
+     * the highlight of the field
+     */
+    @ApiModelProperty(value = "highlightField")
+    private String highlightField;
 
 }
