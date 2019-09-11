@@ -60,7 +60,10 @@
     ├── mesh-generator -- Mybatis 构建自动化
     ├── mesh-model -- 与前端交互视图实体相关，VO、DTO、BTO
     ├── mesh-modules -- 模块集
+    ├────── mesh-async-elasticsearch
     ├────── mesh-elasticsearch -- 全文搜索引擎 Elasticsearch
+    ├────── mesh-mongodb
+    ├────── mesh-cassandra
     ├── mesh-core -- 服务层公共配置信息和组件初始化代码
     ├── mesh-service -- 独立服务父 POM
     ├────── mesh-business-service -- 独立业务服务1
@@ -239,6 +242,19 @@
 		<td>8650</td>
 		<td>8650</td>
 	</tr>
+	<tr>
+        <th colspan="3">MongoDB（8710-8719）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-elastisearch</td>
+        <td>8710</td>
+        <td>8710</td>
+    </tr>
 </table>
 
 ## 版本说明

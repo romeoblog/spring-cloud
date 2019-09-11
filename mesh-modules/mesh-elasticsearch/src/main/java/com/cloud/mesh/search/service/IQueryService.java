@@ -15,6 +15,7 @@
  */
 package com.cloud.mesh.search.service;
 
+import com.cloud.mesh.model.search.QueryRequestVO;
 import com.cloud.mesh.search.utils.ElasticsearchPage;
 import org.elasticsearch.index.query.QueryBuilder;
 
@@ -44,10 +45,20 @@ public interface IQueryService {
     /**
      * A Query that matches documents matching using the matches List API.
      *
+     * @param data the data params
+     * @return l
+     * @throws IOException the IOException
+     */
+    List<Map<String, Object>> queryForList(QueryRequestVO data) throws IOException;
+
+    /**
+     * A Query that matches documents matching using the matches List API.
+     *
      * @param index          the index
      * @param termName       the term name
      * @param startTime      the start time
      * @param endTime        the end time
+     * @param size           the page size
      * @param fields         the list of include field
      * @param sortField      The name of the field with sort desc
      * @param matchPhrase    checks if matchPhrase
@@ -56,7 +67,9 @@ public interface IQueryService {
      * @return l
      * @throws IOException the IOException
      */
+    @Deprecated
     List<Map<String, Object>> queryForList(String index, String termName, long startTime, long endTime, Integer size, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException;
+
 
     /**
      * A Query that matches documents matching using the matches List API (Custom the query builder).
@@ -89,6 +102,7 @@ public interface IQueryService {
      * @return e
      * @throws IOException the IOException
      */
+    @Deprecated
     ElasticsearchPage queryForPage(String index, int currentPage, int pageSize, String termName, long startTime, long endTime, String fields, String sortField, boolean matchPhrase, String highlightField, String matchStr) throws IOException;
 
     /**
@@ -105,6 +119,15 @@ public interface IQueryService {
      * @throws IOException the IOException
      */
     ElasticsearchPage queryForPage(String index, int currentPage, int pageSize, QueryBuilder query, String fields, String sortField, String highlightField) throws IOException;
+
+    /**
+     * A Query that matches documents matching using the matches Page API.
+     *
+     * @param data the data params
+     * @return e
+     * @throws IOException the IOException
+     */
+    ElasticsearchPage queryForPage(QueryRequestVO data) throws IOException;
 
 }
 
