@@ -335,20 +335,6 @@
 
     <dependencyManagement>
         <dependencies>
-            <!--<dependency>
-                <groupId>org.springframework</groupId>
-                <artifactId>spring-framework-bom</artifactId>
-                <version>${spring.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>io.spring.core</groupId>
-                <artifactId>core-bom</artifactId>
-                <version>${core-bom.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>-->
 
             <!-- Spring Boot Dependencies -->
             <dependency>
