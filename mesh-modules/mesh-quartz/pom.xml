@@ -8,9 +8,9 @@
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mesh-scheduler</artifactId>
+    <artifactId>mesh-quartz</artifactId>
     <packaging>jar</packaging>
-    <name>mesh-scheduler ${project.version}</name>
+    <name>mesh-quartz ${project.version}</name>
 
 
 </project>
