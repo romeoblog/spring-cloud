@@ -33,6 +33,7 @@
         <module>mesh-mongodb</module>
         <module>mesh-cassandra</module>
         <module>mesh-scheduler</module>
+        <module>mesh-saturn</module>
     </modules>
 
 </project>
