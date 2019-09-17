@@ -13,25 +13,19 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.mesh.mongodb.dao;
-
-import com.cloud.mesh.mongodb.entity.PersonDTO;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.mongodb.repository.MongoRepository;
-
-import java.util.List;
+package com.cloud.mesh.quartz.configuration;
 
 /**
- * Declare query methods on the interface.
+ * Execute the actual job of the Base Job interface
  *
  * @author willlu.zheng
- * @date 2019-09-06
+ * @date 2019-09-16
  */
-public interface PersonRepository extends MongoRepository<PersonDTO, String> {
+public interface BaseJob {
 
-    List<PersonDTO> findByNameLike(String name);
-
-    Page<PersonDTO> findByNameLike(String name, Pageable pageable);
+    /**
+     * Execute the actual job
+     */
+    void execute();
 
 }

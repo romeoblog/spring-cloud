@@ -13,30 +13,31 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.mesh.core.solver;
+package com.cloud.mesh.quartz.trigger;
 
-import com.cloud.mesh.common.utils.JacksonUtils;
+import com.cloud.mesh.quartz.configuration.QuartzConfig;
+import org.quartz.JobDetail;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.quartz.CronTriggerFactoryBean;
 import org.springframework.stereotype.Component;
 
-import java.util.Map;
-
 /**
- * Default Solver
+ * demo trigger
  *
  * @author willlu.zheng
- * @date 2019-09-02
+ * @date 2019-09-16
  */
 @Component
-public class DefaultSolver extends AbstractInspectionSolver<Map<String, Object>> {
+public class DemoTrigger {
 
-    @Override
-    public void solve(Map<String, Object> params) {
-        System.out.println(JacksonUtils.toJson(params) + ":Default");
-    }
+    @Value("${mesh.quartz.demoJob.cronEx}")
+    private String demoJob;
 
-    @Override
-    public String[] supports() {
-        return new String[]{"Default:Key"};
+    @Bean
+    public CronTriggerFactoryBean demoCronTrigger() {
+        JobDetail jobDetail = QuartzConfig.createJobDetail("demoJob");
+        return QuartzConfig.createCronTrigger(jobDetail, demoJob);
     }
 
 }
