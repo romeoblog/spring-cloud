@@ -1,0 +1,4 @@
+mesh:
+  quartz:
+    demoJob:
+      cronEx: 0/5 * * * * ?
