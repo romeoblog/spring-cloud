@@ -34,6 +34,7 @@
         <module>mesh-cassandra</module>
         <module>mesh-quartz</module>
         <module>mesh-saturn</module>
+        <module>mesh-elastic-job</module>
     </modules>
 
 </project>
