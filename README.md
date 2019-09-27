@@ -263,6 +263,19 @@
         <td>8720</td>
         <td>8720</td>
     </tr>
+    <tr>
+        <th colspan="3">全量同步（8730-8739）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8730</td>
+        <td>8730</td>
+    </tr>
 </table>
 
 ## 版本说明
