@@ -223,7 +223,8 @@
     <properties>
 
         <!-- parent version -->
-        <revision>5.0.1.SNAPSHOT</revision>
+        <!--<revision>5.1.0.SNAPSHOT</revision>-->
+        <revision>5.1.0</revision>
 
         <!-- encoding、jdk -->
         <encoding>UTF-8</encoding>
