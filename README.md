@@ -276,6 +276,45 @@
         <td>8730</td>
         <td>8730</td>
     </tr>
+    <tr>
+        <th colspan="3">Cassandra（8740-8744）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8730</td>
+        <td>8730</td>
+    </tr>
+    <tr>
+        <th colspan="3">Elestic-Job（8745-8746）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8745</td>
+        <td>8745</td>
+    </tr>
+    <tr>
+        <th colspan="3">Staturn（8747-8748）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8747</td>
+        <td>8747</td>
+    </tr>
 </table>
 
 ## 版本说明
