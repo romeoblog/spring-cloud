@@ -224,7 +224,7 @@
 
         <!-- parent version -->
         <!--<revision>5.1.0.SNAPSHOT</revision>-->
-        <revision>5.1.0</revision>
+        <revision>5.2.0.SNAPSHOT</revision>
 
         <!-- encoding、jdk -->
         <encoding>UTF-8</encoding>
