@@ -23,7 +23,7 @@ import com.cloud.mesh.search.async.canal.CanalMsgContent;
  * @author willlu.zheng
  * @date 2019-09-24
  */
-public class DeleteCanalEvent extends CanalEvent {
+public class DeleteCanalEvent extends AbstractCanalEvent {
     /**
      * Create a new ApplicationEvent.
      *

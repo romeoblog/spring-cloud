@@ -17,7 +17,7 @@ package com.cloud.mesh.search.async.listener;
 
 import com.cloud.mesh.search.async.canal.CanalChangeInfo;
 import com.cloud.mesh.search.async.canal.CanalMsgContent;
-import com.cloud.mesh.search.async.event.CanalEvent;
+import com.cloud.mesh.search.async.event.AbstractCanalEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public abstract class AbstractCanalListener<EVENT extends CanalEvent> implements ApplicationListener<EVENT> {
+public abstract class AbstractCanalListener<EVENT extends AbstractCanalEvent> implements ApplicationListener<EVENT> {
     private static final Logger LOGGER = LoggerFactory.getLogger(AbstractCanalListener.class);
 
     @Autowired

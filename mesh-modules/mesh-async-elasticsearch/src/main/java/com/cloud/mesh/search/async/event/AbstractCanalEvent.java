@@ -24,13 +24,13 @@ import org.springframework.context.ApplicationEvent;
  * @author willlu.zheng
  * @date 2019-09-24
  */
-public abstract class CanalEvent extends ApplicationEvent {
+public abstract class AbstractCanalEvent extends ApplicationEvent {
     /**
      * Create a new ApplicationEvent.
      *
      * @param source the object on which the event initially occurred (never {@code null})
      */
-    public CanalEvent(CanalMsgContent source) {
+    public AbstractCanalEvent(CanalMsgContent source) {
         super(source);
     }
 

@@ -36,12 +36,12 @@ public class SQLRunner {
 
     static Logger logger = LoggerFactory.getLogger(SQLRunner.class);
 
-    private final static QueryRunner runner = new QueryRunner();
+    private final static QueryRunner RUNNER = new QueryRunner();
 
-    private final static RowProcessor camelCaseRowProcessor = new BasicRowProcessor(new GenerousBeanProcessor());
+    private final static RowProcessor CAMEL_CASE_ROW_PROCESSOR = new BasicRowProcessor(new GenerousBeanProcessor());
 
     /* 定义简单对象类型列表 */
-    private final static List<Class<?>> PrimitiveClasses = new ArrayList<Class<?>>() {
+    private final static List<Class<?>> PRIMITIVE_CLASSES = new ArrayList<Class<?>>() {
         {
             add(Long.class);
             add(Double.class);
@@ -59,8 +59,8 @@ public class SQLRunner {
      * @param cls
      * @return
      */
-    private final static boolean _IsPrimitive(Class<?> cls) {
-        return cls.isPrimitive() || PrimitiveClasses.contains(cls);
+    private final static boolean isPrimitive(Class<?> cls) {
+        return cls.isPrimitive() || PRIMITIVE_CLASSES.contains(cls);
     }
 
 
@@ -95,7 +95,7 @@ public class SQLRunner {
     public static <T> T query(Connection conn, String sql, ResultSetHandler<T> rsh, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        T results = runner.query(conn, sql, rsh, params);
+        T results = RUNNER.query(conn, sql, rsh, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return results;
     }
@@ -116,7 +116,7 @@ public class SQLRunner {
     public static <T> T queryBean(Connection conn, String sql, Class<T> beanClass, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        T entity = runner.query(conn, sql, new BeanHandler<T>(beanClass), params);
+        T entity = RUNNER.query(conn, sql, new BeanHandler<T>(beanClass), params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return entity;
     }
@@ -137,7 +137,7 @@ public class SQLRunner {
     public static <T> T queryBeanWithCamelCase(Connection conn, String sql, Class<T> beanClass, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        T entity = runner.query(conn, sql, new BeanHandler<T>(beanClass, camelCaseRowProcessor), params);
+        T entity = RUNNER.query(conn, sql, new BeanHandler<T>(beanClass, CAMEL_CASE_ROW_PROCESSOR), params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return entity;
     }
@@ -156,7 +156,7 @@ public class SQLRunner {
     public static <T> List<T> queryBeanList(Connection conn, String sql, Class<T> beanClass, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        List<T> results = runner.query(conn, sql, _IsPrimitive(beanClass) ? new ColumnListHandler<T>(beanClass) : new BeanListHandler<T>(beanClass), params);
+        List<T> results = RUNNER.query(conn, sql, isPrimitive(beanClass) ? new ColumnListHandler<T>(beanClass) : new BeanListHandler<T>(beanClass), params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return results;
     }
@@ -175,7 +175,7 @@ public class SQLRunner {
     public static <T> List<T> queryBeanListWithCamelCase(Connection conn, String sql, Class<T> beanClass, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        List<T> results = runner.query(conn, sql, _IsPrimitive(beanClass) ? new ColumnListHandler<T>(beanClass) : new BeanListHandler<T>(beanClass, camelCaseRowProcessor), params);
+        List<T> results = RUNNER.query(conn, sql, isPrimitive(beanClass) ? new ColumnListHandler<T>(beanClass) : new BeanListHandler<T>(beanClass, CAMEL_CASE_ROW_PROCESSOR), params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return results;
     }
@@ -194,7 +194,7 @@ public class SQLRunner {
     public static List<Map<String, Object>> queryMapList(Connection conn, String sql, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        List<Map<String, Object>> results = runner.query(conn, sql, new MapListHandler(), params);
+        List<Map<String, Object>> results = RUNNER.query(conn, sql, new MapListHandler(), params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return results;
     }
@@ -213,7 +213,7 @@ public class SQLRunner {
     public static List<Map<String, Object>> queryMapListWithCamelCase(Connection conn, String sql, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        List<Map<String, Object>> results = runner.query(conn, sql, new MapListHandler(camelCaseRowProcessor), params);
+        List<Map<String, Object>> results = RUNNER.query(conn, sql, new MapListHandler(CAMEL_CASE_ROW_PROCESSOR), params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return results;
     }
@@ -230,7 +230,7 @@ public class SQLRunner {
     public static List<Object[]> queryArrayList(Connection conn, String sql, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        List<Object[]> results = runner.query(conn, sql, new ArrayListHandler(), params);
+        List<Object[]> results = RUNNER.query(conn, sql, new ArrayListHandler(), params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return results;
     }
@@ -289,7 +289,7 @@ public class SQLRunner {
     public static long stat(Connection conn, String sql, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        Long result = (Long) runner.query(conn, sql, new ScalarHandler(Long.class), params);
+        Long result = (Long) RUNNER.query(conn, sql, new ScalarHandler(Long.class), params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return (result != null) ? result : -1;
     }
@@ -306,7 +306,7 @@ public class SQLRunner {
     public static int execute(Connection conn, String sql, Object... params) throws SQLException {
         logger.debug("RunSQL[{}], Params[{}]", sql, StringUtils.join(params, ","));
         long startTimes = System.currentTimeMillis();
-        int result = runner.update(conn, sql, params);
+        int result = RUNNER.update(conn, sql, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return result;
     }
@@ -323,7 +323,7 @@ public class SQLRunner {
     public static int[] executeBatch(Connection conn, String sql, Object[][] params) throws SQLException {
         logger.debug("RunSQL[{}]", sql);
         long startTimes = System.currentTimeMillis();
-        int[] results = runner.batch(conn, sql, params);
+        int[] results = RUNNER.batch(conn, sql, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
         return results;
     }
@@ -350,7 +350,7 @@ public class SQLRunner {
         String insertSQL = buildInsertSQLByMap(table, valueMap);
         logger.debug("RunSQL[{}]", insertSQL);
         long startTimes = System.currentTimeMillis();
-        int result = runner.update(conn, insertSQL, params);
+        int result = RUNNER.update(conn, insertSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return result;
@@ -383,7 +383,7 @@ public class SQLRunner {
 
         logger.debug("RunSQL[{}]", insertSQL);
         long startTimes = System.currentTimeMillis();
-        int[] results = runner.batch(conn, insertSQL, params);
+        int[] results = RUNNER.batch(conn, insertSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return results;
@@ -412,7 +412,7 @@ public class SQLRunner {
 
         logger.debug("RunSQL[{}]", deleteSQL);
         long startTimes = System.currentTimeMillis();
-        int result = runner.update(conn, deleteSQL, params);
+        int result = RUNNER.update(conn, deleteSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return result;
@@ -445,7 +445,7 @@ public class SQLRunner {
 
         logger.debug("RunSQL[{}]", deleteSQL);
         long startTimes = System.currentTimeMillis();
-        int[] results = runner.batch(conn, deleteSQL, params);
+        int[] results = RUNNER.batch(conn, deleteSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return results;
@@ -476,7 +476,7 @@ public class SQLRunner {
         String deleteSQL = buildDeleteSQLByKeys(table, keys);
         logger.debug("RunSQL[{}]", deleteSQL);
         long startTimes = System.currentTimeMillis();
-        int result = runner.update(conn, deleteSQL, params);
+        int result = RUNNER.update(conn, deleteSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return result;
@@ -513,7 +513,7 @@ public class SQLRunner {
         String deleteSQL = buildDeleteSQLByKeys(table, keys);
         logger.debug("RunSQL[{}]", deleteSQL);
         long startTimes = System.currentTimeMillis();
-        int[] results = runner.batch(conn, deleteSQL, params);
+        int[] results = RUNNER.batch(conn, deleteSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return results;
@@ -547,7 +547,7 @@ public class SQLRunner {
 
         logger.debug("RunSQL[{}]", updataSQL);
         long startTimes = System.currentTimeMillis();
-        int result = runner.update(conn, updataSQL, params);
+        int result = RUNNER.update(conn, updataSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return result;
@@ -592,7 +592,7 @@ public class SQLRunner {
 
         logger.debug("RunSQL[{}]", updataSQL);
         long startTimes = System.currentTimeMillis();
-        int[] results = runner.batch(conn, updataSQL, params);
+        int[] results = RUNNER.batch(conn, updataSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return results;
@@ -631,7 +631,7 @@ public class SQLRunner {
 
         logger.debug("RunSQL[{}]", updataSQL);
         long startTimes = System.currentTimeMillis();
-        int result = runner.update(conn, updataSQL, params);
+        int result = RUNNER.update(conn, updataSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return result;
@@ -672,7 +672,7 @@ public class SQLRunner {
 
         logger.debug("RunSQL[{}]", updataSQL);
         long startTimes = System.currentTimeMillis();
-        int[] results = runner.batch(conn, updataSQL, params);
+        int[] results = RUNNER.batch(conn, updataSQL, params);
         logger.debug("RunTime [{} ms]", System.currentTimeMillis() - startTimes);
 
         return results;
