@@ -1,5 +1,30 @@
 # 版本发布日志
 
+## v5.1.0 
+
+### 升级功能特性
+* 新增支持 NoSQL 分布式文件存储：MongDB 数据存储。
+* 新增支持从 Mysql -> ElasticSearch 全量同步，采用 Logstash 实现方案。
+* 新增支持Canal基于MySQL高性能数据增量同步，消息可选择 Kafka 或 RabbitMQ 作为消息缓冲，方案：Mysql  ->  Canal  ->  消息中间件  ->  ElasticSearch。
+* 新增支持 Apache Quartz任务调度。
+* 升级分布式事物 Seata 版本至 0.8.0。
+* 升级配置中心 Nacos 版本至 1.1.3。
+* 完善优化相关文档。
+
+### 修复和优化
+* 删除pom.xml一些无效代码。
+* 其他修复和优化。
+
+### 下版本支持功能
+* 支持全局Docker化，支持Docker-Compose 一键部署。
+* 支持分布式NoSQL数据存储：Cassandra。
+* 支持分布式调度解决方案：Elastic-Job。
+* 支持唯品会开源的一个分布式任务调度平台：Saturn (任务调度系统)。
+* 支持Seata达生产级别。
+
+2019.09.28
+
+
 ## v5.0.0 
 
 ### 功能特性
