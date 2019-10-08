@@ -18,9 +18,8 @@ package com.cloud.mesh.search.async.service;
 import com.cloud.mesh.search.async.entity.SyncByTableRequest;
 
 /**
- * @author <a href="mailto:wangchao.star@gmail.com">wangchao</a>
- * @version 1.0
- * @since 2017-08-31 17:48:00
+ * @author willlu.zheng
+ * @date 2019-10-08
  */
 public interface SyncService {
     /**
