@@ -6,4 +6,4 @@ ENV JAVA_OPTS="${JAVA_OPTS} -DLOG_HOME=${LOG_HOME}"
 ADD target/${JAR_FILE} /usr/share/myservice/myservice.jar
 ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -jar /usr/share/myservice/myservice.jar" ]
 VOLUME ${LOG_HOME}
-EXPOSE 8650
+EXPOSE 8700
