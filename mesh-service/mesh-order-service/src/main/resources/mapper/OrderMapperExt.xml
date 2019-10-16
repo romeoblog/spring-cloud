@@ -4,7 +4,7 @@
 
 
     <insert id="insertOrder" parameterType="com.cloud.mesh.entity.OrderTbl" useGeneratedKeys="true" keyProperty="id">
-        insert into order_tbl(user_id, commodity_code, `count`, money)
+        insert into db_order.order_tbl(user_id, commodity_code, `count`, money)
         values(#{userId}, #{commodityCode}, #{count}, #{money})
     </insert>
 
