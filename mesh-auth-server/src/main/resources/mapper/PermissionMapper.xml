@@ -3,21 +3,21 @@
 <mapper namespace="com.cloud.mesh.auth.mapper.PermissionMapperExt">
 
     <select id="findByRoleId" resultType="com.cloud.mesh.auth.entity.Permission" parameterType="Integer">
-      select p.* from dg_role_permission rp,dg_permission p where rp.permission_id = p.id and rp.role_id = #{roleId,jdbcType=INTEGER}
+      select p.* from dg_auth.dg_role_permission rp,dg_auth.dg_permission p where rp.permission_id = p.id and rp.role_id = #{roleId,jdbcType=INTEGER}
     </select>
 
     <select id="listPermission" resultType="com.cloud.mesh.entity.TbPermission">
         SELECT
             p.*
         FROM
-            tb_user AS u
-            LEFT JOIN tb_user_role AS ur
+            dg_auth.tb_user AS u
+            LEFT JOIN dg_auth.tb_user_role AS ur
               ON u.id = ur.user_id
-            LEFT JOIN tb_role AS r
+            LEFT JOIN dg_auth.tb_role AS r
               ON r.id = ur.role_id
-            LEFT JOIN tb_role_permission AS rp
+            LEFT JOIN dg_auth.tb_role_permission AS rp
               ON r.id = rp.role_id
-            LEFT JOIN tb_permission AS p
+            LEFT JOIN dg_auth.tb_permission AS p
               ON p.id = rp.permission_id
         WHERE u.id = #{userId}
     </select>
