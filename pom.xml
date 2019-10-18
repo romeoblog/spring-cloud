@@ -229,6 +229,7 @@
         <!-- encoding、jdk -->
         <encoding>UTF-8</encoding>
         <java.version>1.8</java.version>
+        <project.build.sourceEncoding>${encoding}</project.build.sourceEncoding>
 
         <!-- spring -->
         <spring.version>5.1.5.RELEASE</spring.version>
@@ -486,11 +487,11 @@
             </dependency>
 
             <!-- Logger -->
-            <dependency>
+            <!--<dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter-log4j2</artifactId>
                 <version>${spring-boot-starter-log4j2.version}</version>
-            </dependency>
+            </dependency>-->
 
             <dependency>
                 <groupId>ch.qos.logback</groupId>
@@ -916,7 +917,7 @@
                         <phase>validate</phase>
                         <configuration>
                             <configLocation>${user.dir}/style/dg_checkstyle.xml</configLocation>
-                            <encoding>UTF-8</encoding>
+                            <encoding>${encoding}</encoding>
                             <consoleOutput>true</consoleOutput>
                             <failsOnError>false</failsOnError>
                             <failOnViolation>false</failOnViolation>
