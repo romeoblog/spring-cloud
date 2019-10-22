@@ -27,7 +27,7 @@ public class ServerRexEnum {
     /**
      * 各服务端url前缀
      */
-    public static class UriRexEnumBase extends BaseExtensibleEnum {
+    public static class UriRexEnumBase extends BaseExtensibleEnum<Integer> {
         private static final long serialVersionUID = -3123570392894951511L;
 
         //用户服务

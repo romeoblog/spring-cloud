@@ -24,7 +24,7 @@ package com.cloud.mesh.common.enums;
  * @author Benji
  * @date 2019-04-02
  */
-public class ResultCode extends BaseExtensibleEnum {
+public class ResultCode extends BaseExtensibleEnum<Integer> {
 
     public final static ResultCode OK = new ResultCode(200, "正常");
 

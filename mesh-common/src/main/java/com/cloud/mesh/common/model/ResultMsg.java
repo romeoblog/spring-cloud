@@ -84,7 +84,7 @@ public class ResultMsg<T> implements Serializable {
         this.data = data;
     }
 
-    public ResultMsg status(BaseExtensibleEnum status) {
+    public ResultMsg status(BaseExtensibleEnum<Integer> status) {
         this.setCode(status.getCode());
         this.setMessage(status.getName());
         return this;
