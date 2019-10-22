@@ -29,7 +29,7 @@ public class CommonEnum {
     /**
      * 是或否
      */
-    public static class YesOrNoEnumBase extends BaseExtensibleEnum {
+    public static class YesOrNoEnumBase extends BaseExtensibleEnum<Integer> {
 
         public final static YesOrNoEnumBase YES = new YesOrNoEnumBase(1, "是");
         public final static YesOrNoEnumBase NO = new YesOrNoEnumBase(0, "否");

@@ -29,7 +29,7 @@ public class DemoEnum {
     /**
      * 性别
      */
-    public static class SexEnumBase extends BaseExtensibleEnum {
+    public static class SexEnumBase extends BaseExtensibleEnum<Integer> {
         public final static SexEnumBase MAN = new SexEnumBase(1, "男");
         public final static SexEnumBase WOMAN = new SexEnumBase(2, "女");
         public final static SexEnumBase UNKNOWN = new SexEnumBase(0, "未知");
@@ -39,6 +39,24 @@ public class DemoEnum {
         }
 
         public SexEnumBase(int code, String name) {
+            super(code, name);
+        }
+    }
+
+    /**
+     * 银行编号
+     */
+    public static class BankEnumBase extends BaseExtensibleEnum<String> {
+        public final static BankEnumBase BOC = new BankEnumBase("0001", "中国银行");
+        public final static BankEnumBase ABC = new BankEnumBase("0002", "农业银行");
+        public final static BankEnumBase CCB = new BankEnumBase("0003", "建设银行");
+        public final static BankEnumBase ICBC = new BankEnumBase("0004", "工商银行");
+
+        public BankEnumBase(String code) {
+            this(code, null);
+        }
+
+        public BankEnumBase(String code, String name) {
             super(code, name);
         }
     }
