@@ -1,9 +1,4 @@
----
-title: 分布式事务之Seata-Client原理及流程详解
-author: fangliangsheng
-date: 2019/04/15
-keywords: fescar、seata、分布式事务
----
+分布式事务之Seata-Client原理及流程详解
 
 ## 前言
 在分布式系统中，分布式事务是一个必须要解决的问题，目前使用较多的是最终一致性方案。自年初阿里开源了Fescar（四月初更名为Seata）后，该项目受到了极大的关注度，目前已接近8000Star。[Seata](https://github.com/seata/seata)以高性能和零侵入的方式为目标解决微服务领域的分布式事务难题，目前正处于快速迭代中，近期小目标是生产可用的Mysql版本。关于Seata的总体介绍，可以查看[官方WIKI](https://github.com/seata/seata/wiki/%E6%A6%82%E8%A7%88)获得更多更全面的内容介绍。

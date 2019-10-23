@@ -1,9 +1,4 @@
----
-title: TaaS设计简介
-author: fagongzi(zhangxu19830126@gmail.com)
-date: 2019/04/23
-keywords: seata、分布式事务、高可用
----
+TaaS设计简介
 
 # Seata 高可用服务端 TaaS 正式开源
 

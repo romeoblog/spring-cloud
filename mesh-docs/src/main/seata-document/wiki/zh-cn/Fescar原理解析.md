@@ -1,9 +1,4 @@
----
-title:Fescar分布式事务原理解析探秘
-author:kl
-keywords:Fescar、分布式事务
-date:2019/02/18
----
+Fescar分布式事务原理解析探秘
 
 # 前言
 

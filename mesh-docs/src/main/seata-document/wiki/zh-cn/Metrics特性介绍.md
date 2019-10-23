@@ -1,9 +1,4 @@
----
-title: Metrics特性介绍
-author: zhengyangyong
-keywords: Metrics, APM, Prometheus
-date: 2019/07/03
----
+Metrics特性介绍
 
 Seata 0.7.0版本中将包含全新的特性——Metrics，作为APM（Application Performance Management & Monitoring）三大基石之一，通过它可以快速详尽的获取到TC、TM（规划中）和RM（规划中）中事务的活动状态以及时延等重要统计信息。
 

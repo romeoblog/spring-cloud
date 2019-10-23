@@ -1,9 +1,4 @@
----
-title: TCC 理论及设计实现指南介绍
-author: zhangthen
-date: 2019/03/26
-keywords: fescar、分布式事务、TCC、roadmap
----
+TCC 理论及设计实现指南介绍
 
 # TCC 理论及设计实现指南介绍
 
