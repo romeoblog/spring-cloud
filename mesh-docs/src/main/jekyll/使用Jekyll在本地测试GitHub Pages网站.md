@@ -16,7 +16,7 @@ https://bundler.io/
 
 1. 打开终端。
 
-2. 导航到您的网站的发布源。有关发布源的更多信息，请参见“ 关于![GitHub Pages](https://help.github.com/en/github/working-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites)”。
+2. 导航到您的网站的发布源。有关发布源的更多信息，请参见“ 关于[GitHub Pages](https://help.github.com/en/github/working-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites)”。
 
 3. 在本地运行您的Jekyll网站。
 
