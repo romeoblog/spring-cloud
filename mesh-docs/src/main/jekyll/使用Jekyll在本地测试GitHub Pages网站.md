@@ -1,18 +1,16 @@
 # 使用Jekyll在本地测试GitHub Pages网站
 
-## ![安装Jekyll](https://jekyllrb.com/docs/installation/)
+## [安装Jekyll](https://jekyllrb.com/docs/installation/)
 
 https://jekyllrb.com/docs/installation/
 
-## ![安装Ruby](https://www.ruby-lang.org/en/documentation/installation/)
+## [安装Ruby](https://www.ruby-lang.org/en/documentation/installation/)
 
 https://www.ruby-lang.org/en/documentation/installation/
 
-## ![安装Bundler](https://bundler.io/)
+## [安装Bundler](https://bundler.io/)
 
 https://bundler.io/
-
-gem install bundler
 
 ## 在本地建立网站
 
