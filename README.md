@@ -389,4 +389,4 @@ zheng_weilu@163.com
 
 [Apache License 2.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
 
-Copyright 2019 https://github.com/romeoblog/spring-cloud.git Group.
+Copyright © 2019 郑伟陆
