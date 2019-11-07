@@ -19,6 +19,9 @@ import com.cloud.mesh.common.model.ResultMsg;
 import com.cloud.mesh.common.utils.JsonUtils;
 import com.cloud.mesh.search.async.entity.SyncByTableRequest;
 import com.cloud.mesh.search.async.service.SyncService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.validation.annotation.Validated;
@@ -34,19 +37,17 @@ import javax.annotation.Resource;
  * @date 2019-10-08
  */
 @RestController
+@RequestMapping("/v7/async")
+@Api(value = "SyncController")
 public class SyncController {
     private static final Logger logger = LoggerFactory.getLogger(SyncController.class);
 
     @Resource
     private SyncService syncService;
 
-    /**
-     * 通过库名和表名全量同步数据
-     *
-     * @param request 请求参数
-     */
+    @ApiOperation(value = "通过库名和表名全量同步数据.")
     @RequestMapping(value = "/byTable", method = RequestMethod.POST, produces = {"application/json"})
-    public ResultMsg syncTable(@Validated @RequestBody SyncByTableRequest request) {
+    public ResultMsg syncTable(@ApiParam(value = "request", required = true) @Validated @RequestBody SyncByTableRequest request) {
         logger.debug("request_info: " + JsonUtils.toJson(request));
         if (syncService.syncByTable(request)) {
             return ResultMsg.ok();
