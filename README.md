@@ -382,7 +382,8 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
 #### 邮箱：
 zheng_weilu@163.com
 
-#### 微信：
+#### 微信： codelu521
+
 ![个人微信](mesh-docs/src/main/name.jpeg)
 
 ## 许可证
