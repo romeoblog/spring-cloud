@@ -384,7 +384,7 @@ zheng_weilu@163.com
 
 #### 微信： codelu521
 
-![个人微信](mesh-docs/src/main/name.jpeg)
+![个人微信](http://cdn.willlu.cn/%E5%BE%AE%E4%BF%A1%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%89%87.jpeg)
 
 ## 许可证
 
