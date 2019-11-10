@@ -18,24 +18,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>mesh-parent</artifactId>
+        <artifactId>mesh-modules</artifactId>
         <groupId>com.cloud.mesh</groupId>
         <version>${revision}</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>mesh-modules</artifactId>
-    <packaging>pom</packaging>
-    <name>mesh-modules ${project.version}</name>
-
-    <modules>
-        <module>mesh-elasticsearch</module>
-        <module>mesh-async-elasticsearch</module>
-        <module>mesh-mongodb</module>
-        <module>mesh-cassandra</module>
-        <module>mesh-quartz</module>
-        <module>mesh-saturn</module>
-        <module>mesh-elastic-job</module>
-        <module>mesh-oss</module>
-    </modules>
+    <artifactId>mesh-oss</artifactId>
+    <packaging>jar</packaging>
+    <name>mesh-oss ${project.version}</name>
 
 </project>
