@@ -178,6 +178,17 @@
                         <enabled>false</enabled>
                     </snapshots>
                 </repository>
+                <!-- SpringCloud Alibaba Maven snapshots -->
+                <repository>
+                    <id>sonatype-snapshot</id>
+                    <url>http://oss.sonatype.org/content/repositories/snapshots</url>
+                    <releases>
+                        <enabled>false</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
             </repositories>
             <pluginRepositories>
                 <pluginRepository>
