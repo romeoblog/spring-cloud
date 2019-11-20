@@ -59,7 +59,7 @@ public class PECode {
     }
 
     public static String getParam(String url, String name) {
-        if (url.indexOf("?") == -1) {
+        if (url == null || url.indexOf("?") == -1) {
             return null;
         }
         String params = url.substring(url.indexOf("?") + 1);
@@ -71,7 +71,7 @@ public class PECode {
         System.out.println(_10_to_62(60000000));
 
         String s = "/gift/sweepstakes/to-recive/";
-        String ss = "http://localos:8080//gift/sweepstakes/to-recive/4848?userId=111";
+        String ss = "/index/?null=111";
 
         System.out.println(ss.indexOf(s));
 
