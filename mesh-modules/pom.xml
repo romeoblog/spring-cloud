@@ -36,6 +36,7 @@
         <module>mesh-saturn</module>
         <module>mesh-elastic-job</module>
         <module>mesh-oss</module>
+        <module>mesh-shorturl</module>
     </modules>
 
 </project>
