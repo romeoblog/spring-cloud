@@ -388,6 +388,6 @@ willluzheng@gmail.com
 
 ## 许可证
 
-[Apache License 2.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
+[GNU Affero General Public License v3.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
 
 Copyright © 2019 郑伟陆
