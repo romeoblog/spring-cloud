@@ -18,7 +18,7 @@ package com.cloud.mesh.mq.rocketmq.consumer;
 /**
  * MQ处理接口类
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-03
  */
 public interface Handler {

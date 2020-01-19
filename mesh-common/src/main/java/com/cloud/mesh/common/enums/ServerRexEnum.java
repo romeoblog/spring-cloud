@@ -18,7 +18,7 @@ package com.cloud.mesh.common.enums;
 /**
  * 服务相关枚举
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-09
  * @since 1.0.0
  */
@@ -27,7 +27,7 @@ public class ServerRexEnum {
     /**
      * 各服务端url前缀
      */
-    public static class UriRexEnumBase extends BaseExtensibleEnum {
+    public static class UriRexEnumBase extends BaseExtensibleEnum<Integer> {
         private static final long serialVersionUID = -3123570392894951511L;
 
         //用户服务

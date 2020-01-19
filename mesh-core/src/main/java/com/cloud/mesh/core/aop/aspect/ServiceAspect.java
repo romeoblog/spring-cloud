@@ -35,11 +35,11 @@ import java.util.concurrent.TimeUnit;
 /**
  * Aop Aspect with service
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-16
  */
-@Aspect
-@Component
+//@Aspect
+//@Component
 public class ServiceAspect {
 
     private final static Logger LOGGER = LoggerFactory.getLogger(ServiceAspect.class);

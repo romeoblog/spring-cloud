@@ -27,7 +27,7 @@ import java.util.List;
  * 延时消息
  * 启动消费者等待传入订阅消息
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-27
  */
 public class ScheduledMessageConsumer {

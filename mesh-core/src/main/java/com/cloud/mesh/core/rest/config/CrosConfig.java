@@ -26,7 +26,7 @@ import org.springframework.web.filter.CorsFilter;
 /**
  * The Cors configuration
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-14
  */
 @Configuration

@@ -25,7 +25,7 @@ import java.security.NoSuchAlgorithmException;
 /**
  * 常用加密算法工具类
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-08
  * @since 1.0.0
  */

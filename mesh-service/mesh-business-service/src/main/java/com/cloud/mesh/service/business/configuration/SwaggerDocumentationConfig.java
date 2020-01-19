@@ -27,7 +27,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 /**
  * The Swagger Documentation Configuration
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-14
  */
 @Configuration

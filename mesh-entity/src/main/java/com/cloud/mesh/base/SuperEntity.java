@@ -22,7 +22,7 @@ import java.io.Serializable;
 /**
  * SuperEntity
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-03
  */
 public class SuperEntity<T extends Model> extends Model<T> {

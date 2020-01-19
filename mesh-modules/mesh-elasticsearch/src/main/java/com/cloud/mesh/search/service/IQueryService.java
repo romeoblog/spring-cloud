@@ -26,7 +26,7 @@ import java.util.Map;
 /**
  * A Query that matches documents matching interface service
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-17
  */
 public interface IQueryService {

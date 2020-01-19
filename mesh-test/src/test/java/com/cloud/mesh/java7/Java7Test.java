@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * JDK7 新特性
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-02
  */
 public class Java7Test {

@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * 订单服务 Demo
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 @FeignClient(name = "mesh-order-service", path = "/order")

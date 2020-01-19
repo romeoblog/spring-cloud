@@ -29,7 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * MybatisApplication
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-20
  */
 @EnableSwagger2

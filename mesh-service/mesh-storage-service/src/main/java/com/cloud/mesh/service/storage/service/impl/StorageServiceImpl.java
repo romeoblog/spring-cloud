@@ -26,7 +26,7 @@ import org.springframework.transaction.annotation.Transactional;
 /**
  * 库存实现类 Demo
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 @Service

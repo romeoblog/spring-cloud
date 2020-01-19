@@ -24,7 +24,7 @@ import java.io.Serializable;
 /**
  * 创建订单VO Demo
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 @Data

@@ -22,7 +22,7 @@ import com.google.gson.reflect.TypeToken;
 /**
  * Null String To Empty Adapter Factory Class
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-30
  */
 public class NullStringToEmptyAdapterFactory<T> implements TypeAdapterFactory {

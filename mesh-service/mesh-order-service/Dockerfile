@@ -1,5 +1,5 @@
 FROM java:8
-MAINTAINER benji "zheng_weilu@163.com"
+MAINTAINER willlu.zheng "zheng_weilu@163.com"
 ARG LOG_HOME
 ARG JAR_FILE
 ENV JAVA_OPTS="${JAVA_OPTS} -DLOG_HOME=${LOG_HOME}"

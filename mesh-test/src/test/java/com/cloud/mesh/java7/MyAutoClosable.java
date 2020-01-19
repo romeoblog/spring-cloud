@@ -18,7 +18,7 @@ package com.cloud.mesh.java7;
 /**
  * 自定义AutoCloseable
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-02
  */
 public class MyAutoClosable implements AutoCloseable {

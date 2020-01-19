@@ -25,15 +25,15 @@ import java.util.Map;
 /**
  * Base Enum Class
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-03
  */
 @Slf4j
-public abstract class BaseExtensibleEnum implements Serializable {
+public abstract class BaseExtensibleEnum<T> implements Serializable {
 
     private static Map<Class<? extends BaseExtensibleEnum>, Map<Object, BaseExtensibleEnum>> enums = new HashMap<>();
 
-    private int code;
+    private T code;
 
     private String name;
 
@@ -42,7 +42,7 @@ public abstract class BaseExtensibleEnum implements Serializable {
         return name;
     }
 
-    public int getCode() {
+    public T getCode() {
         return code;
     }
 
@@ -50,11 +50,11 @@ public abstract class BaseExtensibleEnum implements Serializable {
         return name;
     }
 
-    protected BaseExtensibleEnum(int code) {
+    protected BaseExtensibleEnum(T code) {
         this(code, null);
     }
 
-    protected BaseExtensibleEnum(int code, String name) {
+    protected BaseExtensibleEnum(T code, String name) {
         this.code = code;
         this.name = name;
         register(this);

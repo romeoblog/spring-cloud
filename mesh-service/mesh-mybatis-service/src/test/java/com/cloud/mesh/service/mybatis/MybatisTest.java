@@ -29,7 +29,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 /**
  * The type JUnit Test
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-29
  */
 @RunWith(SpringJUnit4ClassRunner.class)

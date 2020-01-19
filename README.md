@@ -251,9 +251,69 @@
         <td>Docker映射端口号</td>
     </tr>
     <tr>
-        <td>mesh-elastisearch</td>
+        <td>mesh-mongoDB</td>
         <td>8710</td>
         <td>8710</td>
+    </tr>
+    <tr>
+        <th colspan="3">任务调度器（8720-8729）</th>
+    <tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8720</td>
+        <td>8720</td>
+    </tr>
+    <tr>
+        <th colspan="3">全量同步（8730-8739）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8730</td>
+        <td>8730</td>
+    </tr>
+    <tr>
+        <th colspan="3">Cassandra（8740-8744）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8730</td>
+        <td>8730</td>
+    </tr>
+    <tr>
+        <th colspan="3">Elestic-Job（8745-8746）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8745</td>
+        <td>8745</td>
+    </tr>
+    <tr>
+        <th colspan="3">Staturn（8747-8748）</th>
+    <tr>
+    <tr>
+        <td>服务名称</td>
+        <td>服务端口号</td>
+        <td>Docker映射端口号</td>
+    </tr>
+    <tr>
+        <td>mesh-quartz</td>
+        <td>8747</td>
+        <td>8747</td>
     </tr>
 </table>
 
@@ -320,13 +380,14 @@ Spring Cloud 使用 Maven 来构建，最快的使用方式将本项目执行以
 ## 联系方式
 
 #### 邮箱：
-zheng_weilu@163.com
+willluzheng@gmail.com
 
-#### 微信：
-![个人微信](mesh-docs/src/main/name.jpeg)
+#### 微信： codelu521
+
+![个人微信](http://cdn.willlu.cn/%E5%BE%AE%E4%BF%A1%E4%B8%AA%E4%BA%BA%E5%90%8D%E7%89%87.jpeg)
 
 ## 许可证
 
-[Apache License 2.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
+[GNU Affero General Public License v3.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
 
-Copyright 2019 https://github.com/romeoblog/spring-cloud.git Group.
+Copyright © 2019 郑伟陆

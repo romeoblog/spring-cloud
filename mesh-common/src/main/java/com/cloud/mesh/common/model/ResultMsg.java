@@ -24,7 +24,7 @@ import java.io.Serializable;
 /**
  * 视图结果集
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-02
  */
 public class ResultMsg<T> implements Serializable {
@@ -84,7 +84,7 @@ public class ResultMsg<T> implements Serializable {
         this.data = data;
     }
 
-    public ResultMsg status(BaseExtensibleEnum status) {
+    public ResultMsg status(BaseExtensibleEnum<Integer> status) {
         this.setCode(status.getCode());
         this.setMessage(status.getName());
         return this;

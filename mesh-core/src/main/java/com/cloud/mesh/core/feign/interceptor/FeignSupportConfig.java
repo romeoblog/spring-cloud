@@ -22,7 +22,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Feign配置注册（全局）
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-10
  * @since 1.0.0
  */

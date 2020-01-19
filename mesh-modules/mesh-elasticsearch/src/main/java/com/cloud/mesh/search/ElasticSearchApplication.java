@@ -29,7 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * ElasticSearchApplication
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-13
  */
 @EnableSwagger2

@@ -24,7 +24,7 @@ import java.util.Set;
 /**
  * 用户账号实体
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-08
  * @since 1.0.0
  */

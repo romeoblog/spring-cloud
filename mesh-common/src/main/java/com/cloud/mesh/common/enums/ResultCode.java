@@ -21,10 +21,10 @@ package com.cloud.mesh.common.enums;
  * 1、可以显示给前端用户：code > 0
  * 2、不可显示给前端用户：code = -1(调试过程错误信息、用于内部调试使用)
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-02
  */
-public class ResultCode extends BaseExtensibleEnum {
+public class ResultCode extends BaseExtensibleEnum<Integer> {
 
     public final static ResultCode OK = new ResultCode(200, "正常");
 

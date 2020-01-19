@@ -45,7 +45,7 @@ import java.util.Arrays;
 /**
  * 认证授权服务配置
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-07
  */
 @Configuration

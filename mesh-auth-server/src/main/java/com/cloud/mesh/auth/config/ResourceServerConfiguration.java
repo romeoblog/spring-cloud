@@ -24,7 +24,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 /**
  * 配置资源服务器
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-07
  */
 @Configuration

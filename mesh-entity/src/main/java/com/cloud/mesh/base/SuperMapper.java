@@ -20,7 +20,7 @@ import com.baomidou.mybatisplus.mapper.BaseMapper;
 /**
  * SuperMapper
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-03
  */
 public interface SuperMapper<T> extends BaseMapper<T> {

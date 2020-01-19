@@ -18,7 +18,7 @@ package com.cloud.mesh.core.exception;
 /**
  * Permission Exception
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-14
  */
 public class PermissionException extends RuntimeException {

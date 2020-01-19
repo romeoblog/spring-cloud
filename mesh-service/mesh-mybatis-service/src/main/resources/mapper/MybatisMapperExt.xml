@@ -12,7 +12,7 @@
     </resultMap>
 
     <select id="listPageTest" resultMap="TestVOResultMap">
-        select `name`,type,age,address,sex,`status` from mybatis_demo order by id desc
+        select `name`,type,age,address,sex,`status` from db_test.mybatis_demo order by id desc
     </select>
 
 

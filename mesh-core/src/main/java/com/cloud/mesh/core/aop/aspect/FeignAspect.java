@@ -41,7 +41,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * The type Aop Aspect with FeignAspect
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-16
  */
 @Aspect

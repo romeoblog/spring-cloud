@@ -33,7 +33,7 @@ import java.util.List;
  * 3. 不支持延时发送
  * 4. 一批消息的大小不能大于 1M
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-27
  */
 public class BatchConsumer {

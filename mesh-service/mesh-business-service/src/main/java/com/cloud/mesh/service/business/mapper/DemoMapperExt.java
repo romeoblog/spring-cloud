@@ -20,7 +20,7 @@ import com.cloud.mesh.service.business.entity.DemoVO;
 /**
  * demo mapper
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 public interface DemoMapperExt {

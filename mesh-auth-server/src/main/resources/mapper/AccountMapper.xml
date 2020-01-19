@@ -19,7 +19,7 @@
     </sql>
 
     <select id="findByAccountName" parameterType="java.lang.String" resultMap="baseResultMap">
-        select * from dg_account where account_name = #{accountName,jdbcType=VARCHAR}
+        select * from dg_auth.dg_account where account_name = #{accountName,jdbcType=VARCHAR}
     </select>
 
 

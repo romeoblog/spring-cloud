@@ -22,7 +22,7 @@ import java.io.IOException;
 /**
  * Index a document interface service
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-17
  */
 public interface IIndexService {

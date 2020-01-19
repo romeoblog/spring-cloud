@@ -18,7 +18,7 @@ package com.cloud.mesh.common.exception;
 /**
  * The type Should never happen exception.
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-24
  */
 public class ShouldNeverHappenException extends RuntimeException {

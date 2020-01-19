@@ -18,7 +18,7 @@ package com.cloud.mesh.common.constant;
 /**
  * Head Constant Flag
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-30
  */
 public class HeadConstant {

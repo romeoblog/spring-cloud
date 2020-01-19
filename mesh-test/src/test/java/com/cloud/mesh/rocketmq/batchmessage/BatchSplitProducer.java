@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * 发送批量消息
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-27
  */
 public class BatchSplitProducer {

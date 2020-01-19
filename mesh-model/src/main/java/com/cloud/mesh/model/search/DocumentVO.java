@@ -23,7 +23,7 @@ import java.io.Serializable;
 /**
  * The type document vo
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-19
  */
 @Data

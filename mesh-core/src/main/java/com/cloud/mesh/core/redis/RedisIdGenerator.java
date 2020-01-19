@@ -20,7 +20,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 /**
  * RedisIdGenerator
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-08
  * @since 1.0.0
  */

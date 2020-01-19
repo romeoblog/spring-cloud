@@ -29,7 +29,7 @@ import java.util.List;
 /**
  * Producer，发送顺序消息
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-27
  */
 public class Producer {

@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * The type authenticated result message
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-24
  */
 @Data

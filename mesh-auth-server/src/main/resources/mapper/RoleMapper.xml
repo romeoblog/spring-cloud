@@ -12,7 +12,7 @@
     </resultMap>
 
     <select id="findByAccountId" resultMap="baseResultMap" parameterType="Integer">
-      select r.* from dg_account_role mr,dg_role r where mr.role_id = r.id and mr.account_id = #{accountId,jdbcType=INTEGER}
+      select r.* from dg_auth.dg_account_role mr,dg_auth.dg_role r where mr.role_id = r.id and mr.account_id = #{accountId,jdbcType=INTEGER}
     </select>
 
 

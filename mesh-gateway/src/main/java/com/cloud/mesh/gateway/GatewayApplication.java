@@ -24,7 +24,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 /**
  * SpringApplication run
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-03
  */
 @Slf4j

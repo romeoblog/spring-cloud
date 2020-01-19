@@ -33,7 +33,7 @@ import java.util.*;
  * 〈重写RedisTokenStore〉
  * spring5.0修改了一些方法，导致不兼容，需要重写全部的set()为stringCommands().set()
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-08
  * @since 1.0.0
  */

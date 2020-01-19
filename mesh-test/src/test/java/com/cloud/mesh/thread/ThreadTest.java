@@ -28,7 +28,7 @@ import java.util.Vector;
 /**
  * 多线程测试
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-26
  */
 public class ThreadTest {
@@ -78,6 +78,7 @@ public class ThreadTest {
         final Vector<String> vector = new Vector<>();
 
         while (true) {
+            System.out.println("=========================");
             for (int i = 0; i < 10; i++) {
                 vector.add("项：" + i);
             }

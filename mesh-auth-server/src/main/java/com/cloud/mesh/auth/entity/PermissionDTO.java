@@ -22,7 +22,7 @@ import java.io.Serializable;
 /**
  * 权限实体DTO
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-18
  */
 @Data

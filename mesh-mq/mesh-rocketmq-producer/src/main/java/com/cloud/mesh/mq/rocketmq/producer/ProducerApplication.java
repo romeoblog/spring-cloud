@@ -29,7 +29,7 @@ import org.springframework.cloud.stream.messaging.Source;
 /**
  * SpringApplication run.
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-30
  */
 @SpringBootApplication

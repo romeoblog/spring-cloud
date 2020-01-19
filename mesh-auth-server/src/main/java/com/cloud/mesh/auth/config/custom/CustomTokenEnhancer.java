@@ -31,7 +31,7 @@ import java.util.Map;
 /**
  * 自定义生成token携带的信息，将额外的信息添加到token中
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-08
  */
 @Slf4j

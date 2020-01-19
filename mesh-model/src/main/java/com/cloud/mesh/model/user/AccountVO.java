@@ -24,7 +24,7 @@ import java.io.Serializable;
 /**
  * 账号 VO
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 @Data

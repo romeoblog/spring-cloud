@@ -22,7 +22,7 @@ import org.junit.Test;
 /**
  * ClassPathResourceReaderTest
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-15
  */
 public class ClassPathResourceReaderTest {

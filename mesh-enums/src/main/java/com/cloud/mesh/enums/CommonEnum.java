@@ -19,7 +19,7 @@ import com.cloud.mesh.common.enums.BaseExtensibleEnum;
 
 /**
  * Created with default template
- * Author: Joe Benji
+ * Author: Joe willlu.zheng
  * Date: 2019-03-30
  * Time: 11:17
  * Description: 枚举公共类
@@ -29,7 +29,7 @@ public class CommonEnum {
     /**
      * 是或否
      */
-    public static class YesOrNoEnumBase extends BaseExtensibleEnum {
+    public static class YesOrNoEnumBase extends BaseExtensibleEnum<Integer> {
 
         public final static YesOrNoEnumBase YES = new YesOrNoEnumBase(1, "是");
         public final static YesOrNoEnumBase NO = new YesOrNoEnumBase(0, "否");

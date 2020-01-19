@@ -20,7 +20,7 @@ import com.cloud.mesh.model.user.AccountVO;
 /**
  * 账号接口 Demo
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 public interface IAccountService {

@@ -34,7 +34,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * The Global Exception Handler
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-14
  */
 @RestControllerAdvice

@@ -28,7 +28,7 @@ import java.util.Enumeration;
 /**
  * Feign请求拦截器（设置请求头，传递登录信息）
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-10
  * @since 1.0.0
  */

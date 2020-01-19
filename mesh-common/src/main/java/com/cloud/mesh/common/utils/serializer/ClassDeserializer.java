@@ -25,7 +25,7 @@ import java.lang.reflect.Type;
 /**
  * Data Entity Class Parse
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-30
  */
 public class ClassDeserializer implements JsonDeserializer<Class<?>> {

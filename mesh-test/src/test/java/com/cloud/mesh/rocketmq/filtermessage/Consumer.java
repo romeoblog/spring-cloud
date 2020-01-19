@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * 用MessageSelector.bySql来使用sql筛选消息
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-27
  */
 public class Consumer {

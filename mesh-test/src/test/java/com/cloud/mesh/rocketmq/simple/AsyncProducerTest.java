@@ -27,7 +27,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
  * Asynchronous transmission is generally used in response time sensitive business scenarios.
  * </p>
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-26
  */
 public class AsyncProducerTest {

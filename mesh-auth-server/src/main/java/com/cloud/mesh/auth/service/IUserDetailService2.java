@@ -20,7 +20,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 /**
  * 自定义认证逻辑
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-07
  */
 public interface IUserDetailService2 extends UserDetailsService {

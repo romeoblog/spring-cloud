@@ -21,7 +21,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * 〈自定义UserDetailService〉
  * 自定义认证逻辑
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-08
  * @since 1.0.0
  */

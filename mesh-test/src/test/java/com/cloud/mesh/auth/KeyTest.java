@@ -23,7 +23,7 @@ import org.junit.Test;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 /**
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-03
  */
 public class KeyTest {

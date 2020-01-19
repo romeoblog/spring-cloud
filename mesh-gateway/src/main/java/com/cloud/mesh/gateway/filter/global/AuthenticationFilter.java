@@ -49,7 +49,7 @@ import java.util.concurrent.atomic.AtomicReference;
 /**
  * Authentication Check Filter
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-02
  */
 @Component

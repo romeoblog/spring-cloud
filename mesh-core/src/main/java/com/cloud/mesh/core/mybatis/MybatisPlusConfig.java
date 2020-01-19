@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * MybatisPlus Configuration
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-29
  */
 @Configuration

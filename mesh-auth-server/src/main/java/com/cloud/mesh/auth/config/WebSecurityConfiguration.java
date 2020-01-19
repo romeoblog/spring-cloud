@@ -30,7 +30,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 /**
  * 服务器安全配置
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-07
  */
 @Configuration

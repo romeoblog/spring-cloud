@@ -26,7 +26,7 @@ import java.lang.reflect.Type;
 /**
  * Default Serializer
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-30
  */
 public class DefaultSerializer<T> implements JsonSerializer<T> {

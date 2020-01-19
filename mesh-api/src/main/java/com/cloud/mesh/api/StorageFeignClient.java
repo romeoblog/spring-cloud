@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * 库存服务
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 @FeignClient(name = "mesh-storage-service", path = "/storage")
