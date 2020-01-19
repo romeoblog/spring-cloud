@@ -20,7 +20,7 @@ import com.baomidou.mybatisplus.service.IService;
 /**
  * SuperService
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-03
  */
 public interface SuperService<T> extends IService<T> {

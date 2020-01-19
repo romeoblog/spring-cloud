@@ -18,7 +18,7 @@ package com.cloud.mesh.gateway.utils;
 /**
  * The type Nacos Config Utils
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-30
  */
 public final class NacosConfigUtil {

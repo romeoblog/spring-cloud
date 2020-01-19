@@ -26,7 +26,7 @@ import java.util.concurrent.locks.ReentrantLock;
  * <p>
  * Condition#signal() with Object#notify()；
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-06
  */
 public class ConTest {

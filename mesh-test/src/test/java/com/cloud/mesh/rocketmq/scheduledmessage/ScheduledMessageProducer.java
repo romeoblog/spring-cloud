@@ -21,7 +21,7 @@ import org.apache.rocketmq.common.message.Message;
 /**
  * 发送延时消息
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-27
  */
 public class ScheduledMessageProducer {

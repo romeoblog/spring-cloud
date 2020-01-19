@@ -28,7 +28,7 @@ import java.util.Vector;
 /**
  * 多线程测试
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-26
  */
 public class ThreadTest {

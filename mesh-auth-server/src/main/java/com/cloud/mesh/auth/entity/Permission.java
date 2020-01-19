@@ -23,7 +23,7 @@ import java.util.Date;
 /**
  * 〈权限实体〉
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-08
  * @since 1.0.0
  */

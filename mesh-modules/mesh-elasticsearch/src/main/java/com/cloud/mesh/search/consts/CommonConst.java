@@ -18,7 +18,7 @@ package com.cloud.mesh.search.consts;
 /**
  * The type CommonConst with ES
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-17
  */
 public class CommonConst {

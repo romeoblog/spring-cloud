@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * The Nacos config test
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-13
  */
 @RestController

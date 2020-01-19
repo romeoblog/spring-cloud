@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * The type elasticsearch client factory for Spring
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-13
  */
 public class ElasticsearchClientFactory {

@@ -21,7 +21,7 @@ import org.springframework.stereotype.Service;
 /**
  * 消息消费者服务，来订阅名为 input 的 Binding 中接收的消息
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-02
  */
 @Service

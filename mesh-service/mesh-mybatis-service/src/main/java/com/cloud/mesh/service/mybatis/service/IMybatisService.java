@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * MYBATIS栗子 接口层
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-20
  */
 public interface IMybatisService {

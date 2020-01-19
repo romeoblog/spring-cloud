@@ -55,7 +55,7 @@ import java.util.*;
 /**
  * The type gateway configuration
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-25
  */
 @Configuration

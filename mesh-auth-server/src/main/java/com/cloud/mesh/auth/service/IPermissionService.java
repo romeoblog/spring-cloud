@@ -21,7 +21,7 @@ import com.cloud.mesh.model.auth.ResultMessageVO;
 /**
  * 权限检查
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-17
  */
 public interface IPermissionService {

@@ -19,7 +19,7 @@ import com.cloud.mesh.common.enums.BaseExtensibleEnum;
 
 /**
  * Created with default template
- * Author: Joe Benji
+ * Author: Joe willlu.zheng
  * Date: 2019-03-30
  * Time: 11:17
  * Description: 枚举公共类

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 /**
  * Home redirection to swagger api documentation
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-14
  */
 @Controller

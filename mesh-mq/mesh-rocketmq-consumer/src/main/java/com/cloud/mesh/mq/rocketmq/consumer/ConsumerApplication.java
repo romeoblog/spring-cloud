@@ -26,7 +26,7 @@ import org.springframework.cloud.stream.messaging.Sink;
 /**
  * SpringApplication run.
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-02
  */
 @SpringBootApplication

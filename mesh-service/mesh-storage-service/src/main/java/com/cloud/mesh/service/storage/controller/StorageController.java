@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 库存控制层
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 @RestController

@@ -74,7 +74,7 @@ import java.util.concurrent.TimeUnit;
 /**
  * A wrapper for the ElasticsearchUtils that provides methods for accessing the Indices API.
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-13
  */
 @Component

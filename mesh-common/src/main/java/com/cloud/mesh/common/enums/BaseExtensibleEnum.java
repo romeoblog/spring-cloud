@@ -25,7 +25,7 @@ import java.util.Map;
 /**
  * Base Enum Class
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-03
  */
 @Slf4j

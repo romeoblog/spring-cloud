@@ -32,7 +32,7 @@ import java.util.concurrent.TimeUnit;
  * Asynchronous transmission is generally used in response time sensitive business scenarios.
  * </p>
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-26
  */
 public class AsyncProducer2Test {

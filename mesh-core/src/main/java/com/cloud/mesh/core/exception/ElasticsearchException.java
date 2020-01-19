@@ -18,7 +18,7 @@ package com.cloud.mesh.core.exception;
 /**
  * The type Elasticsearch Exception
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-03
  */
 public class ElasticsearchException extends RuntimeException {

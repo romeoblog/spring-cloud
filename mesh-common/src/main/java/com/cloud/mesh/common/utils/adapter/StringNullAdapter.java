@@ -25,7 +25,7 @@ import java.io.IOException;
 /**
  * String Null Adapter Class
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-30
  */
 public class StringNullAdapter extends TypeAdapter<String> {

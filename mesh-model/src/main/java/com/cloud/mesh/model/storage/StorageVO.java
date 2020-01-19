@@ -24,7 +24,7 @@ import java.io.Serializable;
 /**
  * 库存
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 @Data

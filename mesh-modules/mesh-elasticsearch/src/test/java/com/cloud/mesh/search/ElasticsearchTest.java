@@ -35,7 +35,7 @@ import java.util.Map;
 /**
  * ElasticsearchTest
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-14
  */
 @RunWith(SpringJUnit4ClassRunner.class)

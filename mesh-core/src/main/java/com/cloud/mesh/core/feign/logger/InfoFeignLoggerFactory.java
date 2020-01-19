@@ -22,7 +22,7 @@ import org.springframework.cloud.openfeign.FeignLoggerFactory;
 /**
  * The type info feign logger factory
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-03
  */
 public class InfoFeignLoggerFactory implements FeignLoggerFactory {

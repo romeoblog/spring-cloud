@@ -34,7 +34,7 @@ import java.util.concurrent.TimeUnit;
  * </p>
  * 顺序消息消费，带事务方式（应用可控制Offset什么时候提交）
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-26
  */
 public class Consumer {

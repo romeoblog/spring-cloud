@@ -25,7 +25,7 @@ import java.util.Map;
  * 消息列表分割
  * 复杂度只有当你发送大批量时才会增长，你可能不确定它是否超过了大小限制（4MB）
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-27
  */
 public class ListSplitter implements Iterator<List<Message>> {

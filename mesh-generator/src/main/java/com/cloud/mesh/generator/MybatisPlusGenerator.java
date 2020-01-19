@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * MybatisPlus Entity Dao Service Generator
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 public class MybatisPlusGenerator {

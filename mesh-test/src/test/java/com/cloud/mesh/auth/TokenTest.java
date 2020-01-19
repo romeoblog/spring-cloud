@@ -26,7 +26,7 @@ import java.util.Date;
 /**
  * token test
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-08
  */
 public class TokenTest {

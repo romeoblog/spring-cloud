@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 /**
  * The type reader text file
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-15
  */
 public final class ClassPathResourceReader {

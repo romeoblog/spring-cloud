@@ -44,7 +44,7 @@ import java.util.Objects;
 /**
  * Token interceptor filter
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-15
  */
 @Component

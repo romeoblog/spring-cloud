@@ -23,7 +23,7 @@ import java.util.List;
 /**
  * Gateway的路由定义实体
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-05
  */
 @Data

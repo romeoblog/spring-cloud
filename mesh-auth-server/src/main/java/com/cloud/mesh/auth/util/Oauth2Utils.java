@@ -22,7 +22,7 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 /**
  * Oauth2Utils
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-07
  */
 public class Oauth2Utils {

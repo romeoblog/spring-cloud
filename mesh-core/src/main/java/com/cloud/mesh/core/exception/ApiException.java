@@ -18,7 +18,7 @@ package com.cloud.mesh.core.exception;
 /**
  * The type Api Exception
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-03
  */
 public class ApiException extends RuntimeException {

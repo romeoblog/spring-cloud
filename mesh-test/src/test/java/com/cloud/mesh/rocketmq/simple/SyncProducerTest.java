@@ -27,7 +27,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
  * such as important notification messages, SMS notification, SMS marketing system, etc
  * </p>
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-26
  */
 public class SyncProducerTest {

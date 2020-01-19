@@ -21,7 +21,7 @@ import com.baomidou.mybatisplus.service.impl.ServiceImpl;
 /**
  * SuperServiceImpl
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-03
  */
 public class SuperServiceImpl<T> extends ServiceImpl<BaseMapper<T>, T> implements SuperService<T> {

@@ -21,7 +21,7 @@ import java.util.function.BiConsumer;
 /**
  * The type ForEach Utils
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-15
  */
 public class ForEachUtils {

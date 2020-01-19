@@ -23,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 /**
  * Mq消息DTO
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-05
  */
 @Data

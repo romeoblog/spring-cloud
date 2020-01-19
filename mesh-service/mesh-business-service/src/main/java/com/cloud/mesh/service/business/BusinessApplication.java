@@ -29,7 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * BusinessApplication
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 @EnableSwagger2

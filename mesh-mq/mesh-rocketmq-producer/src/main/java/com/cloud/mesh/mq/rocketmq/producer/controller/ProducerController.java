@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 消息生产者服务
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-07-05
  */
 @RestController

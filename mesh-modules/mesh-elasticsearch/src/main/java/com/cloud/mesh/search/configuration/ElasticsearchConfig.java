@@ -28,7 +28,7 @@ import org.springframework.context.annotation.Scope;
 /**
  * The type elasticsearch configuration
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-13
  */
 @Configuration

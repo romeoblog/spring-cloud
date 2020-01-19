@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 认证服务相关api
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-24
  */
 @FeignClient(name = "mesh-auth-service")

@@ -18,7 +18,7 @@ package com.cloud.mesh.common.constant;
 /**
  * Common Consts
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-30
  */
 public class Consts {

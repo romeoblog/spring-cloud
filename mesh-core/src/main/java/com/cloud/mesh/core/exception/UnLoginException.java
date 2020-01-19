@@ -18,7 +18,7 @@ package com.cloud.mesh.core.exception;
 /**
  * UnLogin Exception
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-05-14
  */
 public class UnLoginException extends RuntimeException {

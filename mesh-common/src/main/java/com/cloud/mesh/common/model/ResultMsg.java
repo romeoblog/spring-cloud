@@ -24,7 +24,7 @@ import java.io.Serializable;
 /**
  * 视图结果集
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-02
  */
 public class ResultMsg<T> implements Serializable {

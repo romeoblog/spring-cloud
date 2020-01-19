@@ -20,7 +20,7 @@ import java.io.Serializable;
 /**
  * 测试Demo
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-28
  */
 public class DemoVO implements Serializable {

@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 /**
  * 账号接口
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-29
  */
 @FeignClient(name = "mesh-user-service", path = "/account")

@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * The type RocketMQ Simple Message Example Test: Consume Messages
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-25
  */
 public class ConsumerMessageTest {

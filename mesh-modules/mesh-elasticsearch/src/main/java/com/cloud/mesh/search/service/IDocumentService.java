@@ -24,7 +24,7 @@ import java.util.List;
 /**
  * Index a document interface service
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-08-18
  */
 public interface IDocumentService {

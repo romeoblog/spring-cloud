@@ -25,7 +25,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * The type Feign Configuration
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-04
  */
 @Configuration

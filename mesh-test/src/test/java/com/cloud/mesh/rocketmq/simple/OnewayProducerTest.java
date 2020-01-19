@@ -26,7 +26,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
  * One-way transmission is used for cases requiring moderate reliability, such as log collection.
  * </p>
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-26
  */
 public class OnewayProducerTest {

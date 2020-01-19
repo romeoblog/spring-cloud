@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * The type Info Feign Logger
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-03
  */
 public class InfoFeignLogger extends feign.Logger {

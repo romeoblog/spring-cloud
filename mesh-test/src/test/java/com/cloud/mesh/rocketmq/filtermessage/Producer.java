@@ -25,7 +25,7 @@ import org.apache.rocketmq.remoting.common.RemotingHelper;
  *
  * 发送消息时，通过putUserProperty来设置消息的属性
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-06-27
  */
 public class Producer {

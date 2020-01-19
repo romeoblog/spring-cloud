@@ -18,7 +18,7 @@ package com.cloud.mesh.common.enums;
 /**
  * 服务相关枚举
  *
- * @author Joe-Benji
+ * @author willlu.zheng
  * @date 2019-04-09
  * @since 1.0.0
  */

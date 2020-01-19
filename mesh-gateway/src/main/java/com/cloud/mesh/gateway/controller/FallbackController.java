@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 熔断处理
  *
- * @author Benji
+ * @author willlu.zheng
  * @date 2019-04-03
  */
 @RestController
