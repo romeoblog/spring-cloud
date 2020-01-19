@@ -19,6 +19,8 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import java.util.Objects;
+
 /**
  * Spring Context Holder
  *
@@ -55,9 +57,7 @@ public class SpringContextHolder implements ApplicationContextAware {
     }
 
     private static void checkApplicationContext() {
-        if (applicationContext == null) {
-            throw new IllegalStateException("applicaitonContext未注入,请在applicationContext.xml中定义SpringContextHolder");
-        }
+        Objects.requireNonNull(applicationContext, "ApplicationContext注入失败！");
     }
 
 }
