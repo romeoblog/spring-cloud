@@ -351,7 +351,7 @@
 
 ##### 系统架构图
 
-![系统架构图](mesh-docs/src/main/asciidoc-zh/images/architectural-design.png)
+![系统架构图](https://cdn.willlu.cn/architectural-design.png)
 
 ##### 业务架构图
 TDB
