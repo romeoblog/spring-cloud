@@ -1,5 +1,5 @@
 spring:
   application:
-    name: mesh-eureka-eureka
+    name: mesh-eureka
 server:
   port: 8830
