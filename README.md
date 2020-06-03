@@ -146,6 +146,11 @@
 		<td>8830</td>
 	</tr>
 	<tr>
+        <td>mesh-config(spring-cloud-config)</td>
+        <td>8850</td>
+        <td>8850</td>
+    </tr>
+	<tr>
 		<td>alibaba nacos</td>
 		<td>8848</td>
 		<td>8848</td>
