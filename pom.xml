@@ -41,6 +41,7 @@
         <module>mesh-demo</module>
         <module>mesh-mq</module>
         <module>mesh-modules</module>
+        <module>mesh-config</module>
     </modules>
     <packaging>pom</packaging>
     <name>Mesh Parent POM ${project.version}</name>
