@@ -22,6 +22,6 @@ public class ConfigApplication {
         SpringApplication app = new SpringApplication(ConfigApplication.class);
         app.setBannerMode(Banner.Mode.OFF);
         app.run(args);
-        log.info("BusinessApplication is running!");
+        log.info("ConfigApplication is running!");
     }
 }
