@@ -263,7 +263,7 @@
         <!-- components -->
         <spring-cloud-alibaba.version>2.1.1.RELEASE</spring-cloud-alibaba.version>
         <nacos-client.version>1.1.4</nacos-client.version>
-        <seata.version>1.0.0</seata.version>
+        <seata.version>1.1.0</seata.version>
         <sentinel.version>1.6.0</sentinel.version>
         <alibaba-ahas-sentinel.version>1.0.2</alibaba-ahas-sentinel.version>
         <rocketmq.version>4.5.1</rocketmq.version>
