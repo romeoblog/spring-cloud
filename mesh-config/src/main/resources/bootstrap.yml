@@ -1,5 +1,0 @@
-spring:
-  application:
-    name: mesh-config
-server:
-  port: 8850
