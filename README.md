@@ -36,6 +36,8 @@
 
 * **Apache Skywalking**：提供全链路监控，跟踪分布式服务间的应用数据链路。（已支持）
 
+* **Spring Cloud Config**：提供为分布式系统中的外部化配置提供服务器端和客户端支持。（未支持）
+
 ### 组织结构
 
     spring-cloud
