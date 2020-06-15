@@ -26,7 +26,7 @@ public final class NacosConfigUtil {
     /**
      * Nacos remoteAddress
      */
-    public static final String REMOTE_ADDRESS = "localhost";
+    public static final String REMOTE_ADDRESS = "localhost:8848";
     /**
      * Nacos Group ID
      */

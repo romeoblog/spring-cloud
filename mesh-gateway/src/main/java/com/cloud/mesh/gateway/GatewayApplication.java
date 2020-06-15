@@ -20,6 +20,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 
 /**
  * SpringApplication run
@@ -28,6 +29,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @date 2019-04-03
  */
 @Slf4j
+@RefreshScope
 @SpringBootApplication
 @EnableDiscoveryClient
 public class GatewayApplication {

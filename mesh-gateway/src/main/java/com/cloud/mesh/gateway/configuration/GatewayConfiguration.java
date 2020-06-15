@@ -32,9 +32,12 @@ import com.alibaba.csp.sentinel.slots.block.RuleConstant;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRule;
 import com.alibaba.csp.sentinel.slots.block.degrade.DegradeRuleManager;
 import com.alibaba.csp.sentinel.slots.block.flow.FlowRule;
+import com.alibaba.csp.sentinel.slots.block.flow.FlowRuleManager;
 import com.alibaba.csp.sentinel.slots.system.SystemRule;
 import com.alibaba.csp.sentinel.slots.system.SystemRuleManager;
 import com.alibaba.csp.sentinel.transport.util.WritableDataSourceRegistry;
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.TypeReference;
 import com.cloud.mesh.common.utils.JsonUtils;
 import com.cloud.mesh.gateway.utils.NacosConfigUtil;
 import com.google.gson.reflect.TypeToken;
@@ -92,7 +95,6 @@ public class GatewayConfiguration {
 //        initCustomizedApis();
 //        initGatewayRules();
 //        initDegradeRule();
-
         registerSentinelProperty();
         registerNacosDataSource();
     }
@@ -188,18 +190,28 @@ public class GatewayConfiguration {
         DegradeRuleManager.loadRules(rules);
     }
 
+    /**
+     * A read-only DataSource with Nacos backend.
+     */
     private void registerSentinelProperty() {
         log.info("Loading flow data source rules: remoteAddress: [{}], groupId: [{}], dataId: [{}]",
                 NacosConfigUtil.REMOTE_ADDRESS,
                 NacosConfigUtil.GROUP_ID,
                 appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX);
-        ReadableDataSource<String, Set<GatewayFlowRule>> flowRuleDataSource = new NacosDataSource<>(
-                NacosConfigUtil.REMOTE_ADDRESS,
+//        ReadableDataSource<String, Set<GatewayFlowRule>> flowRuleDataSource = new NacosDataSource<>(
+//                NacosConfigUtil.REMOTE_ADDRESS,
+//                NacosConfigUtil.GROUP_ID,
+//                appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX,
+//                source -> JsonUtils.fromJson(source, new TypeToken<Set<GatewayFlowRule>>() {
+//                }));
+//        GatewayRuleManager.register2Property(flowRuleDataSource.getProperty());
+
+        ReadableDataSource<String, List<FlowRule>> flowRuleDataSource = new NacosDataSource<>(NacosConfigUtil.REMOTE_ADDRESS,
                 NacosConfigUtil.GROUP_ID,
                 appName + NacosConfigUtil.FLOW_DATA_ID_POSTFIX,
-                source -> JsonUtils.fromJson(source, new TypeToken<Set<GatewayFlowRule>>() {
+                source -> JSON.parseObject(source, new TypeReference<List<FlowRule>>() {
                 }));
-        GatewayRuleManager.register2Property(flowRuleDataSource.getProperty());
+        FlowRuleManager.register2Property(flowRuleDataSource.getProperty());
 
         log.info("Loading degrade data source rules: remoteAddress: [{}], groupId: [{}], dataId: [{}]",
                 NacosConfigUtil.REMOTE_ADDRESS,
@@ -226,6 +238,9 @@ public class GatewayConfiguration {
         SystemRuleManager.register2Property(systemRuleDataSource.getProperty());
     }
 
+    /**
+     * A writable DataSource with Nacos backend.
+     */
     private void registerNacosDataSource() {
         WritableDataSource<List<FlowRule>> flowWritableDataSource = new NacosWritableDataSource<>(
                 NacosConfigUtil.REMOTE_ADDRESS,
