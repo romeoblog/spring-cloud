@@ -21,6 +21,7 @@ import org.springframework.boot.Banner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -32,6 +33,8 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
  * @author willlu.zheng
  * @date 2019-04-28
  */
+@Slf4j
+@RefreshScope
 @EnableSwagger2
 @EnableTransactionManagement
 @SpringBootApplication
@@ -39,7 +42,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @MapperScan(basePackages = {"com.cloud.mesh.service.user.mapper", "com.cloud.mesh.mapper"})
 @EnableFeignClients(basePackages = {"com.cloud.mesh.api"})
 @EnableDiscoveryClient
-@Slf4j
 public class UserApplication {
 
     public static void main(String[] args) {
