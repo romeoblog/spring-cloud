@@ -15,12 +15,12 @@ spring:
         #192.168.2.100[4d43c258-e78a-4103-a7d3-2f463dc1301d]
         namespace: 9d145ea5-7f3c-4f87-b122-6bbe7ea6cb7d
         #common配置公共属性：如数据库、redis、mq等信息
-        ext-config[0]:
-          data-id: common.yaml
+        extensionConfigs[0]:
+          dataId: common.yaml
           group: COMMON_GROUP
         #业务模块配置：独立的配置属性
-        ext-config[1]:
-          data-id: business.yaml
+        extensionConfigs[1]:
+          dataId: business.yaml
           group: SERVICE_GROUP
           #支持动态刷新
           refresh: true

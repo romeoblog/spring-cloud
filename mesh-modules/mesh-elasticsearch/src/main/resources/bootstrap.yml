@@ -9,7 +9,7 @@ spring:
         server-addr: 127.0.0.1:8848
         namespace: 4d43c258-e78a-4103-a7d3-2f463dc1301d
         #业务模块配置：独立的配置属性
-        ext-config[0]:
-          data-id: elasticsearch.yaml
+        extensionConfigs[0]:
+          dataId: elasticsearch.yaml
           group: SERVICE_GROUP
           refresh: true
