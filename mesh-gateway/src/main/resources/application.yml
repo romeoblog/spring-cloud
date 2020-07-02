@@ -5,6 +5,8 @@ spring:
     port: 6379
   cloud:
     nacos:
+      username: nacos
+      password: nacos
       discovery:
         enabled: true
         serverAddr: localhost:8848

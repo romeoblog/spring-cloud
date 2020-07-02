@@ -16,7 +16,7 @@
 package com.cloud.mesh.gateway.controller;
 
 import com.cloud.mesh.gateway.model.GatewayRouteDefinition;
-import com.cloud.mesh.gateway.route.DynamicRouteServiceImpl;
+import com.cloud.mesh.gateway.route.impl.DynamicRouteServiceImpl;
 import com.cloud.mesh.gateway.model.GatewayPredicateDefinition;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.handler.predicate.PredicateDefinition;

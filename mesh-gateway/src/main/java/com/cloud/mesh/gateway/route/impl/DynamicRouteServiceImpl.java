@@ -13,8 +13,9 @@
  *  See the License for the specific language governing permissions and
  *  limitations under the License.
  */
-package com.cloud.mesh.gateway.route;
+package com.cloud.mesh.gateway.route.impl;
 
+import com.cloud.mesh.gateway.route.IDynamicRouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.gateway.event.RefreshRoutesEvent;
 import org.springframework.cloud.gateway.route.RouteDefinition;
@@ -28,36 +29,29 @@ import reactor.core.publisher.Mono;
  * The type support Nacos Dynamic Route service implement
  *
  * @author willlu.zheng
- * @date 2019-06-05
+ * @date 2020-06-15
  */
-@Service
-public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
+@Service("dynamicRouteServiceImpl")
+public class DynamicRouteServiceImpl implements IDynamicRouteService, ApplicationEventPublisherAware {
 
     @Autowired
     private RouteDefinitionWriter routeDefinitionWriter;
 
     private ApplicationEventPublisher publisher;
 
+    @Override
+    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+        this.publisher = applicationEventPublisher;
+    }
 
-    /**
-     * Insert router
-     *
-     * @param definition the definition
-     * @return s
-     */
+    @Override
     public String add(RouteDefinition definition) {
         routeDefinitionWriter.save(Mono.just(definition)).subscribe();
         this.publisher.publishEvent(new RefreshRoutesEvent(this));
         return "success";
     }
 
-
-    /**
-     * Update router
-     *
-     * @param definition the definition
-     * @return s
-     */
+    @Override
     public String update(RouteDefinition definition) {
         try {
             this.routeDefinitionWriter.delete(Mono.just(definition.getId()));
@@ -71,16 +65,9 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
         } catch (Exception e) {
             return "update route fail";
         }
-
-
     }
 
-    /**
-     * Delete router bu routerId
-     *
-     * @param id the routerId
-     * @return s
-     */
+    @Override
     public String delete(String id) {
         try {
             this.routeDefinitionWriter.delete(Mono.just(id));
@@ -89,13 +76,6 @@ public class DynamicRouteServiceImpl implements ApplicationEventPublisherAware {
             e.printStackTrace();
             return "delete fail";
         }
-
     }
-
-    @Override
-    public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
-        this.publisher = applicationEventPublisher;
-    }
-
 
 }
