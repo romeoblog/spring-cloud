@@ -399,4 +399,4 @@ willluzheng@163.com
 
 [GNU Affero General Public License v3.0](https://github.com/romeoblog/spring-cloud/blob/master/LICENSE)
 
-Copyright © 2019 郑伟陆
+Copyright © 2019-2020 郑伟陆
